@@ -67,6 +67,21 @@
   .wrap { max-width: 1080px; margin: 0 auto; }
 
   header { margin-bottom: 24px; display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 14px; }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 6px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+  .brand-mv { color: #eda100; font-size: 17px; }
+  .brand-company { color: var(--text-primary); font-size: 12px; opacity: 0.75; }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .brand-mv { color: #c98500; }
+  }
+  :root[data-theme="dark"] .brand-mv { color: #c98500; }
+
   h1 { font-size: 22px; margin: 0 0 4px; }
   .subtitle { color: var(--text-secondary); font-size: 14px; }
   .subtitle strong { color: var(--text-primary); font-weight: 600; }
@@ -239,6 +254,7 @@
 <div class="wrap">
   <header>
     <div>
+      <div class="brand"><span class="brand-mv">MV</span><span class="brand-company">COMPANY</span></div>
       <h1>Zap Leads Dashboard</h1>
       <div class="subtitle" id="subtitle">Carregando...</div>
     </div>
