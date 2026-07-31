@@ -135,6 +135,33 @@
   .card h2 { font-size: 15px; margin: 0 0 4px; }
   .card .card-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
 
+  .card-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .card-head h2 { margin-bottom: 4px; }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--page);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    color: var(--text-muted);
+    min-width: 200px;
+  }
+  .search-box:focus-within { border-color: var(--series); color: var(--text-secondary); }
+  .search-box svg { flex: 0 0 auto; }
+  .search-box input {
+    border: none;
+    background: transparent;
+    outline: none;
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 13px;
+    width: 100%;
+  }
+  .search-box input::placeholder { color: var(--text-muted); }
+
   .bars { display: flex; flex-direction: column; gap: 6px; }
   .bar-row { display: flex; align-items: center; gap: 10px; }
   .bar-row .bar-label {
@@ -245,8 +272,16 @@
   </div>
 
   <div class="card">
-    <h2>Distribuidores</h2>
-    <div class="card-sub" id="distTableSub"></div>
+    <div class="card-head">
+      <div>
+        <h2>Distribuidores</h2>
+        <div class="card-sub" id="distTableSub"></div>
+      </div>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="distSearch" placeholder="Buscar distribuidor..." autocomplete="off" />
+      </div>
+    </div>
     <div id="distTableContainer"></div>
   </div>
 
@@ -267,6 +302,7 @@ async function main() {
     ufChart: document.getElementById('ufChartContainer'),
     distTable: document.getElementById('distTableContainer'),
     distTableSub: document.getElementById('distTableSub'),
+    distSearch: document.getElementById('distSearch'),
     footer: document.getElementById('footer'),
     tooltip: document.getElementById('tooltip'),
     periodoSwitch: document.getElementById('periodoSwitch'),
@@ -298,6 +334,33 @@ async function main() {
   function hideTooltip() { el.tooltip.style.display = 'none'; }
 
   const LABELS = { '30dias': '30 dias', '15dias': '15 dias', '7dias': '7 dias', 'hoje': 'hoje' };
+  const normalizarBusca = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+  let porDistAtual = [];
+
+  function renderDistTable(porDist) {
+    if (!porDist.length) {
+      el.distTable.innerHTML = `<div class="empty">${el.distSearch.value ? 'Nenhum distribuidor encontrado.' : 'Sem leads de distribuidores no período.'}</div>`;
+      return;
+    }
+    el.distTable.innerHTML = `
+      <table>
+        <thead><tr><th>Distribuidor</th><th class="num">Leads</th><th class="num">Aprovados</th><th class="num">Reprovados</th><th class="num">Taxa aprov.</th></tr></thead>
+        <tbody>
+          ${porDist.map(d => {
+            const total = d.aprovados + d.reprovados;
+            const taxa = total > 0 ? d.aprovados / total : null;
+            return `<tr><td>${d.nome}</td><td class="num">${fmt.format(d.total)}</td><td class="num">${fmt.format(d.aprovados)}</td><td class="num">${fmt.format(d.reprovados)}</td><td class="num">${pct(taxa)}</td></tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    `;
+  }
+
+  el.distSearch.addEventListener('input', () => {
+    const termo = normalizarBusca(el.distSearch.value);
+    const filtrado = termo ? porDistAtual.filter(d => normalizarBusca(d.nome).includes(termo)) : porDistAtual;
+    renderDistTable(filtrado);
+  });
 
   function render(periodoKey) {
     const p = data.periodos?.[periodoKey];
@@ -405,23 +468,9 @@ async function main() {
 
     // --- distribuidores ---
     el.distTableSub.textContent = `Volume de leads e taxa de aprovação — ${LABELS[periodoKey]}`;
-    const porDist = p.porDistribuidor || [];
-    if (!porDist.length) {
-      el.distTable.innerHTML = '<div class="empty">Sem leads de distribuidores no período.</div>';
-    } else {
-      el.distTable.innerHTML = `
-        <table>
-          <thead><tr><th>Distribuidor</th><th class="num">Leads</th><th class="num">Aprovados</th><th class="num">Reprovados</th><th class="num">Taxa aprov.</th></tr></thead>
-          <tbody>
-            ${porDist.map(d => {
-              const total = d.aprovados + d.reprovados;
-              const taxa = total > 0 ? d.aprovados / total : null;
-              return `<tr><td>${d.nome}</td><td class="num">${fmt.format(d.total)}</td><td class="num">${fmt.format(d.aprovados)}</td><td class="num">${fmt.format(d.reprovados)}</td><td class="num">${pct(taxa)}</td></tr>`;
-            }).join('')}
-          </tbody>
-        </table>
-      `;
-    }
+    porDistAtual = p.porDistribuidor || [];
+    el.distSearch.value = '';
+    renderDistTable(porDistAtual);
 
     el.footer.textContent = `Janela coletada: ${data.diasJanela} dias (completa: ${data.janelaCompleta ? 'sim' : 'não'})`;
 
