@@ -98,33 +98,40 @@ async function main() {
 
   console.error(`Classificando conversas (concorrência=${CONCURRENCY})...`);
   const resultados = await mapWithConcurrency(leads, CONCURRENCY, async (lead) => {
-    const conversa = await getConversaPorChatId(lead.chatId);
-    if (!conversa) return null;
-    const depId = conversa.departamento_responsavel_atendimento;
-    const distribuidor = departamentosAtivos.get(depId) || null;
-    if (!distribuidor) return null;
+    try {
+      const conversa = await getConversaPorChatId(lead.chatId);
+      if (!conversa) return null;
+      const depId = conversa.departamento_responsavel_atendimento;
+      const distribuidor = departamentosAtivos.get(depId) || null;
+      if (!distribuidor) return null;
 
-    const mensagensOrdenadas = (await getMensagens(conversa._id)).sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-    let status = 'sem_mencao';
-    for (const m of mensagensOrdenadas) {
-      const c = classificarMensagem(textoDaMensagem(m).toUpperCase());
-      if (c) status = c;
+      const mensagensOrdenadas = (await getMensagens(conversa._id)).sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      let status = 'sem_mencao';
+      for (const m of mensagensOrdenadas) {
+        const c = classificarMensagem(textoDaMensagem(m).toUpperCase());
+        if (c) status = c;
+      }
+      const origem = classificarOrigem(mensagensOrdenadas[0]);
+      const info = extrairDddEUf(lead.chatId);
+      return {
+        distribuidor,
+        status,
+        origem,
+        uf: info?.uf || 'desconhecido',
+        data: diaISO(lead.createdAt),
+        // campos temporários, só pra origem-indeterminada — removidos antes da saída final
+        _telefone: origem === 'indeterminado' ? lead.chatId : undefined,
+        _mensagens: origem === 'indeterminado' ? mensagensOrdenadas : undefined,
+      };
+    } catch (err) {
+      console.error(`  aviso: falha ao processar um lead (${err.message}), pulando.`);
+      return null;
     }
-    const origem = classificarOrigem(mensagensOrdenadas[0]);
-    const info = extrairDddEUf(lead.chatId);
-    return {
-      distribuidor,
-      status,
-      origem,
-      uf: info?.uf || 'desconhecido',
-      data: diaISO(lead.createdAt),
-      // campos temporários, só pra origem-indeterminada — removidos antes da saída final
-      _telefone: origem === 'indeterminado' ? lead.chatId : undefined,
-      _mensagens: origem === 'indeterminado' ? mensagensOrdenadas : undefined,
-    };
   });
 
-  const registros = resultados.filter(Boolean);
+  // mapWithConcurrency também pode devolver { error } se algo escapar do try acima —
+  // nunca deixar um registro sem "data" chegar na agregação (já quebrou um build antes).
+  const registros = resultados.filter((r) => r && typeof r.data === 'string');
   console.error(`Classificação concluída: ${registros.length} leads vinculados a distribuidor ativo, ${((Date.now() - t0) / 1000).toFixed(1)}s.`);
 
   const indeterminados = registros.filter((r) => r.origem === 'indeterminado');
