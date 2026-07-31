@@ -58,7 +58,6 @@ function agregar(registros) {
   const porDistribuidorMap = new Map();
 
   for (const r of registros) {
-    statusCount[r.status] = (statusCount[r.status] || 0) + 1;
     origemCount[r.origem] = (origemCount[r.origem] || 0) + 1;
     if (r.origem === 'indeterminado' && r.origemIA) {
       origemIACount[r.origemIA] = (origemIACount[r.origemIA] || 0) + 1;
@@ -67,9 +66,16 @@ function agregar(registros) {
 
     const dist = porDistribuidorMap.get(r.distribuidor) || { nome: r.distribuidor, total: 0, aprovados: 0, reprovados: 0 };
     dist.total += 1;
-    if (r.status === 'aprovado') dist.aprovados += 1;
-    if (r.status === 'reprovado') dist.reprovados += 1;
     porDistribuidorMap.set(r.distribuidor, dist);
+
+    // Aprovado/reprovado só conta pra quem confirmou vir de anúncio (clique_anuncio_confirmado)
+    // — mesma regra do funil oficial usado nas análises por distribuidor. "total" acima continua
+    // com todas as origens, só pra dar contexto de volume geral.
+    if (r.origem === 'clique_anuncio_confirmado') {
+      statusCount[r.status] = (statusCount[r.status] || 0) + 1;
+      if (r.status === 'aprovado') dist.aprovados += 1;
+      if (r.status === 'reprovado') dist.reprovados += 1;
+    }
   }
 
   const totalClassificados = statusCount.aprovado + statusCount.reprovado;
@@ -140,13 +146,16 @@ async function main() {
   indeterminados.forEach((r, i) => { r.origemIA = resultadosIA[i].origemProvavel; });
   for (const r of registros) { delete r._telefone; delete r._mensagens; }
 
-  // Série diária (janela completa) pro gráfico de tendência.
+  // Série diária (janela completa) pro gráfico de tendência. Aprovados/reprovados
+  // seguem a mesma regra do agregar(): só contam quem veio de anúncio confirmado.
   const porDiaMap = new Map();
   for (const r of registros) {
     const dia = porDiaMap.get(r.data) || { data: r.data, total: 0, aprovados: 0, reprovados: 0 };
     dia.total += 1;
-    if (r.status === 'aprovado') dia.aprovados += 1;
-    if (r.status === 'reprovado') dia.reprovados += 1;
+    if (r.origem === 'clique_anuncio_confirmado') {
+      if (r.status === 'aprovado') dia.aprovados += 1;
+      if (r.status === 'reprovado') dia.reprovados += 1;
+    }
     porDiaMap.set(r.data, dia);
   }
   const porDia = [...porDiaMap.values()].sort((a, b) => a.data.localeCompare(b.data));

@@ -380,7 +380,7 @@ async function main() {
     }
     el.distTable.innerHTML = `
       <table>
-        <thead><tr><th>Distribuidor</th><th class="num">Leads</th><th class="num">Aprovados</th><th class="num">Reprovados</th><th class="num">Taxa aprov.</th></tr></thead>
+        <thead><tr><th>Distribuidor</th><th class="num">Leads (todas origens)</th><th class="num">Aprovados (anúncio)</th><th class="num">Reprovados (anúncio)</th><th class="num">Taxa aprov. (anúncio)</th></tr></thead>
         <tbody>
           ${porDist.map(d => {
             const total = d.aprovados + d.reprovados;
@@ -407,10 +407,10 @@ async function main() {
     const reprovados = p.status?.reprovado || 0;
     const tiles = [
       { label: 'Distribuidores com lead no período', value: fmt.format(p.distribuidoresAtivos || 0) },
-      { label: 'Aprovados', value: fmt.format(aprovados), cls: 'good' },
-      { label: 'Reprovados', value: fmt.format(reprovados), cls: 'critical' },
-      { label: 'Taxa de aprovação', value: pct(p.taxaAprovacao) },
       { label: 'Cliques de anúncio confirmados', value: fmt.format(p.origem?.clique_anuncio_confirmado || 0) },
+      { label: 'Aprovados (anúncio confirmado)', value: fmt.format(aprovados), cls: 'good' },
+      { label: 'Reprovados (anúncio confirmado)', value: fmt.format(reprovados), cls: 'critical' },
+      { label: 'Taxa de aprovação (anúncio confirmado)', value: pct(p.taxaAprovacao) },
     ];
     el.tiles.innerHTML = tiles.map(t => `
       <div class="tile">
@@ -444,7 +444,7 @@ async function main() {
     // --- leads por dia (recorta a série completa pro período selecionado) ---
     const diasN = p.dias;
     const porDia = (data.porDia || []).slice(-diasN);
-    el.dayChartSub.textContent = `Últimos ${diasN === 1 ? '1 dia' : diasN + ' dias'}, vinculados a um distribuidor ativo`;
+    el.dayChartSub.textContent = `Últimos ${diasN === 1 ? '1 dia' : diasN + ' dias'} · aprovados/reprovados no detalhe = só anúncio confirmado`;
     if (!porDia.length) {
       el.dayChart.innerHTML = '<div class="empty">Sem dados de série diária.</div>';
     } else {
@@ -502,7 +502,7 @@ async function main() {
     }
 
     // --- distribuidores ---
-    el.distTableSub.textContent = `Volume de leads e taxa de aprovação — ${LABELS[periodoKey]}`;
+    el.distTableSub.textContent = `Leads = todas origens · aprovação = só anúncio confirmado — ${LABELS[periodoKey]}`;
     porDistAtual = p.porDistribuidor || [];
     el.distSearch.value = '';
     renderDistTable(porDistAtual);
