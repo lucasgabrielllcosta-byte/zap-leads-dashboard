@@ -73,17 +73,13 @@
   .brand {
     display: flex;
     align-items: baseline;
-    gap: 6px;
-    margin-bottom: 6px;
+    gap: 10px;
+    margin-bottom: 10px;
     font-weight: 800;
     letter-spacing: 0.02em;
   }
-  .brand-mv { color: #eda100; font-size: 17px; }
-  .brand-company { color: var(--text-primary); font-size: 12px; opacity: 0.75; }
-  @media (prefers-color-scheme: dark) {
-    :root:where(:not([data-theme="light"])) .brand-mv { color: #c98500; }
-  }
-  :root[data-theme="dark"] .brand-mv { color: #c98500; }
+  .brand-mv { color: var(--series); font-size: 34px; }
+  .brand-company { color: var(--text-primary); font-size: 20px; opacity: 0.75; }
 
   h1 { font-size: 22px; margin: 0 0 4px; }
   .subtitle { color: var(--text-secondary); font-size: 14px; }
