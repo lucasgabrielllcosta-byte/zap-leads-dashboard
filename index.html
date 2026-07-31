@@ -302,7 +302,7 @@
 
   <div class="card">
     <h2>Leads por UF</h2>
-    <div class="card-sub">Estado inferido pelo DDD do telefone</div>
+    <div class="card-sub">Estado inferido pelo DDD do telefone · só anúncio confirmado</div>
     <div id="ufChartContainer"></div>
   </div>
 
@@ -383,36 +383,40 @@ async function main() {
       ? registros.filter((r) => r.data === hojeISO)
       : registros.filter((r) => r.data >= diaISO(Date.now() - dias * 86400000));
 
-    const statusCount = { aprovado: 0, reprovado: 0, sem_mencao: 0 };
+    // "Origem dos leads" é a única exceção do dashboard — precisa ver todas as origens
+    // pra mostrar a proporção confirmado vs. não-confirmado. Todo o resto (UF, distribuidores,
+    // aprovação, tendência diária) usa só quem confirmou vir de anúncio.
     const origemCount = { clique_anuncio_confirmado: 0, outbound_distribuidor_iniciou: 0, indeterminado: 0 };
     const origemIACount = { anuncio: 0, organico_outro: 0, nao_da_pra_saber: 0 };
-    const porUFMap = new Map();
-    const porDistribuidorMap = new Map();
-
     for (const r of filtrados) {
       origemCount[r.origem] = (origemCount[r.origem] || 0) + 1;
       if (r.origem === 'indeterminado' && r.origemIA) {
         origemIACount[r.origemIA] = (origemIACount[r.origemIA] || 0) + 1;
       }
+    }
+
+    const filtradosAnuncio = filtrados.filter((r) => r.origem === 'clique_anuncio_confirmado');
+
+    const statusCount = { aprovado: 0, reprovado: 0, sem_mencao: 0 };
+    const porUFMap = new Map();
+    const porDistribuidorMap = new Map();
+
+    for (const r of filtradosAnuncio) {
+      statusCount[r.status] = (statusCount[r.status] || 0) + 1;
       porUFMap.set(r.uf, (porUFMap.get(r.uf) || 0) + 1);
 
-      // Tabela de Distribuidores é só sobre anúncio confirmado — leads, aprovados,
-      // reprovados e taxa, tudo na mesma regra do funil oficial das análises por distribuidor.
-      if (r.origem === 'clique_anuncio_confirmado') {
-        statusCount[r.status] = (statusCount[r.status] || 0) + 1;
-        const dist = porDistribuidorMap.get(r.distribuidor) || { nome: r.distribuidor, total: 0, aprovados: 0, reprovados: 0 };
-        dist.total += 1;
-        if (r.status === 'aprovado') dist.aprovados += 1;
-        if (r.status === 'reprovado') dist.reprovados += 1;
-        porDistribuidorMap.set(r.distribuidor, dist);
-      }
+      const dist = porDistribuidorMap.get(r.distribuidor) || { nome: r.distribuidor, total: 0, aprovados: 0, reprovados: 0 };
+      dist.total += 1;
+      if (r.status === 'aprovado') dist.aprovados += 1;
+      if (r.status === 'reprovado') dist.reprovados += 1;
+      porDistribuidorMap.set(r.distribuidor, dist);
     }
 
     const totalClassificados = statusCount.aprovado + statusCount.reprovado;
     return {
       dias,
-      totalLeads: filtrados.length,
-      distribuidoresAtivos: new Set(filtrados.map((r) => r.distribuidor)).size,
+      totalLeads: filtradosAnuncio.length,
+      distribuidoresAtivos: new Set(filtradosAnuncio.map((r) => r.distribuidor)).size,
       status: statusCount,
       taxaAprovacao: totalClassificados > 0 ? statusCount.aprovado / totalClassificados : null,
       origem: origemCount,
@@ -425,12 +429,11 @@ async function main() {
   function calcularPorDia(registros, dias) {
     const porDiaMap = new Map();
     for (const r of registros) {
+      if (r.origem !== 'clique_anuncio_confirmado') continue;
       const dia = porDiaMap.get(r.data) || { data: r.data, total: 0, aprovados: 0, reprovados: 0 };
       dia.total += 1;
-      if (r.origem === 'clique_anuncio_confirmado') {
-        if (r.status === 'aprovado') dia.aprovados += 1;
-        if (r.status === 'reprovado') dia.reprovados += 1;
-      }
+      if (r.status === 'aprovado') dia.aprovados += 1;
+      if (r.status === 'reprovado') dia.reprovados += 1;
       porDiaMap.set(r.data, dia);
     }
     return [...porDiaMap.values()].sort((a, b) => a.data.localeCompare(b.data)).slice(-dias);
@@ -470,7 +473,7 @@ async function main() {
     const aprovados = p.status?.aprovado || 0;
     const reprovados = p.status?.reprovado || 0;
     const tiles = [
-      { label: 'Distribuidores com lead no período', value: fmt.format(p.distribuidoresAtivos || 0) },
+      { label: 'Distribuidores com lead de anúncio', value: fmt.format(p.distribuidoresAtivos || 0) },
       { label: 'Cliques de anúncio confirmados', value: fmt.format(p.origem?.clique_anuncio_confirmado || 0) },
       { label: 'Aprovados (anúncio confirmado)', value: fmt.format(aprovados), cls: 'good' },
       { label: 'Reprovados (anúncio confirmado)', value: fmt.format(reprovados), cls: 'critical' },
@@ -508,7 +511,7 @@ async function main() {
     // --- leads por dia (recorta a série completa pro período selecionado) ---
     const diasN = p.dias;
     const porDia = calcularPorDia(registros, diasN);
-    el.dayChartSub.textContent = `Últimos ${diasN === 1 ? '1 dia' : diasN + ' dias'} · aprovados/reprovados no detalhe = só anúncio confirmado`;
+    el.dayChartSub.textContent = `Últimos ${diasN === 1 ? '1 dia' : diasN + ' dias'} · só anúncio confirmado`;
     if (!porDia.length) {
       el.dayChart.innerHTML = '<div class="empty">Sem dados de série diária.</div>';
     } else {
