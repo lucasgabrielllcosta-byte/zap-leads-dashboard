@@ -108,6 +108,20 @@
   .segmented button:hover { color: var(--text-primary); }
   .segmented button.active { background: var(--series); color: #ffffff; font-weight: 600; }
 
+  .header-controls { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+  .refresh-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 10px;
+  }
+  .refresh-btn:hover { color: var(--text-primary); border-color: var(--series); }
+
   .stale-warning {
     display: none;
     margin-top: 10px;
@@ -258,11 +272,17 @@
       <h1>Zap Leads Dashboard</h1>
       <div class="subtitle" id="subtitle">Carregando...</div>
     </div>
-    <div class="segmented" id="periodoSwitch">
-      <button data-periodo="30dias">30 dias</button>
-      <button data-periodo="15dias">15 dias</button>
-      <button data-periodo="7dias">7 dias</button>
-      <button data-periodo="hoje">Hoje</button>
+    <div class="header-controls">
+      <div class="segmented" id="periodoSwitch">
+        <button data-periodo="30dias">30 dias</button>
+        <button data-periodo="15dias">15 dias</button>
+        <button data-periodo="7dias">7 dias</button>
+        <button data-periodo="hoje">Hoje</button>
+      </div>
+      <a class="refresh-btn" id="refreshBtn" href="https://github.com/lucasgabrielllcosta-byte/zap-leads-dashboard/actions/workflows/deploy.yml" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Atualizar agora
+      </a>
     </div>
   </header>
   <div class="stale-warning" id="staleWarning">Dados desatualizados — a última atualização automática pode ter falhado.</div>
