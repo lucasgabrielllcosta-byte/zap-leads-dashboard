@@ -163,6 +163,19 @@
     font-variant-numeric: tabular-nums;
   }
 
+  .origem-row .bar-label { width: auto; flex: 0 0 220px; text-align: left; display: flex; align-items: center; gap: 6px; }
+  .origem-row .bar-value { width: 84px; text-align: right; }
+  .origem-row .bar-fill.estimado { background: var(--series-soft); }
+  .badge-ia {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 5px;
+    line-height: 1.4;
+  }
+
   .daychart { display: flex; align-items: flex-end; gap: 3px; height: 160px; padding-top: 20px; border-bottom: 1px solid var(--baseline); }
   .daychart .col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
   .daychart .col-fill { background: var(--series); border-radius: 3px 3px 0 0; min-height: 2px; }
@@ -214,6 +227,12 @@
   <div class="tiles" id="tiles"></div>
 
   <div class="card">
+    <h2>Origem dos leads</h2>
+    <div class="card-sub">Cliques de anúncio confirmados tecnicamente + estimativa por IA nos indeterminados</div>
+    <div id="origemContainer"></div>
+  </div>
+
+  <div class="card">
     <h2>Leads por dia</h2>
     <div class="card-sub" id="dayChartSub"></div>
     <div id="dayChartContainer"></div>
@@ -244,6 +263,7 @@ async function main() {
     tiles: document.getElementById('tiles'),
     dayChart: document.getElementById('dayChartContainer'),
     dayChartSub: document.getElementById('dayChartSub'),
+    origem: document.getElementById('origemContainer'),
     ufChart: document.getElementById('ufChartContainer'),
     distTable: document.getElementById('distTableContainer'),
     distTableSub: document.getElementById('distTableSub'),
@@ -300,6 +320,28 @@ async function main() {
         <div class="value${t.cls ? ' ' + t.cls : ''}">${t.value}</div>
       </div>
     `).join('');
+
+    // --- origem dos leads (confirmado tecnicamente + estimativa por IA nos indeterminados) ---
+    const oIA = p.origemIA || { anuncio: 0, organico_outro: 0, nao_da_pra_saber: 0 };
+    const origemRows = [
+      { label: 'Anúncio (confirmado)', total: p.origem?.clique_anuncio_confirmado || 0, estimado: false },
+      { label: 'Anúncio (estimado)', badge: 'IA', total: oIA.anuncio, estimado: true },
+      { label: 'Orgânico / outro (estimado)', badge: 'IA', total: oIA.organico_outro, estimado: true },
+      { label: 'Distribuidor iniciou (outbound)', total: p.origem?.outbound_distribuidor_iniciou || 0, estimado: false },
+      { label: 'Não dá pra identificar', total: oIA.nao_da_pra_saber, estimado: true },
+    ];
+    const maxOrigem = Math.max(...origemRows.map(r => r.total), 1);
+    el.origem.innerHTML = `
+      <div class="bars">
+        ${origemRows.map(r => `
+          <div class="bar-row origem-row">
+            <div class="bar-label">${r.label}${r.badge ? `<span class="badge-ia">${r.badge}</span>` : ''}</div>
+            <div class="bar-track"><div class="bar-fill${r.estimado ? ' estimado' : ''}" style="width:${Math.max((r.total / maxOrigem) * 100, r.total > 0 ? 1 : 0)}%"></div></div>
+            <div class="bar-value">${fmt.format(r.total)}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
 
     // --- leads por dia (recorta a série completa pro período selecionado) ---
     const diasN = p.dias;

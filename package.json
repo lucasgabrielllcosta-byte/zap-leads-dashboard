@@ -2,5 +2,7 @@
   "name": "zap-leads-dashboard",
   "private": true,
   "type": "module",
-  "dependencies": {}
+  "dependencies": {
+    "@google/genai": "^2.15.0"
+  }
 }

@@ -7,9 +7,12 @@
 //
 // Variáveis de ambiente:
 //   ZAP_API_TOKEN, ZAP_BASE_URL
-//   DIAS_JANELA   - default 30 (cobre os 4 recortes: hoje, 7 dias, 15 dias, 30 dias)
-//   LIMITE_LEADS  - teto de leads (default 30000)
-//   CONCURRENCY   - chamadas simultâneas na fase de classificação (default 15)
+//   DIAS_JANELA     - default 30 (cobre os 4 recortes: hoje, 7 dias, 15 dias, 30 dias)
+//   LIMITE_LEADS    - teto de leads (default 30000)
+//   CONCURRENCY     - chamadas simultâneas na fase de classificação (default 15)
+//   GEMINI_API_KEY  - chave dedicada deste projeto p/ origem-ia.mjs (opcional — sem ela,
+//                     os leads "indeterminado" só não ganham o dado extra de origem-IA)
+//   CONCURRENCY_IA  - concorrência das chamadas Gemini (default 5)
 
 import {
   getDepartamentosAtivos,
@@ -21,6 +24,7 @@ import {
   classificarOrigem,
 } from './zap-api.mjs';
 import { extrairDddEUf } from './ddd-estado.mjs';
+import { classificarOrigemIA } from './origem-ia.mjs';
 
 const TOKEN = process.env.ZAP_API_TOKEN;
 const DIAS_JANELA = Number(process.env.DIAS_JANELA || 30);
@@ -49,12 +53,16 @@ function diaISO(dataISOouDate) {
 function agregar(registros) {
   const statusCount = { aprovado: 0, reprovado: 0, sem_mencao: 0 };
   const origemCount = { clique_anuncio_confirmado: 0, outbound_distribuidor_iniciou: 0, indeterminado: 0 };
+  const origemIACount = { anuncio: 0, organico_outro: 0, nao_da_pra_saber: 0 };
   const porUFMap = new Map();
   const porDistribuidorMap = new Map();
 
   for (const r of registros) {
     statusCount[r.status] = (statusCount[r.status] || 0) + 1;
     origemCount[r.origem] = (origemCount[r.origem] || 0) + 1;
+    if (r.origem === 'indeterminado' && r.origemIA) {
+      origemIACount[r.origemIA] = (origemIACount[r.origemIA] || 0) + 1;
+    }
     porUFMap.set(r.uf, (porUFMap.get(r.uf) || 0) + 1);
 
     const dist = porDistribuidorMap.get(r.distribuidor) || { nome: r.distribuidor, total: 0, aprovados: 0, reprovados: 0 };
@@ -71,6 +79,7 @@ function agregar(registros) {
     status: statusCount,
     taxaAprovacao: totalClassificados > 0 ? statusCount.aprovado / totalClassificados : null,
     origem: origemCount,
+    origemIA: origemIACount,
     porUF: [...porUFMap.entries()].map(([uf, total]) => ({ uf, total })).sort((a, b) => b.total - a.total),
     porDistribuidor: [...porDistribuidorMap.values()].sort((a, b) => b.total - a.total),
   };
@@ -109,12 +118,20 @@ async function main() {
       origem,
       uf: info?.uf || 'desconhecido',
       data: diaISO(lead.createdAt),
+      // campos temporários, só pra origem-indeterminada — removidos antes da saída final
+      _telefone: origem === 'indeterminado' ? lead.chatId : undefined,
+      _mensagens: origem === 'indeterminado' ? mensagensOrdenadas : undefined,
     };
   });
 
   const registros = resultados.filter(Boolean);
-  const tempoSegundos = ((Date.now() - t0) / 1000).toFixed(1);
-  console.error(`Classificação concluída: ${registros.length} leads vinculados a distribuidor ativo, ${tempoSegundos}s.`);
+  console.error(`Classificação concluída: ${registros.length} leads vinculados a distribuidor ativo, ${((Date.now() - t0) / 1000).toFixed(1)}s.`);
+
+  const indeterminados = registros.filter((r) => r.origem === 'indeterminado');
+  console.error(`Rodando origem-IA em ${indeterminados.length} leads "indeterminado" (concorrência=${process.env.CONCURRENCY_IA || 5})...`);
+  const resultadosIA = await classificarOrigemIA(indeterminados.map((r) => ({ telefone: r._telefone, mensagens: r._mensagens })));
+  indeterminados.forEach((r, i) => { r.origemIA = resultadosIA[i].origemProvavel; });
+  for (const r of registros) { delete r._telefone; delete r._mensagens; }
 
   // Série diária (janela completa) pro gráfico de tendência.
   const porDiaMap = new Map();
@@ -146,7 +163,7 @@ async function main() {
   };
 
   console.log(JSON.stringify(saida, null, 2));
-  console.error(`=== data.json gerado em ${tempoSegundos}s ===`);
+  console.error(`=== data.json gerado em ${((Date.now() - t0) / 1000).toFixed(1)}s ===`);
 }
 
 main().catch((err) => {

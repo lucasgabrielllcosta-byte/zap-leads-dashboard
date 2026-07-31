@@ -24,9 +24,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - run: npm ci
+      - name: Restaurar cache de origem-IA
+        uses: actions/cache@v4
+        with:
+          path: cache
+          key: origem-ia-cache-${{ github.run_id }}
+          restore-keys: |
+            origem-ia-cache-
       - name: Gerar data/dashboard.json
         env:
           ZAP_API_TOKEN: ${{ secrets.ZAP_API_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           mkdir -p data
           node build-data.mjs > data/dashboard.json
