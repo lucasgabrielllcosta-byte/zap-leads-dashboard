@@ -396,16 +396,15 @@ async function main() {
       }
       porUFMap.set(r.uf, (porUFMap.get(r.uf) || 0) + 1);
 
-      const dist = porDistribuidorMap.get(r.distribuidor) || { nome: r.distribuidor, total: 0, aprovados: 0, reprovados: 0 };
-      dist.total += 1;
-      porDistribuidorMap.set(r.distribuidor, dist);
-
-      // Aprovado/reprovado só conta pra quem confirmou vir de anúncio — mesma regra
-      // do funil oficial usado nas análises por distribuidor.
+      // Tabela de Distribuidores é só sobre anúncio confirmado — leads, aprovados,
+      // reprovados e taxa, tudo na mesma regra do funil oficial das análises por distribuidor.
       if (r.origem === 'clique_anuncio_confirmado') {
         statusCount[r.status] = (statusCount[r.status] || 0) + 1;
+        const dist = porDistribuidorMap.get(r.distribuidor) || { nome: r.distribuidor, total: 0, aprovados: 0, reprovados: 0 };
+        dist.total += 1;
         if (r.status === 'aprovado') dist.aprovados += 1;
         if (r.status === 'reprovado') dist.reprovados += 1;
+        porDistribuidorMap.set(r.distribuidor, dist);
       }
     }
 
@@ -444,7 +443,7 @@ async function main() {
     }
     el.distTable.innerHTML = `
       <table>
-        <thead><tr><th>Distribuidor</th><th class="num">Leads (todas origens)</th><th class="num">Aprovados (anúncio)</th><th class="num">Reprovados (anúncio)</th><th class="num">Taxa aprov. (anúncio)</th></tr></thead>
+        <thead><tr><th>Distribuidor</th><th class="num">Leads (anúncio)</th><th class="num">Aprovados (anúncio)</th><th class="num">Reprovados (anúncio)</th><th class="num">Taxa aprov. (anúncio)</th></tr></thead>
         <tbody>
           ${porDist.map(d => {
             const total = d.aprovados + d.reprovados;
@@ -567,7 +566,7 @@ async function main() {
     }
 
     // --- distribuidores ---
-    el.distTableSub.textContent = `Leads = todas origens · aprovação = só anúncio confirmado — ${LABELS[periodoKey]}`;
+    el.distTableSub.textContent = `Só leads de anúncio confirmado — ${LABELS[periodoKey]}`;
     porDistAtual = p.porDistribuidor || [];
     el.distSearch.value = '';
     renderDistTable(porDistAtual);
