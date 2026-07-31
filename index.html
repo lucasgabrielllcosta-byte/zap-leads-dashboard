@@ -406,7 +406,6 @@ async function main() {
     const aprovados = p.status?.aprovado || 0;
     const reprovados = p.status?.reprovado || 0;
     const tiles = [
-      { label: `Leads (${LABELS[periodoKey]})`, value: fmt.format(p.totalLeads || 0) },
       { label: 'Distribuidores com lead no período', value: fmt.format(p.distribuidoresAtivos || 0) },
       { label: 'Aprovados', value: fmt.format(aprovados), cls: 'good' },
       { label: 'Reprovados', value: fmt.format(reprovados), cls: 'critical' },
