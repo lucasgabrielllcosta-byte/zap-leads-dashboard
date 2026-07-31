@@ -12,8 +12,9 @@
     --grid: #e1e0d9;
     --baseline: #c3c2b7;
     --border: rgba(11, 11, 11, 0.10);
-    --series: #2a78d6;
-    --series-soft: #cde2fb;
+    --series: #eda100;
+    --series-soft: color-mix(in srgb, #eda100 32%, var(--surface));
+    --series-ink: #1a1300;
     --good: #0ca30c;
     --critical: #d03b3b;
     --tooltip-bg: #0b0b0b;
@@ -30,8 +31,9 @@
       --grid: #2c2c2a;
       --baseline: #383835;
       --border: rgba(255, 255, 255, 0.10);
-      --series: #3987e5;
-      --series-soft: #184f95;
+      --series: #c98500;
+      --series-soft: color-mix(in srgb, #c98500 32%, var(--surface));
+      --series-ink: #1a1300;
       --good: #0ca30c;
       --critical: #e66767;
       --tooltip-bg: #ffffff;
@@ -48,8 +50,9 @@
     --grid: #2c2c2a;
     --baseline: #383835;
     --border: rgba(255, 255, 255, 0.10);
-    --series: #3987e5;
-    --series-soft: #184f95;
+    --series: #c98500;
+    --series-soft: color-mix(in srgb, #c98500 32%, var(--surface));
+    --series-ink: #1a1300;
     --good: #0ca30c;
     --critical: #e66767;
     --tooltip-bg: #ffffff;
@@ -106,7 +109,7 @@
     cursor: pointer;
   }
   .segmented button:hover { color: var(--text-primary); }
-  .segmented button.active { background: var(--series); color: #ffffff; font-weight: 600; }
+  .segmented button.active { background: var(--series); color: var(--series-ink); font-weight: 600; }
 
   .header-controls { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
   .refresh-btn {
