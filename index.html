@@ -370,8 +370,73 @@ async function main() {
   function hideTooltip() { el.tooltip.style.display = 'none'; }
 
   const LABELS = { '30dias': '30 dias', '15dias': '15 dias', '7dias': '7 dias', 'hoje': 'hoje' };
+  const PERIODOS = { '30dias': 30, '15dias': 15, '7dias': 7, 'hoje': 1 };
   const normalizarBusca = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+  const diaISO = (d) => new Date(d).toISOString().slice(0, 10);
   let porDistAtual = [];
+
+  // Toda a agregação por período roda aqui, no navegador — build-data.mjs só entrega
+  // os registros brutos (sem PII). Mudar uma regra de negócio (ex: o que conta como
+  // "aprovado") é só editar essa função e dar push, sem reprocessar os leads de novo.
+  function agregarPeriodo(registros, dias) {
+    const hojeISO = diaISO(new Date());
+    const filtrados = dias === 1
+      ? registros.filter((r) => r.data === hojeISO)
+      : registros.filter((r) => r.data >= diaISO(Date.now() - dias * 86400000));
+
+    const statusCount = { aprovado: 0, reprovado: 0, sem_mencao: 0 };
+    const origemCount = { clique_anuncio_confirmado: 0, outbound_distribuidor_iniciou: 0, indeterminado: 0 };
+    const origemIACount = { anuncio: 0, organico_outro: 0, nao_da_pra_saber: 0 };
+    const porUFMap = new Map();
+    const porDistribuidorMap = new Map();
+
+    for (const r of filtrados) {
+      origemCount[r.origem] = (origemCount[r.origem] || 0) + 1;
+      if (r.origem === 'indeterminado' && r.origemIA) {
+        origemIACount[r.origemIA] = (origemIACount[r.origemIA] || 0) + 1;
+      }
+      porUFMap.set(r.uf, (porUFMap.get(r.uf) || 0) + 1);
+
+      const dist = porDistribuidorMap.get(r.distribuidor) || { nome: r.distribuidor, total: 0, aprovados: 0, reprovados: 0 };
+      dist.total += 1;
+      porDistribuidorMap.set(r.distribuidor, dist);
+
+      // Aprovado/reprovado só conta pra quem confirmou vir de anúncio — mesma regra
+      // do funil oficial usado nas análises por distribuidor.
+      if (r.origem === 'clique_anuncio_confirmado') {
+        statusCount[r.status] = (statusCount[r.status] || 0) + 1;
+        if (r.status === 'aprovado') dist.aprovados += 1;
+        if (r.status === 'reprovado') dist.reprovados += 1;
+      }
+    }
+
+    const totalClassificados = statusCount.aprovado + statusCount.reprovado;
+    return {
+      dias,
+      totalLeads: filtrados.length,
+      distribuidoresAtivos: new Set(filtrados.map((r) => r.distribuidor)).size,
+      status: statusCount,
+      taxaAprovacao: totalClassificados > 0 ? statusCount.aprovado / totalClassificados : null,
+      origem: origemCount,
+      origemIA: origemIACount,
+      porUF: [...porUFMap.entries()].map(([uf, total]) => ({ uf, total })).sort((a, b) => b.total - a.total),
+      porDistribuidor: [...porDistribuidorMap.values()].sort((a, b) => b.total - a.total),
+    };
+  }
+
+  function calcularPorDia(registros, dias) {
+    const porDiaMap = new Map();
+    for (const r of registros) {
+      const dia = porDiaMap.get(r.data) || { data: r.data, total: 0, aprovados: 0, reprovados: 0 };
+      dia.total += 1;
+      if (r.origem === 'clique_anuncio_confirmado') {
+        if (r.status === 'aprovado') dia.aprovados += 1;
+        if (r.status === 'reprovado') dia.reprovados += 1;
+      }
+      porDiaMap.set(r.data, dia);
+    }
+    return [...porDiaMap.values()].sort((a, b) => a.data.localeCompare(b.data)).slice(-dias);
+  }
 
   function renderDistTable(porDist) {
     if (!porDist.length) {
@@ -399,8 +464,9 @@ async function main() {
   });
 
   function render(periodoKey) {
-    const p = data.periodos?.[periodoKey];
-    if (!p) return;
+    const dias = PERIODOS[periodoKey];
+    const registros = data.registros || [];
+    const p = agregarPeriodo(registros, dias);
 
     // --- stat tiles ---
     const aprovados = p.status?.aprovado || 0;
@@ -443,7 +509,7 @@ async function main() {
 
     // --- leads por dia (recorta a série completa pro período selecionado) ---
     const diasN = p.dias;
-    const porDia = (data.porDia || []).slice(-diasN);
+    const porDia = calcularPorDia(registros, diasN);
     el.dayChartSub.textContent = `Últimos ${diasN === 1 ? '1 dia' : diasN + ' dias'} · aprovados/reprovados no detalhe = só anúncio confirmado`;
     if (!porDia.length) {
       el.dayChart.innerHTML = '<div class="empty">Sem dados de série diária.</div>';

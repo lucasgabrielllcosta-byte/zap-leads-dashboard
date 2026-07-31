@@ -1,13 +1,16 @@
-// Gera data/dashboard.json: métricas agregadas dos últimos N dias (sem nome/telefone
-// de lead individual — só números, pensado pra rodar em repo público + GitHub Pages).
-// Inclui recortes prontos por período (hoje / 7 dias / 15 dias / 30 dias) pro dashboard
-// trocar de visão sem precisar recalcular nada no navegador além de somar dias já agregados.
+// Gera data/dashboard.json: lista de registros brutos por lead (sem nome/telefone —
+// só distribuidor/status/origem/UF/data), pensado pra rodar em repo público + GitHub
+// Pages. Toda a agregação por período (hoje/7/15/30 dias), filtros e regras de negócio
+// (ex: "aprovado só conta se veio de anúncio confirmado") ficam no navegador (index.html)
+// — assim, mudar uma regra de exibição não exige reprocessar os leads de novo, só editar
+// o front e fazer push (rápido). Só a busca de leads novos precisa desse script (lento,
+// depende da API do Zap Responder), rodado a cada hora via cron ou manualmente.
 //
 // Uso: node --env-file=.env build-data.mjs > data/dashboard.json
 //
 // Variáveis de ambiente:
 //   ZAP_API_TOKEN, ZAP_BASE_URL
-//   DIAS_JANELA     - default 30 (cobre os 4 recortes: hoje, 7 dias, 15 dias, 30 dias)
+//   DIAS_JANELA     - default 30 (cobre os recortes hoje/7/15/30 dias calculados no front)
 //   LIMITE_LEADS    - teto de leads (default 30000)
 //   CONCURRENCY     - chamadas simultâneas na fase de classificação (default 15)
 //   GEMINI_API_KEY  - chave dedicada deste projeto p/ origem-ia.mjs (opcional — sem ela,
@@ -30,12 +33,6 @@ const TOKEN = process.env.ZAP_API_TOKEN;
 const DIAS_JANELA = Number(process.env.DIAS_JANELA || 30);
 const LIMITE_LEADS = Number(process.env.LIMITE_LEADS || 30000);
 const CONCURRENCY = Number(process.env.CONCURRENCY || 15);
-const PERIODOS = [
-  { chave: 'hoje', dias: 1 },
-  { chave: '7dias', dias: 7 },
-  { chave: '15dias', dias: 15 },
-  { chave: '30dias', dias: 30 },
-];
 
 if (!TOKEN) {
   console.error('Faltou ZAP_API_TOKEN.');
@@ -48,47 +45,6 @@ function textoDaMensagem(msg) {
 
 function diaISO(dataISOouDate) {
   return new Date(dataISOouDate).toISOString().slice(0, 10);
-}
-
-function agregar(registros) {
-  const statusCount = { aprovado: 0, reprovado: 0, sem_mencao: 0 };
-  const origemCount = { clique_anuncio_confirmado: 0, outbound_distribuidor_iniciou: 0, indeterminado: 0 };
-  const origemIACount = { anuncio: 0, organico_outro: 0, nao_da_pra_saber: 0 };
-  const porUFMap = new Map();
-  const porDistribuidorMap = new Map();
-
-  for (const r of registros) {
-    origemCount[r.origem] = (origemCount[r.origem] || 0) + 1;
-    if (r.origem === 'indeterminado' && r.origemIA) {
-      origemIACount[r.origemIA] = (origemIACount[r.origemIA] || 0) + 1;
-    }
-    porUFMap.set(r.uf, (porUFMap.get(r.uf) || 0) + 1);
-
-    const dist = porDistribuidorMap.get(r.distribuidor) || { nome: r.distribuidor, total: 0, aprovados: 0, reprovados: 0 };
-    dist.total += 1;
-    porDistribuidorMap.set(r.distribuidor, dist);
-
-    // Aprovado/reprovado só conta pra quem confirmou vir de anúncio (clique_anuncio_confirmado)
-    // — mesma regra do funil oficial usado nas análises por distribuidor. "total" acima continua
-    // com todas as origens, só pra dar contexto de volume geral.
-    if (r.origem === 'clique_anuncio_confirmado') {
-      statusCount[r.status] = (statusCount[r.status] || 0) + 1;
-      if (r.status === 'aprovado') dist.aprovados += 1;
-      if (r.status === 'reprovado') dist.reprovados += 1;
-    }
-  }
-
-  const totalClassificados = statusCount.aprovado + statusCount.reprovado;
-  return {
-    totalLeads: registros.length,
-    distribuidoresAtivos: new Set(registros.map((r) => r.distribuidor)).size,
-    status: statusCount,
-    taxaAprovacao: totalClassificados > 0 ? statusCount.aprovado / totalClassificados : null,
-    origem: origemCount,
-    origemIA: origemIACount,
-    porUF: [...porUFMap.entries()].map(([uf, total]) => ({ uf, total })).sort((a, b) => b.total - a.total),
-    porDistribuidor: [...porDistribuidorMap.values()].sort((a, b) => b.total - a.total),
-  };
 }
 
 async function main() {
@@ -136,7 +92,7 @@ async function main() {
   });
 
   // mapWithConcurrency também pode devolver { error } se algo escapar do try acima —
-  // nunca deixar um registro sem "data" chegar na agregação (já quebrou um build antes).
+  // nunca deixar um registro sem "data" chegar na saída (já quebrou um build antes).
   const registros = resultados.filter((r) => r && typeof r.data === 'string');
   console.error(`Classificação concluída: ${registros.length} leads vinculados a distribuidor ativo, ${((Date.now() - t0) / 1000).toFixed(1)}s.`);
 
@@ -144,29 +100,10 @@ async function main() {
   console.error(`Rodando origem-IA em ${indeterminados.length} leads "indeterminado" (concorrência=${process.env.CONCURRENCY_IA || 5})...`);
   const resultadosIA = await classificarOrigemIA(indeterminados.map((r) => ({ telefone: r._telefone, mensagens: r._mensagens })));
   indeterminados.forEach((r, i) => { r.origemIA = resultadosIA[i].origemProvavel; });
-  for (const r of registros) { delete r._telefone; delete r._mensagens; }
 
-  // Série diária (janela completa) pro gráfico de tendência. Aprovados/reprovados
-  // seguem a mesma regra do agregar(): só contam quem veio de anúncio confirmado.
-  const porDiaMap = new Map();
   for (const r of registros) {
-    const dia = porDiaMap.get(r.data) || { data: r.data, total: 0, aprovados: 0, reprovados: 0 };
-    dia.total += 1;
-    if (r.origem === 'clique_anuncio_confirmado') {
-      if (r.status === 'aprovado') dia.aprovados += 1;
-      if (r.status === 'reprovado') dia.reprovados += 1;
-    }
-    porDiaMap.set(r.data, dia);
-  }
-  const porDia = [...porDiaMap.values()].sort((a, b) => a.data.localeCompare(b.data));
-
-  const hojeISO = diaISO(new Date());
-  const periodos = {};
-  for (const { chave, dias } of PERIODOS) {
-    const filtrados = dias === 1
-      ? registros.filter((r) => r.data === hojeISO)
-      : registros.filter((r) => r.data >= diaISO(Date.now() - dias * 86400000));
-    periodos[chave] = { dias, ...agregar(filtrados) };
+    delete r._telefone;
+    delete r._mensagens;
   }
 
   const saida = {
@@ -174,11 +111,10 @@ async function main() {
     diasJanela: DIAS_JANELA,
     janelaCompleta: atingiuJanela,
     distribuidoresAtivosTotal: departamentosAtivos.size,
-    porDia,
-    periodos,
+    registros,
   };
 
-  console.log(JSON.stringify(saida, null, 2));
+  console.log(JSON.stringify(saida));
   console.error(`=== data.json gerado em ${((Date.now() - t0) / 1000).toFixed(1)}s ===`);
 }
 
