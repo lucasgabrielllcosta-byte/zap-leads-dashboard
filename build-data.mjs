@@ -192,4 +192,36 @@ async function main() {
   // comunicação informal, sem precisar manter uma lista manual.
   const precisamEntendimento = registros.filter((r) => r._precisaEntendimentoIA);
   console.error(`Resolvendo status por entendimento de IA em ${precisamEntendimento.length} leads (concorrência=${process.env.CONCURRENCY_ENTENDIMENTO || 8})...`);
-  const statusResolvidos = await resolverStatusPorEntendimento(precisamEn
+  const statusResolvidos = await resolverStatusPorEntendimento(precisamEntendimento.map((r) => ({ mensagens: r._mensagens })));
+  const candidatosRegex = carregarCandidatosRegex();
+  precisamEntendimento.forEach((r, i) => {
+    const { status, frase } = statusResolvidos[i];
+    if (status === 'indefinido') return;
+    r.status = status;
+    if (frase) registrarCandidatoRegex(candidatosRegex, { distribuidor: r.distribuidor, status, frase, data: r.data });
+  });
+  candidatosRegex.atualizadoEm = new Date().toISOString();
+  writeFileSync(CANDIDATOS_PATH, JSON.stringify(candidatosRegex, null, 2));
+
+  for (const r of registros) {
+    delete r._telefone;
+    delete r._mensagens;
+    delete r._precisaEntendimentoIA;
+  }
+
+  const saida = {
+    geradoEm: new Date().toISOString(),
+    diasJanela: DIAS_JANELA,
+    janelaCompleta: atingiuJanela,
+    distribuidoresAtivosTotal: departamentosAtivos.size,
+    registros,
+  };
+
+  console.log(JSON.stringify(saida));
+  console.error(`=== data.json gerado em ${((Date.now() - t0) / 1000).toFixed(1)}s ===`);
+}
+
+main().catch((err) => {
+  console.error('Erro:', err);
+  process.exit(1);
+});
