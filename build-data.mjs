@@ -29,18 +29,20 @@ import {
 } from './zap-api.mjs';
 import { extrairDddEUf } from './ddd-estado.mjs';
 import { classificarOrigemIA } from './origem-ia.mjs';
-import { resolverStatusComAudio, ehAudio } from './audio-transcricao.mjs';
+import { resolverStatusPorEntendimento } from './audio-transcricao.mjs';
 
 const TOKEN = process.env.ZAP_API_TOKEN;
 const DIAS_JANELA = Number(process.env.DIAS_JANELA || 30);
 const LIMITE_LEADS = Number(process.env.LIMITE_LEADS || 30000);
 const CONCURRENCY = Number(process.env.CONCURRENCY || 15);
 
-// Distribuidores confirmados (por investigação manual de conversas reais) que costumam
-// mandar a decisão de aprovado/reprovado por áudio em vez de texto — só nesses vale a
-// pena gastar com transcrição. Adicionar um nome aqui só depois de checar conversas de
-// verdade e confirmar o padrão (não é pra ligar de forma automática/especulativa).
-const DISTRIBUIDORES_COM_AUDIO = ['jose eder'];
+// Distribuidores confirmados (por investigação manual de conversas reais) cuja linguagem
+// o regex não pega — seja porque respondem por áudio (jose eder) ou porque usam frases
+// informais em texto pra dizer aprovado/reprovado, tipo "deu certo" (Felipe rio grande
+// Villa joias), em vez de "aprovado"/"reprovado". Só nesses vale a pena gastar com IA lendo
+// a conversa inteira. Adicionar um nome aqui só depois de checar conversas de verdade e
+// confirmar o padrão (não é pra ligar de forma automática/especulativa).
+const DISTRIBUIDORES_ENTENDIMENTO_IA = ['jose eder', 'felipe rio grande villa joias'];
 
 if (!TOKEN) {
   console.error('Faltou ZAP_API_TOKEN.');
@@ -84,10 +86,9 @@ async function main() {
       const origem = classificarOrigem(mensagensOrdenadas[0]);
       const info = extrairDddEUf(lead.chatId);
 
-      const precisaAudio = status === 'sem_mencao'
-        && DISTRIBUIDORES_COM_AUDIO.includes(distribuidor.toLowerCase().trim())
-        && mensagensOrdenadas.some((m) => ehAudio(textoDaMensagem(m)));
-      const precisaMensagens = origem === 'indeterminado' || precisaAudio;
+      const precisaEntendimentoIA = status === 'sem_mencao'
+        && DISTRIBUIDORES_ENTENDIMENTO_IA.includes(distribuidor.toLowerCase().trim());
+      const precisaMensagens = origem === 'indeterminado' || precisaEntendimentoIA;
 
       return {
         distribuidor,
@@ -98,7 +99,7 @@ async function main() {
         // campos temporários — removidos antes da saída final
         _telefone: origem === 'indeterminado' ? lead.chatId : undefined,
         _mensagens: precisaMensagens ? mensagensOrdenadas : undefined,
-        _precisaAudio: precisaAudio || undefined,
+        _precisaEntendimentoIA: precisaEntendimentoIA || undefined,
       };
     } catch (err) {
       console.error(`  aviso: falha ao processar um lead (${err.message}), pulando.`);
@@ -116,20 +117,21 @@ async function main() {
   const resultadosIA = await classificarOrigemIA(indeterminados.map((r) => ({ telefone: r._telefone, mensagens: r._mensagens })));
   indeterminados.forEach((r, i) => { r.origemIA = resultadosIA[i].origemProvavel; });
 
-  // Resolução por áudio: só pros distribuidores confirmados na lista, e só quem ainda
-  // ficou "sem_mencao" no texto — a IA lê a conversa inteira (texto + áudio transcrito)
-  // e entende o status pelo sentido, em vez de procurar só "aprovado"/"reprovado" literal.
-  const comAudio = registros.filter((r) => r._precisaAudio);
-  console.error(`Resolvendo status por áudio em ${comAudio.length} leads (distribuidores: ${DISTRIBUIDORES_COM_AUDIO.join(', ')})...`);
-  const statusPorAudio = await resolverStatusComAudio(comAudio.map((r) => ({ mensagens: r._mensagens })));
-  comAudio.forEach((r, i) => {
-    if (statusPorAudio[i] !== 'indefinido') r.status = statusPorAudio[i];
+  // Resolução por entendimento de IA: só pros distribuidores confirmados na lista, e só
+  // quem ainda ficou "sem_mencao" no texto — a IA lê a conversa inteira (texto + áudio
+  // transcrito, se tiver) e entende o status pelo sentido, em vez de procurar só
+  // "aprovado"/"reprovado" literal (perde "deu certo", "aprovou", áudio, etc.).
+  const precisamEntendimento = registros.filter((r) => r._precisaEntendimentoIA);
+  console.error(`Resolvendo status por entendimento de IA em ${precisamEntendimento.length} leads (distribuidores: ${DISTRIBUIDORES_ENTENDIMENTO_IA.join(', ')})...`);
+  const statusResolvidos = await resolverStatusPorEntendimento(precisamEntendimento.map((r) => ({ mensagens: r._mensagens })));
+  precisamEntendimento.forEach((r, i) => {
+    if (statusResolvidos[i] !== 'indefinido') r.status = statusResolvidos[i];
   });
 
   for (const r of registros) {
     delete r._telefone;
     delete r._mensagens;
-    delete r._precisaAudio;
+    delete r._precisaEntendimentoIA;
   }
 
   const saida = {

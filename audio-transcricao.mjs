@@ -1,8 +1,9 @@
 // Resolve o status (aprovado/reprovado/indefinido) de conversas que ficaram "sem_mencao"
-// no regex e têm áudio do atendente — transcreve os áudios e manda a CONVERSA INTEIRA
-// (texto + áudio transcrito) pra IA entender o sentido, em vez de procurar só as palavras
-// exatas "aprovado"/"reprovado" (isso já provou perder casos reais, tipo "ele reprovou
-// aqui" ou "a mesa de crédito aprovou", que são conjugações que o regex não pega).
+// no regex, pra distribuidores confirmados com linguagem que o regex não pega — seja
+// porque respondem por áudio (transcrito aqui) ou porque usam frases informais em texto
+// ("deu certo", "ele reprovou aqui", "a mesa de crédito aprovou") em vez de "aprovado"/
+// "reprovado" literal. Manda a CONVERSA INTEIRA (texto + áudio transcrito, quando tiver)
+// pra IA entender o sentido, em vez de bater só na palavra exata.
 //
 // Dois caches persistentes e independentes:
 //  - transcrição de áudio, por hash da URL (a URL não muda, nunca precisa retranscrever)
@@ -36,7 +37,7 @@ const PROMPT_STATUS = `Você está analisando uma conversa de WhatsApp entre uma
 
 Sua tarefa: ler a conversa inteira e dizer qual é o status FINAL do cadastro dessa lead como revendedora, considerando a mensagem mais recente e relevante sobre o resultado (se ela tentou de novo depois de uma reprovação e foi aprovada depois, o status final é aprovado).
 
-Entenda o SENTIDO da conversa, não procure só por uma palavra exata — "aprovou", "foi aprovado", "liberou", "reprovou", "não vai dar", "não deu certo" etc. todos contam, dependendo do contexto.
+Entenda o SENTIDO da conversa, não procure só por uma palavra exata — "aprovou", "foi aprovado", "liberou", "deu certo" (aprovado), "reprovou", "não vai dar", "não deu certo" (reprovado) etc. todos contam, dependendo do contexto.
 
 Responda em JSON, só isso, sem markdown, no formato:
 {"status": "aprovado" | "reprovado" | "indefinido"}
@@ -151,10 +152,10 @@ function montarTranscricao(mensagens, transcricoesPorUrl) {
     .join('\n');
 }
 
-// leads: [{ mensagens }] (mesmo shape que vem de getMensagens, já ordenadas) — leads que
-// o regex marcou como "sem_mencao" e têm áudio do atendente. Retorna array paralelo de
-// 'aprovado' | 'reprovado' | 'indefinido'.
-export async function resolverStatusComAudio(leads) {
+// leads: [{ mensagens }] (mesmo shape que vem de getMensagens, já ordenadas) — leads de
+// distribuidores confirmados que o regex marcou como "sem_mencao". Retorna array paralelo
+// de 'aprovado' | 'reprovado' | 'indefinido'.
+export async function resolverStatusPorEntendimento(leads) {
   if (!leads.length) return [];
 
   const apiKey = process.env.GEMINI_API_KEY;
