@@ -48,6 +48,25 @@ function textoDaMensagem(msg) {
   return (msg.mensagem?.mensagem || '').toString();
 }
 
+// Só vale gastar IA numa conversa "sem_mencao" se ela parece ENCERRADA — senão a gente
+// pergunta pra IA toda hora e ela responde "indefinido" de novo e de novo até a conversa
+// realmente terminar (desperdício, já que o resultado muda a cada mensagem nova mesmo).
+// Última mensagem do atendente sem resposta há mais de 24h = provável mensagem final que
+// o regex não pegou. Última mensagem do lead (esperando resposta) sem retorno do
+// atendente há mais de 72h = provável abandono, vale registrar como indefinido e parar de
+// reprocessar. Assim que uma nova mensagem chegar, o hash da conversa muda e ela volta a
+// ser reavaliada do zero (ver cache em resolverStatusPorEntendimento) — nada fica perdido,
+// só atrasado até a conversa esfriar de novo.
+const HORAS_ATENDENTE_MS = 24 * 60 * 60 * 1000;
+const HORAS_LEAD_MS = 72 * 60 * 60 * 1000;
+function conversaPareceConcluida(mensagensOrdenadas) {
+  if (!mensagensOrdenadas.length) return false;
+  const ultima = mensagensOrdenadas[mensagensOrdenadas.length - 1];
+  const decorrido = Date.now() - new Date(ultima.createdAt).getTime();
+  const limite = ultima.autor === 'usuario' ? HORAS_LEAD_MS : HORAS_ATENDENTE_MS;
+  return decorrido > limite;
+}
+
 // Frases que a IA usou como evidência pra resolver status "sem_mencao" (ver
 // resolverStatusPorEntendimento), acumuladas entre execuções — pra eventualmente promover
 // alguma pra regex de verdade (classificarMensagem em zap-api.mjs) e a IA parar de ser
@@ -115,10 +134,11 @@ async function main() {
       const origem = classificarOrigem(mensagensOrdenadas[0]);
       const info = extrairDddEUf(lead.chatId);
 
-      // Todo lead "sem_mencao" vale a pena passar pela IA — não dá pra saber de antemão
-      // quais distribuidores usam linguagem informal ou áudio (ver resolverStatusPorEntendimento),
-      // e a própria IA responde "indefinido" pras conversas realmente em aberto/sem decisão.
-      const precisaEntendimentoIA = status === 'sem_mencao';
+      // Todo lead "sem_mencao" é candidato à IA — não dá pra saber de antemão quais
+      // distribuidores usam linguagem informal ou áudio (ver resolverStatusPorEntendimento)
+      // — mas só vale gastar a chamada se a conversa já parece encerrada (ver
+      // conversaPareceConcluida), senão fica pedindo pra IA toda hora à toa.
+      const precisaEntendimentoIA = status === 'sem_mencao' && conversaPareceConcluida(mensagensOrdenadas);
       const precisaMensagens = origem === 'indeterminado' || precisaEntendimentoIA;
 
       return {
