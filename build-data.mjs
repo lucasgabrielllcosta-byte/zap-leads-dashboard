@@ -18,6 +18,10 @@
 //   CONCURRENCY_IA  - concorrência das chamadas Gemini de origem (default 5)
 //   CONCURRENCY_ENTENDIMENTO - concorrência da resolução de status por entendimento (default 8)
 //   CONCURRENCY_AUDIO - concorrência das transcrições de áudio, mais pesada (default 3)
+//   DIAS_ENTENDIMENTO_IA - só leads criados até N dias atrás entram na análise por IA
+//                          (default 7). Leads "sem_mencao" mais antigos que isso ficam
+//                          congelados nesse status pra sempre — decisão deliberada pra
+//                          manter a execução rápida e sustentável (ver conversaPareceConcluida).
 
 import { readFileSync, writeFileSync } from 'fs';
 import {
@@ -38,6 +42,7 @@ const DIAS_JANELA = Number(process.env.DIAS_JANELA || 30);
 const LIMITE_LEADS = Number(process.env.LIMITE_LEADS || 30000);
 const CONCURRENCY = Number(process.env.CONCURRENCY || 15);
 const CANDIDATOS_PATH = process.env.CANDIDATOS_PATH || './candidatos-regex.json';
+const DIAS_ENTENDIMENTO_IA = Number(process.env.DIAS_ENTENDIMENTO_IA || 7);
 
 if (!TOKEN) {
   console.error('Faltou ZAP_API_TOKEN.');
@@ -65,6 +70,14 @@ function conversaPareceConcluida(mensagensOrdenadas) {
   const decorrido = Date.now() - new Date(ultima.createdAt).getTime();
   const limite = ultima.autor === 'usuario' ? HORAS_LEAD_MS : HORAS_ATENDENTE_MS;
   return decorrido > limite;
+}
+
+// Recorte deliberado de custo: só leads recentes (createdAt) entram na fila de IA.
+// "sem_mencao" mais antigos que isso ficam congelados nesse status — não pioram nem
+// melhoram, só param de ser reavaliados. Ver DIAS_ENTENDIMENTO_IA no topo do arquivo.
+function dentroDaJanelaEntendimento(createdAt) {
+  const diasDesdeCriacao = (Date.now() - new Date(createdAt).getTime()) / (24 * 60 * 60 * 1000);
+  return diasDesdeCriacao <= DIAS_ENTENDIMENTO_IA;
 }
 
 // Frases que a IA usou como evidência pra resolver status "sem_mencao" (ver
@@ -137,8 +150,11 @@ async function main() {
       // Todo lead "sem_mencao" é candidato à IA — não dá pra saber de antemão quais
       // distribuidores usam linguagem informal ou áudio (ver resolverStatusPorEntendimento)
       // — mas só vale gastar a chamada se a conversa já parece encerrada (ver
-      // conversaPareceConcluida), senão fica pedindo pra IA toda hora à toa.
-      const precisaEntendimentoIA = status === 'sem_mencao' && conversaPareceConcluida(mensagensOrdenadas);
+      // conversaPareceConcluida) E o lead for recente (ver dentroDaJanelaEntendimento),
+      // senão o volume de backlog antigo (áudio principalmente) trava a execução por horas.
+      const precisaEntendimentoIA = status === 'sem_mencao'
+        && conversaPareceConcluida(mensagensOrdenadas)
+        && dentroDaJanelaEntendimento(lead.createdAt);
       const precisaMensagens = origem === 'indeterminado' || precisaEntendimentoIA;
 
       return {
@@ -176,36 +192,4 @@ async function main() {
   // comunicação informal, sem precisar manter uma lista manual.
   const precisamEntendimento = registros.filter((r) => r._precisaEntendimentoIA);
   console.error(`Resolvendo status por entendimento de IA em ${precisamEntendimento.length} leads (concorrência=${process.env.CONCURRENCY_ENTENDIMENTO || 8})...`);
-  const statusResolvidos = await resolverStatusPorEntendimento(precisamEntendimento.map((r) => ({ mensagens: r._mensagens })));
-  const candidatosRegex = carregarCandidatosRegex();
-  precisamEntendimento.forEach((r, i) => {
-    const { status, frase } = statusResolvidos[i];
-    if (status === 'indefinido') return;
-    r.status = status;
-    if (frase) registrarCandidatoRegex(candidatosRegex, { distribuidor: r.distribuidor, status, frase, data: r.data });
-  });
-  candidatosRegex.atualizadoEm = new Date().toISOString();
-  writeFileSync(CANDIDATOS_PATH, JSON.stringify(candidatosRegex, null, 2));
-
-  for (const r of registros) {
-    delete r._telefone;
-    delete r._mensagens;
-    delete r._precisaEntendimentoIA;
-  }
-
-  const saida = {
-    geradoEm: new Date().toISOString(),
-    diasJanela: DIAS_JANELA,
-    janelaCompleta: atingiuJanela,
-    distribuidoresAtivosTotal: departamentosAtivos.size,
-    registros,
-  };
-
-  console.log(JSON.stringify(saida));
-  console.error(`=== data.json gerado em ${((Date.now() - t0) / 1000).toFixed(1)}s ===`);
-}
-
-main().catch((err) => {
-  console.error('Erro:', err);
-  process.exit(1);
-});
+  const statusResolvidos = await resolverStatusPorEntendimento(precisamEn
