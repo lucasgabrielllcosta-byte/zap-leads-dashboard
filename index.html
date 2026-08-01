@@ -371,7 +371,9 @@ async function main() {
   const LABELS = { '30dias': '30 dias', '15dias': '15 dias', '7dias': '7 dias', 'hoje': 'hoje' };
   const PERIODOS = { '30dias': 30, '15dias': 15, '7dias': 7, 'hoje': 1 };
   const normalizarBusca = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
-  const diaISO = (d) => new Date(d).toISOString().slice(0, 10);
+  // Brasil não tem horário de verão desde 2019 — UTC-3 fixo, sem precisar de timezone database.
+  const BRASILIA_OFFSET_MS = 3 * 60 * 60 * 1000;
+  const diaISO = (d) => new Date(new Date(d).getTime() - BRASILIA_OFFSET_MS).toISOString().slice(0, 10);
   let porDistAtual = [];
 
   // Toda a agregação por período roda aqui, no navegador — build-data.mjs só entrega

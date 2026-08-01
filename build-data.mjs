@@ -53,8 +53,11 @@ function textoDaMensagem(msg) {
   return (msg.mensagem?.mensagem || '').toString();
 }
 
+// Brasil não tem horário de verão desde 2019, então UTC-3 é fixo o ano todo — dá pra
+// só subtrair 3h antes de extrair a data em vez de depender de timezone database.
+const BRASILIA_OFFSET_MS = 3 * 60 * 60 * 1000;
 function diaISO(dataISOouDate) {
-  return new Date(dataISOouDate).toISOString().slice(0, 10);
+  return new Date(new Date(dataISOouDate).getTime() - BRASILIA_OFFSET_MS).toISOString().slice(0, 10);
 }
 
 async function main() {
