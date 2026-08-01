@@ -17,6 +17,12 @@
 //   GEMINI_MODEL (default: gemini-flash-lite-latest)
 //   CONCURRENCY_ENTENDIMENTO (default 8 — maioria é só texto, mais barato que áudio)
 //   CONCURRENCY_AUDIO (default 3 — só a etapa de download+transcrição de áudio em si)
+//   LIMITE_AUDIO_POR_EXECUCAO (default 2000) - teto de transcrições NOVAS por execução —
+//                              o resto fica sem transcrever nessa rodada (não entra no
+//                              cache) e é tentado de novo na próxima. Existe pra nunca
+//                              deixar um backlog grande travar uma execução por horas —
+//                              descoberto na prática: 36 mil áudios com Gemini
+//                              sobrecarregada (erro 503) travou uma rodada por +4h.
 //   AUDIO_CACHE_PATH (default ./cache/audio-transcricao.json)
 //   STATUS_AUDIO_CACHE_PATH (default ./cache/status-audio.json)
 
@@ -31,6 +37,7 @@ const STATUS_CACHE_PATH = process.env.STATUS_AUDIO_CACHE_PATH || './cache/status
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-flash-lite-latest';
 const CONCURRENCY_ENTENDIMENTO = Number(process.env.CONCURRENCY_ENTENDIMENTO || 8);
 const CONCURRENCY_AUDIO = Number(process.env.CONCURRENCY_AUDIO || 3);
+const LIMITE_AUDIO_POR_EXECUCAO = Number(process.env.LIMITE_AUDIO_POR_EXECUCAO || 2000);
 const VALORES_STATUS = new Set(['aprovado', 'reprovado', 'indefinido']);
 
 const AUDIO_RE = /\.(ogg|mp3|m4a|wav|opus)(\?|$)/i;
@@ -100,12 +107,18 @@ export async function transcreverAudios(urls) {
   let novasChamadas = 0;
   let reaproveitados = 0;
   let erros = 0;
+  let puladosPorLimite = 0;
 
   const resultados = await mapWithConcurrency(urls, CONCURRENCY_AUDIO, async (url) => {
     const chave = chaveCache(url);
     if (cache[chave] != null) {
       reaproveitados += 1;
       return cache[chave];
+    }
+    // teto de segurança — o resto fica sem cache, tenta de novo na próxima execução.
+    if (novasChamadas >= LIMITE_AUDIO_POR_EXECUCAO) {
+      puladosPorLimite += 1;
+      return '';
     }
     try {
       const resp = await comTimeout(fetch(url, { signal: AbortSignal.timeout(20000) }), 25000, 'download');
@@ -122,7 +135,7 @@ export async function transcreverAudios(urls) {
             { inlineData: { mimeType: mimeTypeDoUrl(url), data: buffer.toString('base64') } },
           ],
         }],
-      }), 45000, 'gemini');
+      }), 20000, 'gemini');
       const texto = (result.text || '').trim();
       cache[chave] = texto;
       novasChamadas += 1;
@@ -137,7 +150,7 @@ export async function transcreverAudios(urls) {
   });
 
   salvarCache(CACHE_PATH, cache);
-  console.error(`Transcrição de áudio: ${novasChamadas} chamadas novas, ${reaproveitados} do cache, ${erros} erros.`);
+  console.error(`Transcrição de áudio: ${novasChamadas} chamadas novas, ${reaproveitados} do cache, ${erros} erros, ${puladosPorLimite} pulados pelo teto (tentam de novo na próxima).`);
   return resultados;
 }
 
@@ -211,23 +224,4 @@ export async function resolverStatusPorEntendimento(leads) {
     try {
       const result = await comTimeout(ai.models.generateContent({
         model: GEMINI_MODEL,
-        contents: [{ role: 'user', parts: [{ text: `${PROMPT_STATUS}\n\n--- CONVERSA ---\n${transcricaoCompleta}\n--- FIM DA CONVERSA ---` }] }],
-        config: { responseMimeType: 'application/json', temperature: 0 },
-      }), 30000, 'gemini-status');
-      const limpo = limparResultadoStatus(JSON.parse(result.text));
-      cache[chave] = limpo;
-      novasChamadas += 1;
-      // salva a cada 50 chamadas novas — se o job for cancelado no meio, não perde tudo.
-      if (novasChamadas % 50 === 0) salvarCache(STATUS_CACHE_PATH, cache);
-      return limpo;
-    } catch (err) {
-      erros += 1;
-      console.error(`  aviso: falha ao resolver status por áudio (${err.message}).`);
-      return { status: 'indefinido', frase: null };
-    }
-  });
-
-  salvarCache(STATUS_CACHE_PATH, cache);
-  console.error(`Status por áudio: ${novasChamadas} chamadas novas, ${reaproveitados} do cache, ${erros} erros.`);
-  return resultados;
-}
+        contents: [{ role: 'user',
