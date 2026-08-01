@@ -9,6 +9,8 @@
 //  - transcrição de áudio, por hash da URL (a URL não muda, nunca precisa retranscrever)
 //  - decisão de status, por hash da conversa montada (texto+transcrições) — muda se a
 //    conversa mudar (nova mensagem), senão reaproveita.
+// Ambos salvam em disco a cada 50 chamadas novas (não só no final) — um cancelamento no
+// meio do processo não joga fora as chamadas de IA já pagas até ali.
 //
 // Variáveis de ambiente:
 //   GEMINI_API_KEY (se ausente, pula tudo — leads ficam "sem_mencao" como antes)
@@ -124,6 +126,8 @@ export async function transcreverAudios(urls) {
       const texto = (result.text || '').trim();
       cache[chave] = texto;
       novasChamadas += 1;
+      // salva a cada 50 chamadas novas — se o job for cancelado no meio, não perde tudo.
+      if (novasChamadas % 50 === 0) salvarCache(CACHE_PATH, cache);
       return texto;
     } catch (err) {
       erros += 1;
@@ -213,6 +217,8 @@ export async function resolverStatusPorEntendimento(leads) {
       const limpo = limparResultadoStatus(JSON.parse(result.text));
       cache[chave] = limpo;
       novasChamadas += 1;
+      // salva a cada 50 chamadas novas — se o job for cancelado no meio, não perde tudo.
+      if (novasChamadas % 50 === 0) salvarCache(STATUS_CACHE_PATH, cache);
       return limpo;
     } catch (err) {
       erros += 1;
