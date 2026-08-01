@@ -224,4 +224,23 @@ export async function resolverStatusPorEntendimento(leads) {
     try {
       const result = await comTimeout(ai.models.generateContent({
         model: GEMINI_MODEL,
-        contents: [{ role: 'user',
+        contents: [{ role: 'user', parts: [{ text: `${PROMPT_STATUS}\n\n--- CONVERSA ---\n${transcricaoCompleta}\n--- FIM DA CONVERSA ---` }] }],
+        config: { responseMimeType: 'application/json', temperature: 0 },
+      }), 20000, 'gemini-status');
+      const limpo = limparResultadoStatus(JSON.parse(result.text));
+      cache[chave] = limpo;
+      novasChamadas += 1;
+      // salva a cada 50 chamadas novas — se o job for cancelado no meio, não perde tudo.
+      if (novasChamadas % 50 === 0) salvarCache(STATUS_CACHE_PATH, cache);
+      return limpo;
+    } catch (err) {
+      erros += 1;
+      console.error(`  aviso: falha ao resolver status por áudio (${err.message}).`);
+      return { status: 'indefinido', frase: null };
+    }
+  });
+
+  salvarCache(STATUS_CACHE_PATH, cache);
+  console.error(`Status por áudio: ${novasChamadas} chamadas novas, ${reaproveitados} do cache, ${erros} erros.`);
+  return resultados;
+}
