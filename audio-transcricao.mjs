@@ -1,9 +1,9 @@
-// Resolve o status (aprovado/reprovado/indefinido) de conversas que ficaram "sem_mencao"
-// no regex, pra distribuidores confirmados com linguagem que o regex não pega — seja
-// porque respondem por áudio (transcrito aqui) ou porque usam frases informais em texto
-// ("deu certo", "ele reprovou aqui", "a mesa de crédito aprovou") em vez de "aprovado"/
-// "reprovado" literal. Manda a CONVERSA INTEIRA (texto + áudio transcrito, quando tiver)
-// pra IA entender o sentido, em vez de bater só na palavra exata.
+// Resolve o status (aprovado/reprovado/indefinido) de qualquer conversa que ficou
+// "sem_mencao" no regex — não sabemos de antemão quais distribuidores usam linguagem que
+// o regex não pega, seja porque respondem por áudio (transcrito aqui) ou porque usam
+// frases informais em texto ("deu certo", "ele reprovou aqui", "a mesa de crédito aprovou")
+// em vez de "aprovado"/"reprovado" literal. Manda a CONVERSA INTEIRA (texto + áudio
+// transcrito, quando tiver) pra IA entender o sentido, em vez de bater só na palavra exata.
 //
 // Dois caches persistentes e independentes:
 //  - transcrição de áudio, por hash da URL (a URL não muda, nunca precisa retranscrever)
@@ -13,7 +13,8 @@
 // Variáveis de ambiente:
 //   GEMINI_API_KEY (se ausente, pula tudo — leads ficam "sem_mencao" como antes)
 //   GEMINI_MODEL (default: gemini-flash-lite-latest)
-//   CONCURRENCY_AUDIO (default 3 — áudio é mais pesado que texto por chamada)
+//   CONCURRENCY_ENTENDIMENTO (default 8 — maioria é só texto, mais barato que áudio)
+//   CONCURRENCY_AUDIO (default 3 — só a etapa de download+transcrição de áudio em si)
 //   AUDIO_CACHE_PATH (default ./cache/audio-transcricao.json)
 //   STATUS_AUDIO_CACHE_PATH (default ./cache/status-audio.json)
 
@@ -26,6 +27,7 @@ import { mapWithConcurrency } from './zap-api.mjs';
 const CACHE_PATH = process.env.AUDIO_CACHE_PATH || './cache/audio-transcricao.json';
 const STATUS_CACHE_PATH = process.env.STATUS_AUDIO_CACHE_PATH || './cache/status-audio.json';
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-flash-lite-latest';
+const CONCURRENCY_ENTENDIMENTO = Number(process.env.CONCURRENCY_ENTENDIMENTO || 8);
 const CONCURRENCY_AUDIO = Number(process.env.CONCURRENCY_AUDIO || 3);
 const VALORES_STATUS = new Set(['aprovado', 'reprovado', 'indefinido']);
 
@@ -40,9 +42,9 @@ Sua tarefa: ler a conversa inteira e dizer qual é o status FINAL do cadastro de
 Entenda o SENTIDO da conversa, não procure só por uma palavra exata — "aprovou", "foi aprovado", "liberou", "deu certo" (aprovado), "reprovou", "não vai dar", "não deu certo" (reprovado) etc. todos contam, dependendo do contexto.
 
 Responda em JSON, só isso, sem markdown, no formato:
-{"status": "aprovado" | "reprovado" | "indefinido"}
+{"status": "aprovado" | "reprovado" | "indefinido", "frase": "trecho curto e literal da conversa que embasa a resposta, ou null"}
 
-Use "indefinido" se a conversa não chegou a uma decisão clara (ainda em andamento, sem resposta final, ou não é sobre esse cadastro).`;
+Use "indefinido" se a conversa não chegou a uma decisão clara (ainda em andamento, sem resposta final, ou não é sobre esse cadastro). Se "indefinido", "frase" é null.`;
 
 export function ehAudio(texto) {
   return AUDIO_RE.test((texto || '').toString().trim());
@@ -152,16 +154,26 @@ function montarTranscricao(mensagens, transcricoesPorUrl) {
     .join('\n');
 }
 
+function limparResultadoStatus(parsed) {
+  const status = VALORES_STATUS.has(parsed?.status) ? parsed.status : 'indefinido';
+  return {
+    status,
+    frase: status !== 'indefinido' && parsed?.frase ? String(parsed.frase).slice(0, 200) : null,
+  };
+}
+
 // leads: [{ mensagens }] (mesmo shape que vem de getMensagens, já ordenadas) — leads de
-// distribuidores confirmados que o regex marcou como "sem_mencao". Retorna array paralelo
-// de 'aprovado' | 'reprovado' | 'indefinido'.
+// qualquer distribuidor que o regex marcou como "sem_mencao". Retorna array paralelo
+// de { status: 'aprovado' | 'reprovado' | 'indefinido', frase: string | null } — a frase é
+// o trecho que a IA usou como evidência, pra eventualmente promover pra regex de verdade
+// (ver candidatosRegex em build-data.mjs).
 export async function resolverStatusPorEntendimento(leads) {
   if (!leads.length) return [];
 
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     console.error('GEMINI_API_KEY ausente — resolução de status por áudio pulada.');
-    return leads.map(() => 'indefinido');
+    return leads.map(() => ({ status: 'indefinido', frase: null }));
   }
 
   // 1) transcreve todo áudio (de qualquer autor, pro contexto ficar completo) de uma vez,
@@ -182,14 +194,15 @@ export async function resolverStatusPorEntendimento(leads) {
   let reaproveitados = 0;
   let erros = 0;
 
-  const resultados = await mapWithConcurrency(leads, CONCURRENCY_AUDIO, async (lead) => {
+  const resultados = await mapWithConcurrency(leads, CONCURRENCY_ENTENDIMENTO, async (lead) => {
     const transcricaoCompleta = montarTranscricao(lead.mensagens, transcricoesPorUrl);
-    if (!transcricaoCompleta) return 'indefinido';
+    if (!transcricaoCompleta) return { status: 'indefinido', frase: null };
 
     const chave = chaveCache(transcricaoCompleta);
     if (cache[chave]) {
       reaproveitados += 1;
-      return cache[chave];
+      // cache antigo guardava só a string do status — trata como frase ausente.
+      return typeof cache[chave] === 'string' ? { status: cache[chave], frase: null } : cache[chave];
     }
     try {
       const result = await comTimeout(ai.models.generateContent({
@@ -197,15 +210,14 @@ export async function resolverStatusPorEntendimento(leads) {
         contents: [{ role: 'user', parts: [{ text: `${PROMPT_STATUS}\n\n--- CONVERSA ---\n${transcricaoCompleta}\n--- FIM DA CONVERSA ---` }] }],
         config: { responseMimeType: 'application/json', temperature: 0 },
       }), 30000, 'gemini-status');
-      const parsed = JSON.parse(result.text);
-      const status = VALORES_STATUS.has(parsed?.status) ? parsed.status : 'indefinido';
-      cache[chave] = status;
+      const limpo = limparResultadoStatus(JSON.parse(result.text));
+      cache[chave] = limpo;
       novasChamadas += 1;
-      return status;
+      return limpo;
     } catch (err) {
       erros += 1;
       console.error(`  aviso: falha ao resolver status por áudio (${err.message}).`);
-      return 'indefinido';
+      return { status: 'indefinido', frase: null };
     }
   });
 
