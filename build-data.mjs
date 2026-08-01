@@ -16,8 +16,10 @@
 //   GEMINI_API_KEY  - chave dedicada deste projeto p/ origem-ia.mjs e audio-transcricao.mjs
 //                     (opcional — sem ela, esses dois enriquecimentos só ficam pulados)
 //   CONCURRENCY_IA  - concorrência das chamadas Gemini de origem (default 5)
-//   CONCURRENCY_AUDIO - concorrência das transcrições de áudio (default 3)
+//   CONCURRENCY_ENTENDIMENTO - concorrência da resolução de status por entendimento (default 8)
+//   CONCURRENCY_AUDIO - concorrência das transcrições de áudio, mais pesada (default 3)
 
+import { readFileSync, writeFileSync } from 'fs';
 import {
   getDepartamentosAtivos,
   getLeadsRecentes,
@@ -35,14 +37,7 @@ const TOKEN = process.env.ZAP_API_TOKEN;
 const DIAS_JANELA = Number(process.env.DIAS_JANELA || 30);
 const LIMITE_LEADS = Number(process.env.LIMITE_LEADS || 30000);
 const CONCURRENCY = Number(process.env.CONCURRENCY || 15);
-
-// Distribuidores confirmados (por investigação manual de conversas reais) cuja linguagem
-// o regex não pega — seja porque respondem por áudio (jose eder) ou porque usam frases
-// informais em texto pra dizer aprovado/reprovado, tipo "deu certo" (Felipe rio grande
-// Villa joias), em vez de "aprovado"/"reprovado". Só nesses vale a pena gastar com IA lendo
-// a conversa inteira. Adicionar um nome aqui só depois de checar conversas de verdade e
-// confirmar o padrão (não é pra ligar de forma automática/especulativa).
-const DISTRIBUIDORES_ENTENDIMENTO_IA = ['jose eder', 'felipe rio grande villa joias'];
+const CANDIDATOS_PATH = process.env.CANDIDATOS_PATH || './candidatos-regex.json';
 
 if (!TOKEN) {
   console.error('Faltou ZAP_API_TOKEN.');
@@ -51,6 +46,37 @@ if (!TOKEN) {
 
 function textoDaMensagem(msg) {
   return (msg.mensagem?.mensagem || '').toString();
+}
+
+// Frases que a IA usou como evidência pra resolver status "sem_mencao" (ver
+// resolverStatusPorEntendimento), acumuladas entre execuções — pra eventualmente promover
+// alguma pra regex de verdade (classificarMensagem em zap-api.mjs) e a IA parar de ser
+// chamada pra ela. Nunca promove sozinho: só acumula, revisão e promoção são manuais.
+function carregarCandidatosRegex() {
+  try {
+    return JSON.parse(readFileSync(CANDIDATOS_PATH, 'utf8'));
+  } catch {
+    return { atualizadoEm: null, candidatos: [] };
+  }
+}
+
+function normalizarFrase(frase) {
+  return frase.toString().trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+function registrarCandidatoRegex(arquivo, { distribuidor, status, frase, data }) {
+  // se o regex atual já reconheceria essa frase sozinha, não é candidato — já está coberto.
+  if (classificarMensagem(frase.toUpperCase()) === status) return;
+
+  const chave = `${status}::${normalizarFrase(frase)}`;
+  const existente = arquivo.candidatos.find((c) => `${c.status}::${normalizarFrase(c.frase)}` === chave);
+  if (existente) {
+    existente.ocorrencias += 1;
+    existente.ultimaData = data;
+    if (!existente.distribuidores.includes(distribuidor)) existente.distribuidores.push(distribuidor);
+  } else {
+    arquivo.candidatos.push({ frase: frase.trim(), status, ocorrencias: 1, ultimaData: data, distribuidores: [distribuidor] });
+  }
 }
 
 // Brasil não tem horário de verão desde 2019, então UTC-3 é fixo o ano todo — dá pra
@@ -89,8 +115,10 @@ async function main() {
       const origem = classificarOrigem(mensagensOrdenadas[0]);
       const info = extrairDddEUf(lead.chatId);
 
-      const precisaEntendimentoIA = status === 'sem_mencao'
-        && DISTRIBUIDORES_ENTENDIMENTO_IA.includes(distribuidor.toLowerCase().trim());
+      // Todo lead "sem_mencao" vale a pena passar pela IA — não dá pra saber de antemão
+      // quais distribuidores usam linguagem informal ou áudio (ver resolverStatusPorEntendimento),
+      // e a própria IA responde "indefinido" pras conversas realmente em aberto/sem decisão.
+      const precisaEntendimentoIA = status === 'sem_mencao';
       const precisaMensagens = origem === 'indeterminado' || precisaEntendimentoIA;
 
       return {
@@ -120,16 +148,24 @@ async function main() {
   const resultadosIA = await classificarOrigemIA(indeterminados.map((r) => ({ telefone: r._telefone, mensagens: r._mensagens })));
   indeterminados.forEach((r, i) => { r.origemIA = resultadosIA[i].origemProvavel; });
 
-  // Resolução por entendimento de IA: só pros distribuidores confirmados na lista, e só
-  // quem ainda ficou "sem_mencao" no texto — a IA lê a conversa inteira (texto + áudio
-  // transcrito, se tiver) e entende o status pelo sentido, em vez de procurar só
-  // "aprovado"/"reprovado" literal (perde "deu certo", "aprovou", áudio, etc.).
+  // Resolução por entendimento de IA: todo lead que ficou "sem_mencao" no texto — a IA lê
+  // a conversa inteira (texto + áudio transcrito, se tiver) e entende o status pelo sentido,
+  // em vez de procurar só "aprovado"/"reprovado" literal (perde "deu certo", "aprovou",
+  // áudio, etc.). Cada frase usada como evidência vira candidato de regex (ver
+  // registrarCandidatoRegex) — é assim que fica "salvo" quais distribuidores usam
+  // comunicação informal, sem precisar manter uma lista manual.
   const precisamEntendimento = registros.filter((r) => r._precisaEntendimentoIA);
-  console.error(`Resolvendo status por entendimento de IA em ${precisamEntendimento.length} leads (distribuidores: ${DISTRIBUIDORES_ENTENDIMENTO_IA.join(', ')})...`);
+  console.error(`Resolvendo status por entendimento de IA em ${precisamEntendimento.length} leads (concorrência=${process.env.CONCURRENCY_ENTENDIMENTO || 8})...`);
   const statusResolvidos = await resolverStatusPorEntendimento(precisamEntendimento.map((r) => ({ mensagens: r._mensagens })));
+  const candidatosRegex = carregarCandidatosRegex();
   precisamEntendimento.forEach((r, i) => {
-    if (statusResolvidos[i] !== 'indefinido') r.status = statusResolvidos[i];
+    const { status, frase } = statusResolvidos[i];
+    if (status === 'indefinido') return;
+    r.status = status;
+    if (frase) registrarCandidatoRegex(candidatosRegex, { distribuidor: r.distribuidor, status, frase, data: r.data });
   });
+  candidatosRegex.atualizadoEm = new Date().toISOString();
+  writeFileSync(CANDIDATOS_PATH, JSON.stringify(candidatosRegex, null, 2));
 
   for (const r of registros) {
     delete r._telefone;
