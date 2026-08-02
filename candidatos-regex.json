@@ -29,15 +29,6 @@
       ]
     },
     {
-      "frase": "Infelizmente não foi liberado seu cadastro neste momento",
-      "status": "reprovado",
-      "ocorrencias": 10,
-      "ultimaData": "2026-07-28",
-      "distribuidores": [
-        "Rose floripa"
-      ]
-    },
-    {
       "frase": "Não",
       "status": "reprovado",
       "ocorrencias": 2,
@@ -45,24 +36,6 @@
       "distribuidores": [
         "rodrigo rosa",
         "Juliana figueiredo"
-      ]
-    },
-    {
-      "frase": "Seu cadastro foi liberado",
-      "status": "aprovado",
-      "ocorrencias": 9,
-      "ultimaData": "2026-07-28",
-      "distribuidores": [
-        "Rose floripa"
-      ]
-    },
-    {
-      "frase": "Infelizmente não passou",
-      "status": "reprovado",
-      "ocorrencias": 5,
-      "ultimaData": "2026-07-26",
-      "distribuidores": [
-        "camila paiva"
       ]
     },
     {
@@ -117,16 +90,6 @@
       "ultimaData": "2026-07-31",
       "distribuidores": [
         "Elaine Castro "
-      ]
-    },
-    {
-      "frase": "CPF possui débito na Empresa.",
-      "status": "reprovado",
-      "ocorrencias": 3,
-      "ultimaData": "2026-07-26",
-      "distribuidores": [
-        "Ilma",
-        "Nancy Cuiabá"
       ]
     },
     {
@@ -238,15 +201,6 @@
       ]
     },
     {
-      "frase": "não foi autorizado",
-      "status": "reprovado",
-      "ocorrencias": 3,
-      "ultimaData": "2026-07-29",
-      "distribuidores": [
-        "Vivian"
-      ]
-    },
-    {
       "frase": "Não tenho uma rota definida para sua cidade",
       "status": "reprovado",
       "ocorrencias": 1,
@@ -262,15 +216,6 @@
       "ultimaData": "2026-07-30",
       "distribuidores": [
         "gisélia"
-      ]
-    },
-    {
-      "frase": "Ola! Seu CPF ja possui débito na Empresa Romance.",
-      "status": "reprovado",
-      "ocorrencias": 4,
-      "ultimaData": "2026-07-27",
-      "distribuidores": [
-        "DEBORA"
       ]
     },
     {
@@ -553,15 +498,6 @@
       ]
     },
     {
-      "frase": "Essa região não Atendemos.",
-      "status": "reprovado",
-      "ocorrencias": 5,
-      "ultimaData": "2026-07-27",
-      "distribuidores": [
-        "Luan "
-      ]
-    },
-    {
       "frase": "Não pode",
       "status": "reprovado",
       "ocorrencias": 1,
@@ -724,19 +660,6 @@
       ]
     },
     {
-      "frase": "Aprovou",
-      "status": "aprovado",
-      "ocorrencias": 7,
-      "ultimaData": "2026-07-26",
-      "distribuidores": [
-        "Janini",
-        "MARILEIA",
-        "Emanoel Pozan",
-        "beruska",
-        "adriano simeia"
-      ]
-    },
-    {
       "frase": "Estou em dourados",
       "status": "aprovado",
       "ocorrencias": 1,
@@ -887,15 +810,6 @@
       "ultimaData": "2026-07-29",
       "distribuidores": [
         "Vivian"
-      ]
-    },
-    {
-      "frase": "Essa região não Atendemos",
-      "status": "reprovado",
-      "ocorrencias": 3,
-      "ultimaData": "2026-07-28",
-      "distribuidores": [
-        "Luan "
       ]
     },
     {
@@ -1158,18 +1072,6 @@
       "ultimaData": "2026-07-28",
       "distribuidores": [
         "jovanize"
-      ]
-    },
-    {
-      "frase": "Deu certo",
-      "status": "aprovado",
-      "ocorrencias": 4,
-      "ultimaData": "2026-07-27",
-      "distribuidores": [
-        "rafa duarte",
-        "Juliana figueiredo",
-        "gisélia",
-        "Aline/ Geraldo"
       ]
     },
     {
@@ -1623,15 +1525,6 @@
       ]
     },
     {
-      "frase": "CADASTRO NEGADO",
-      "status": "reprovado",
-      "ocorrencias": 3,
-      "ultimaData": "2026-07-27",
-      "distribuidores": [
-        "Juliana Dona Bella "
-      ]
-    },
-    {
       "frase": "Isso",
       "status": "aprovado",
       "ocorrencias": 1,
@@ -1816,15 +1709,6 @@
       "frase": "Oi, FRANCISCO MORAES! Seja muito bem-vinda ao Time Natura & Avon!",
       "status": "aprovado",
       "ocorrencias": 1,
-      "ultimaData": "2026-07-27",
-      "distribuidores": [
-        "Ivone"
-      ]
-    },
-    {
-      "frase": "Seja muito bem-vinda ao Time Natura & Avon!",
-      "status": "aprovado",
-      "ocorrencias": 9,
       "ultimaData": "2026-07-27",
       "distribuidores": [
         "Ivone"
