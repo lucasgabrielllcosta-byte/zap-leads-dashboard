@@ -33,7 +33,10 @@ export async function mapWithConcurrency(items, limit, fn) {
   return results;
 }
 
-// Só departamentos com sessão de WhatsApp conectada contam como distribuidor ativo de verdade.
+// Só departamentos com sessão de WhatsApp conectada contam como distribuidor ativo de
+// verdade. Também devolve quem está desconectado (nome), pro dashboard avisar — um
+// distribuidor pode aparecer como "ativo" no Zap Responder mas com o WhatsApp caído,
+// e nesse caso os leads dele nem chegam a ser contados.
 export async function getDepartamentosAtivos() {
   const data = await apiGet('/api/departamento/all');
   const departamentos = data.departamentos || [];
@@ -46,7 +49,8 @@ export async function getDepartamentosAtivos() {
     }
   });
   const ativos = statusList.filter((d) => d.isConected);
-  return new Map(ativos.map((d) => [d._id, d.nome]));
+  const desconectados = statusList.filter((d) => !d.isConected).map((d) => d.nome);
+  return { ativos: new Map(ativos.map((d) => [d._id, d.nome])), desconectados };
 }
 
 // Endpoint interno (não documentado publicamente) que lista leads por ordem de chegada.
