@@ -502,12 +502,13 @@ async function main() {
     }
     el.distTable.innerHTML = `
       <table>
-        <thead><tr><th>Distribuidor</th><th class="num">Leads (anúncio)</th><th class="num">Aprovados (anúncio)</th><th class="num">Reprovados (anúncio)</th><th class="num">Taxa aprov. (anúncio)</th></tr></thead>
+        <thead><tr><th>Distribuidor</th><th class="num">Leads (anúncio)</th><th class="num">Aprovados (anúncio)</th><th class="num">Reprovados (anúncio)</th><th class="num">Sem retorno</th><th class="num">Taxa aprov. (anúncio)</th></tr></thead>
         <tbody>
           ${porDist.map(d => {
             const total = d.aprovados + d.reprovados;
             const taxa = total > 0 ? d.aprovados / total : null;
-            return `<tr><td>${d.nome}</td><td class="num">${fmt.format(d.total)}</td><td class="num">${fmt.format(d.aprovados)}</td><td class="num">${fmt.format(d.reprovados)}</td><td class="num">${pct(taxa)}</td></tr>`;
+            const semRetorno = d.total - d.aprovados - d.reprovados;
+            return `<tr><td>${d.nome}</td><td class="num">${fmt.format(d.total)}</td><td class="num">${fmt.format(d.aprovados)}</td><td class="num">${fmt.format(d.reprovados)}</td><td class="num">${fmt.format(semRetorno)}</td><td class="num">${pct(taxa)}</td></tr>`;
           }).join('')}
         </tbody>
       </table>
