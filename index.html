@@ -391,10 +391,42 @@ async function main() {
     periodoSwitch: document.getElementById('periodoSwitch'),
   };
 
+  async function carregarDados() {
+    const res = await fetch('data/dashboard.json', { cache: 'no-store' });
+    return res.json();
+  }
+
+  // novos.json (fast-track, gerado a cada ~15 min só com leads recentes) fica no
+  // repositório direto, não no Pages — busca sempre a versão mais fresca do GitHub.
+  const NOVOS_URL = 'https://raw.githubusercontent.com/lucasgabrielllcosta-byte/zap-leads-dashboard/main/data/novos.json';
+  async function carregarNovos() {
+    try {
+      // Timeout curto — se o GitHub estiver lento, não pode atrasar o carregamento do
+      // dashboard.json principal (esse aqui é só um complemento, nunca a fonte crítica).
+      const res = await fetch(NOVOS_URL, { cache: 'no-store', signal: AbortSignal.timeout(4000) });
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
+    }
+  }
+
+  // Mescla os leads recentes do novos.json por cima do dashboard.json (pipeline
+  // completo, mais lento) — cada dia é "dono" de uma fonte só: os dias que o novos.json
+  // cobre saem do dashboard.json e entra só a versão mais fresca. Nunca soma os dois
+  // pro mesmo dia, então nunca duplica um lead com dois status ao mesmo tempo. Se o
+  // novos.json falhar ou vier vazio, fica só no dashboard.json mesmo (falha silenciosa).
+  function mesclarComNovos(dashboardData, novosData) {
+    if (!novosData || !Array.isArray(novosData.registros) || !novosData.registros.length) return dashboardData;
+    const diasCobertos = new Set(novosData.registros.map((r) => r.data));
+    const registrosAntigos = (dashboardData.registros || []).filter((r) => !diasCobertos.has(r.data));
+    return { ...dashboardData, registros: [...registrosAntigos, ...novosData.registros] };
+  }
+
   let data;
   try {
-    const res = await fetch('data/dashboard.json', { cache: 'no-store' });
-    data = await res.json();
+    const [dashboardData, novosData] = await Promise.all([carregarDados(), carregarNovos()]);
+    data = mesclarComNovos(dashboardData, novosData);
   } catch (err) {
     el.subtitle.textContent = 'Erro ao carregar data/dashboard.json';
     return;
@@ -402,17 +434,23 @@ async function main() {
 
   const fmt = new Intl.NumberFormat('pt-BR');
   const pct = (n) => n == null ? '—' : (n * 100).toFixed(1).replace('.', ',') + '%';
-  const geradoEm = new Date(data.geradoEm);
-  el.subtitle.innerHTML = `Distribuidores ativos: <strong>${data.distribuidoresAtivosTotal}</strong> &middot; atualizado em <strong>${geradoEm.toLocaleString('pt-BR')}</strong>`;
 
-  const horasDesdeAtualizacao = (Date.now() - geradoEm.getTime()) / 3600000;
-  if (horasDesdeAtualizacao > 6) el.staleWarning.style.display = 'block';
+  function atualizarCabecalho() {
+    const geradoEm = new Date(data.geradoEm);
+    el.subtitle.innerHTML = `Distribuidores ativos: <strong>${data.distribuidoresAtivosTotal}</strong> &middot; atualizado em <strong>${geradoEm.toLocaleString('pt-BR')}</strong>`;
 
-  const desconectados = data.distribuidoresDesconectados || [];
-  if (desconectados.length) {
-    el.desconectadosWarning.style.display = 'block';
-    el.desconectadosWarning.textContent = `WhatsApp desconectado — ${desconectados.length === 1 ? '1 distribuidor' : desconectados.length + ' distribuidores'}: ${desconectados.join(', ')}`;
+    const horasDesdeAtualizacao = (Date.now() - geradoEm.getTime()) / 3600000;
+    el.staleWarning.style.display = horasDesdeAtualizacao > 6 ? 'block' : 'none';
+
+    const desconectados = data.distribuidoresDesconectados || [];
+    if (desconectados.length) {
+      el.desconectadosWarning.style.display = 'block';
+      el.desconectadosWarning.textContent = `WhatsApp desconectado — ${desconectados.length === 1 ? '1 distribuidor' : desconectados.length + ' distribuidores'}: ${desconectados.join(', ')}`;
+    } else {
+      el.desconectadosWarning.style.display = 'none';
+    }
   }
+  atualizarCabecalho();
 
   function showTooltip(evt, html) {
     el.tooltip.innerHTML = html;
@@ -636,11 +674,31 @@ async function main() {
     el.periodoSwitch.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.periodo === periodoKey));
   }
 
+  let periodoAtual = '30dias';
   el.periodoSwitch.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('click', () => render(btn.dataset.periodo));
+    btn.addEventListener('click', () => {
+      periodoAtual = btn.dataset.periodo;
+      render(periodoAtual);
+    });
   });
 
-  render('30dias');
+  render(periodoAtual);
+
+  // Atualização automática: busca dashboard.json + novos.json de novo a cada 5 min,
+  // sem recarregar a página. Falha silenciosa — se der erro, mantém os dados atuais
+  // na tela até a próxima tentativa (dashboard.json só publica de hora em hora, e
+  // novos.json a cada ~15 min, então nem toda tentativa vai trazer dado novo).
+  setInterval(async () => {
+    if (document.hidden) return;
+    try {
+      const [dashboardData, novosData] = await Promise.all([carregarDados(), carregarNovos()]);
+      data = mesclarComNovos(dashboardData, novosData);
+    } catch {
+      return;
+    }
+    atualizarCabecalho();
+    render(periodoAtual);
+  }, 5 * 60 * 1000);
 }
 
 main();
