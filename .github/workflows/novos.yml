@@ -54,12 +54,20 @@ jobs:
         # GITHUB_TOKEN padrão não reaciona o trigger "push" do deploy.yml (mesmo
         # mecanismo já usado ali pro commit de candidatos-regex.json) — sem risco de
         # disparar o pipeline completo nem de entrar na fila de deploy do Pages.
+        #
+        # Merge (não rebase) com "-X ours": se um "Re-run jobs" reexecutar a partir de
+        # um commit antigo enquanto o main já tem um novos.json mais novo (de outra
+        # execução), o Git vê isso como dois lados "criando" o mesmo arquivo (conflito
+        # add/add) e um rebase simples trava. Como o arquivo é sempre gerado do zero
+        # (nunca editado incrementalmente), a versão recém-gerada é sempre a certa —
+        # "-X ours" resolve esse conflito automaticamente ficando com ela.
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -f data/novos.json
           if ! git diff --cached --quiet; then
             git commit -m "Atualiza data/novos.json (fast-track)"
-            git pull --rebase origin main
+            git fetch origin main
+            git merge -X ours --no-edit origin/main
             git push origin HEAD:main
           fi
