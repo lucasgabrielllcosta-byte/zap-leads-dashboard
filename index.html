@@ -302,6 +302,7 @@
     </div>
   </header>
   <div class="stale-warning" id="staleWarning">Dados desatualizados — a última atualização automática pode ter falhado.</div>
+  <div class="stale-warning" id="desconectadosWarning"></div>
 
   <div class="tiles" id="tiles"></div>
 
@@ -376,6 +377,7 @@ async function main() {
   const el = {
     subtitle: document.getElementById('subtitle'),
     staleWarning: document.getElementById('staleWarning'),
+    desconectadosWarning: document.getElementById('desconectadosWarning'),
     tiles: document.getElementById('tiles'),
     dayChart: document.getElementById('dayChartContainer'),
     dayChartSub: document.getElementById('dayChartSub'),
@@ -405,6 +407,12 @@ async function main() {
 
   const horasDesdeAtualizacao = (Date.now() - geradoEm.getTime()) / 3600000;
   if (horasDesdeAtualizacao > 6) el.staleWarning.style.display = 'block';
+
+  const desconectados = data.distribuidoresDesconectados || [];
+  if (desconectados.length) {
+    el.desconectadosWarning.style.display = 'block';
+    el.desconectadosWarning.textContent = `WhatsApp desconectado — ${desconectados.length === 1 ? '1 distribuidor' : desconectados.length + ' distribuidores'}: ${desconectados.join(', ')}`;
+  }
 
   function showTooltip(evt, html) {
     el.tooltip.innerHTML = html;
