@@ -251,6 +251,7 @@
   .daychart .col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
   .daychart .col-fill { background: var(--series); border-radius: 3px 3px 0 0; min-height: 2px; }
   .daychart .col-fill:hover { filter: brightness(1.12); cursor: pointer; }
+  .daychart .col-fill.aprovado { background: var(--good); }
   .daychart-axis { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 6px; }
 
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -323,6 +324,12 @@
   </div>
 
   <div class="card">
+    <h2>Aprovados por dia</h2>
+    <div class="card-sub" id="approvedChartSub"></div>
+    <div id="approvedChartContainer"></div>
+  </div>
+
+  <div class="card">
     <h2>Leads por UF</h2>
     <div class="card-sub">Estado inferido pelo DDD do telefone · só anúncio confirmado</div>
     <div id="ufChartContainer"></div>
@@ -385,6 +392,8 @@ async function main() {
     tiles: document.getElementById('tiles'),
     dayChart: document.getElementById('dayChartContainer'),
     dayChartSub: document.getElementById('dayChartSub'),
+    approvedChart: document.getElementById('approvedChartContainer'),
+    approvedChartSub: document.getElementById('approvedChartSub'),
     origem: document.getElementById('origemContainer'),
     ufChart: document.getElementById('ufChartContainer'),
     distTable: document.getElementById('distTableContainer'),
@@ -633,6 +642,34 @@ async function main() {
       `;
       el.dayChart.querySelectorAll('.col-fill').forEach(bar => {
         bar.addEventListener('mousemove', (evt) => showTooltip(evt, `<strong>${bar.dataset.d}</strong><br>${bar.dataset.total} leads &middot; ${bar.dataset.ap} aprov. &middot; ${bar.dataset.rp} reprov.`));
+        bar.addEventListener('mouseleave', hideTooltip);
+      });
+    }
+
+    // --- aprovados por dia (mesma série de porDia, só troca o que vira barra) ---
+    el.approvedChartSub.textContent = `Últimos ${diasN === 1 ? '1 dia' : diasN + ' dias'} · só anúncio confirmado`;
+    if (!porDia.length) {
+      el.approvedChart.innerHTML = '<div class="empty">Sem dados de série diária.</div>';
+    } else {
+      const maxAprovados = Math.max(...porDia.map(d => d.aprovados), 1);
+      const colsAprovados = porDia.map(d => {
+        const h = d.aprovados > 0 ? Math.max((d.aprovados / maxAprovados) * 100, 1.5) : 0;
+        return `<div class="col"><div class="col-fill aprovado" style="height:${h}%" data-d="${d.data}" data-total="${d.total}" data-ap="${d.aprovados}" data-rp="${d.reprovados}"></div></div>`;
+      }).join('');
+      const first = porDia[0].data, last = porDia[porDia.length - 1].data;
+      el.approvedChart.innerHTML = `
+        <div class="daychart">${colsAprovados}</div>
+        <div class="daychart-axis"><span>${first}</span><span>${last}</span></div>
+        <details class="table-toggle">
+          <summary>Ver tabela</summary>
+          <table>
+            <thead><tr><th>Data</th><th class="num">Aprovados</th><th class="num">Total</th></tr></thead>
+            <tbody>${porDia.map(d => `<tr><td>${d.data}</td><td class="num">${fmt.format(d.aprovados)}</td><td class="num">${fmt.format(d.total)}</td></tr>`).join('')}</tbody>
+          </table>
+        </details>
+      `;
+      el.approvedChart.querySelectorAll('.col-fill').forEach(bar => {
+        bar.addEventListener('mousemove', (evt) => showTooltip(evt, `<strong>${bar.dataset.d}</strong><br>${bar.dataset.ap} aprovados &middot; ${bar.dataset.total} leads no dia`));
         bar.addEventListener('mouseleave', hideTooltip);
       });
     }
