@@ -7,8 +7,10 @@ import { readFileSync } from 'fs';
 const NOVO_PATH = process.argv[2] || 'data/dashboard.json';
 const ANTERIOR_PATH = process.argv[3] || null;
 
-const QUEDA_MAX = 0.5; // não aceita o total de leads cair mais de 50% de uma publicação pra outra
-const AUMENTO_MAX = 3; // nem mais que triplicar — indício de duplicação/erro de mesclagem
+// Configuráveis por env var — o novos.json (janela de 1-2 dias) oscila muito mais em
+// proporção que o dashboard.json (30 dias), então usa limites mais soltos (ver novos.yml).
+const QUEDA_MAX = Number(process.env.VALIDAR_QUEDA_MAX || 0.5); // não aceita cair mais de 50% de uma publicação pra outra
+const AUMENTO_MAX = Number(process.env.VALIDAR_AUMENTO_MAX || 3); // nem mais que triplicar — indício de duplicação/erro
 
 const STATUS_VALIDOS = new Set(['aprovado', 'reprovado', 'sem_mencao']);
 const ORIGEM_VALIDA = new Set(['clique_anuncio_confirmado', 'outbound_distribuidor_iniciou', 'indeterminado']);
