@@ -1,4 +1,2393 @@
 {
-  "atualizadoEm": null,
-  "candidatos": []
+  "atualizadoEm": "2026-08-02T07:55:40.636Z",
+  "candidatos": [
+    {
+      "frase": "Não tenho entereco",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "Ivone"
+      ]
+    },
+    {
+      "frase": "Pra mim não dar",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "MARA SANTOS"
+      ]
+    },
+    {
+      "frase": "Deu certo aqui, tá, minha princesa?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "Ivani e edson"
+      ]
+    },
+    {
+      "frase": "Infelizmente não foi liberado seu cadastro neste momento",
+      "status": "reprovado",
+      "ocorrencias": 10,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Rose floripa"
+      ]
+    },
+    {
+      "frase": "Não",
+      "status": "reprovado",
+      "ocorrencias": 2,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "rodrigo rosa",
+        "Juliana figueiredo"
+      ]
+    },
+    {
+      "frase": "Seu cadastro foi liberado",
+      "status": "aprovado",
+      "ocorrencias": 9,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Rose floripa"
+      ]
+    },
+    {
+      "frase": "Infelizmente não passou",
+      "status": "reprovado",
+      "ocorrencias": 5,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "camila paiva"
+      ]
+    },
+    {
+      "frase": "em Formosa nós não realizamos atendimento",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "keylla"
+      ]
+    },
+    {
+      "frase": "Poxa nao faço.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "Jessica Paiva"
+      ]
+    },
+    {
+      "frase": "consta debito no sistema",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "eliane tenorio"
+      ]
+    },
+    {
+      "frase": "Parabéns Miriam seu cadastro aprovou",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "camila paiva"
+      ]
+    },
+    {
+      "frase": "Pronto, amiga, no CPF de Jorge aprovou.",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "Milena "
+      ]
+    },
+    {
+      "frase": "Ana Clara, aprovou sim o seu cadastro, tá bom?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "Elaine Castro "
+      ]
+    },
+    {
+      "frase": "CPF possui débito na Empresa.",
+      "status": "reprovado",
+      "ocorrencias": 3,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "Ilma",
+        "Nancy Cuiabá"
+      ]
+    },
+    {
+      "frase": "Eu só atendo Cuiabá e Várzea Grande, no Mato Grosso.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "danni pinho"
+      ]
+    },
+    {
+      "frase": "deu a provado aqui, tá bom?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "Ivani e edson"
+      ]
+    },
+    {
+      "frase": "então eu não vou pegar romance, não",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "monica / thiago "
+      ]
+    },
+    {
+      "frase": "teu cadastro deu certo",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "felipe ricardo"
+      ]
+    },
+    {
+      "frase": "A senhora pode fazer seu acerto hoje ou amanhã, tá? A loja tá liberada.",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "JANNY"
+      ]
+    },
+    {
+      "frase": "O representante te atendera hoje",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "ELISABETH"
+      ]
+    },
+    {
+      "frase": "Não mulher agora não deixa pra outro vez",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "Aline/ Geraldo"
+      ]
+    },
+    {
+      "frase": "nessa cidade a gente não atende",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "keylla"
+      ]
+    },
+    {
+      "frase": "eu pedi à empresa para verificar aqui, ela me informou que você tem cadastro na Romance, não é?",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "Vivian"
+      ]
+    },
+    {
+      "frase": "Estou pendente, né? Um valor no seu CPF. Tá constando débito aqui.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "Cleusa Sá"
+      ]
+    },
+    {
+      "frase": "parabéns teu cadastro aprovou",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-31",
+      "distribuidores": [
+        "camila paiva"
+      ]
+    },
+    {
+      "frase": "A senhora ja deve a nossa empresa",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "JANNY"
+      ]
+    },
+    {
+      "frase": "não foi autorizado",
+      "status": "reprovado",
+      "ocorrencias": 3,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Vivian"
+      ]
+    },
+    {
+      "frase": "Não tenho uma rota definida para sua cidade",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "consigo estar fazendo a liberação para você de R$ 1.800",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "Ola! Seu CPF ja possui débito na Empresa Romance.",
+      "status": "reprovado",
+      "ocorrencias": 4,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "DEBORA"
+      ]
+    },
+    {
+      "frase": "Cheguei",
+      "status": "aprovado",
+      "ocorrencias": 2,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Mari chapecó"
+      ]
+    },
+    {
+      "frase": "acabei de passar a análise aqui e aprovou o seu cadastro",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "Elaine Castro "
+      ]
+    },
+    {
+      "frase": "Nicole vc tem uma restrição no seu cpf que não passa",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "Luizete"
+      ]
+    },
+    {
+      "frase": "O seu celular, o seu CPF tá com número inválido, alguma, um erro de digitação",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "mara"
+      ]
+    },
+    {
+      "frase": "A empresa reprova se for menor de idade",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "Cleusa Sá"
+      ]
+    },
+    {
+      "frase": "Eu nao revendo, apenas contrato revendedoras",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "DEBORA"
+      ]
+    },
+    {
+      "frase": "eu não atendo, é, Ananindeua. Eu atendo somente Marituba e Benevides.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "MARILEIA"
+      ]
+    },
+    {
+      "frase": "Só atendo Cuiabá e Várzea Grande",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "danni pinho"
+      ]
+    },
+    {
+      "frase": "Essa empreendedora está vinculada a outra distribuidora ativa em nosso sistema.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "weslei"
+      ]
+    },
+    {
+      "frase": "Então vem na loja amanhã, então escolhe o teu kit.",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "Juliana Negreiros"
+      ]
+    },
+    {
+      "frase": "Como a nota já foi dada baixa você não consegue mais entrar no app",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "Cleidy Espindola"
+      ]
+    },
+    {
+      "frase": "Mais de menor nao pega",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "josé ailton"
+      ]
+    },
+    {
+      "frase": "mansidão a gente não atende, meu amor, somente até ali Barreiras",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "keylla"
+      ]
+    },
+    {
+      "frase": "Tá errado o CPF",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "Joyce farias"
+      ]
+    },
+    {
+      "frase": "Com comissão não tenho interesse.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "Nancy Cuiabá"
+      ]
+    },
+    {
+      "frase": "Olá! Seu CPF não passou na análise por pendência com a Romance.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "Edineia Mensch"
+      ]
+    },
+    {
+      "frase": "Não, Cleiton, estava conversando com o meu marido, ele falou para mim não pegar agora, não, mais para frente.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "cleiton"
+      ]
+    },
+    {
+      "frase": "Oi Emily, amada, você já tentou fazer o cadastro com a distribuidora, né? Aí eu não tenho como fazer o teu, meu amor.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "Maraisa "
+      ]
+    },
+    {
+      "frase": "Eu tava auxiliando ela aqui, Valdenira, e ela conseguiu fazer a assinatura, tá bom? Ficou tudo certinho.",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "keylla"
+      ]
+    },
+    {
+      "frase": "Não, muito obrigada",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "Jean"
+      ]
+    },
+    {
+      "frase": "tu tem uma pendência ainda de R$ 980",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "Emanoel Pozan"
+      ]
+    },
+    {
+      "frase": "eu não tenho interesse não",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-30",
+      "distribuidores": [
+        "Elaine Castro "
+      ]
+    },
+    {
+      "frase": "No momento não atendo sua cidade",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "Não vou querer não deixa pra próxima",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Maraisa "
+      ]
+    },
+    {
+      "frase": "Deixa isso quieto",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Luizete"
+      ]
+    },
+    {
+      "frase": "Bom dia nao atendo novo Airão.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Jessica Paiva"
+      ]
+    },
+    {
+      "frase": "Não  vou querer não",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Janini"
+      ]
+    },
+    {
+      "frase": "Não atendemos sua cidade !",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "não vou pra estrada do Mosqueiro, tá? Sinto muito, não tem como eu ir pra aí não",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "MARILEIA"
+      ]
+    },
+    {
+      "frase": "Tá tentar vender, não deu certo? Até desanimei.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "GRAZI AMABILI"
+      ]
+    },
+    {
+      "frase": "Nao passou",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Luizete"
+      ]
+    },
+    {
+      "frase": "Essa região não Atendemos.",
+      "status": "reprovado",
+      "ocorrencias": 5,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Luan "
+      ]
+    },
+    {
+      "frase": "Não pode",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "MARA SANTOS"
+      ]
+    },
+    {
+      "frase": "Vou sim",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "ELISABETH"
+      ]
+    },
+    {
+      "frase": "você pode desfazer o cadastro aí, viu? Falar você com ela aqui e é melhor não, tá?",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Milena "
+      ]
+    },
+    {
+      "frase": "Daí vou te entregar o kit",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Deize floripa"
+      ]
+    },
+    {
+      "frase": "Estou aqui no estacionamento",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Deize floripa"
+      ]
+    },
+    {
+      "frase": "pagando a primeira parcela, já consegue voltar a vender",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "JANNY"
+      ]
+    },
+    {
+      "frase": "eu não atendo Nova Andradina",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "adriane maciel"
+      ]
+    },
+    {
+      "frase": "não deu",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Aline/ Geraldo"
+      ]
+    },
+    {
+      "frase": "Infelizmente não passou pois tem débito com a marca",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "camila paiva"
+      ]
+    },
+    {
+      "frase": "Amanhã estou passando pra te entregar o kit da romance",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Deize floripa"
+      ]
+    },
+    {
+      "frase": "Oi bom dia estou aqui em Porto Murtinho",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "josé ailton"
+      ]
+    },
+    {
+      "frase": "Seu cadastro reprovou",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "danni pinho"
+      ]
+    },
+    {
+      "frase": "Não vai fica muito pesado pra mim",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Maraisa "
+      ]
+    },
+    {
+      "frase": "Não deu certo",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "adriane maciel"
+      ]
+    },
+    {
+      "frase": "No momento eu não vou conseguir te atender",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Milena "
+      ]
+    },
+    {
+      "frase": "meu nome tá com restrição na, na romance, entendeu? Mas assim que eu conseguir apagar, eu entro em contato com vocês.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "mara"
+      ]
+    },
+    {
+      "frase": "Aprovou Ana",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Emanoel Pozan"
+      ]
+    },
+    {
+      "frase": "Se voce quitar, podemos até a voltar a vender",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Emanoel Pozan"
+      ]
+    },
+    {
+      "frase": "Aprovou",
+      "status": "aprovado",
+      "ocorrencias": 7,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "Janini",
+        "MARILEIA",
+        "Emanoel Pozan",
+        "beruska",
+        "adriano simeia"
+      ]
+    },
+    {
+      "frase": "Estou em dourados",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "rodrigo rosa"
+      ]
+    },
+    {
+      "frase": "Deu sim",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "Vou te entregar o kit na quinta feira dia 06/08",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Deize floripa"
+      ]
+    },
+    {
+      "frase": "Giovana vc tiene débito Conosco",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Mari chapecó"
+      ]
+    },
+    {
+      "frase": "Não vou querer nao",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "jovanize"
+      ]
+    },
+    {
+      "frase": "o teu cadastro ele está, está normal, só não está ativa, né? Tá inativa porque não tem sacola",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "mara"
+      ]
+    },
+    {
+      "frase": "Não atendo sua cidade",
+      "status": "reprovado",
+      "ocorrencias": 2,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Vanessa Salgado"
+      ]
+    },
+    {
+      "frase": "não tem como eu eu liberar a mercadoria por causa da favorita",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "mara"
+      ]
+    },
+    {
+      "frase": "não, não foi feito o cadastro",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Ilma"
+      ]
+    },
+    {
+      "frase": "Não atendo",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Vanda"
+      ]
+    },
+    {
+      "frase": "Daí quando você pagar, eu vou atender você, entende?",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Benedita"
+      ]
+    },
+    {
+      "frase": "Pois você pode voltar a vender\nATENDENTE: Aprovando seu CPF",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Maraisa "
+      ]
+    },
+    {
+      "frase": "Aprovou amiga",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "MARILEIA"
+      ]
+    },
+    {
+      "frase": "Infelizmente não consigo marcar pra te entregar o kit sem esse código",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Deize floripa"
+      ]
+    },
+    {
+      "frase": "De momento não tenho interesse obrigada",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "DEBORA"
+      ]
+    },
+    {
+      "frase": "Cadastro negado, tem pendência com a Romance.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "KARIN FLORIPA "
+      ]
+    },
+    {
+      "frase": "Seu cadastro foi desativado não consigo abrir nota.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Vivian"
+      ]
+    },
+    {
+      "frase": "Essa região não Atendemos",
+      "status": "reprovado",
+      "ocorrencias": 3,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Luan "
+      ]
+    },
+    {
+      "frase": "não deu certo, não. Você tá com restrição no seu CPF, tá?",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Benedita"
+      ]
+    },
+    {
+      "frase": "Boa tarde! Já iniciei seu pré cadastro, na próxima semana estou indo atender em Medina",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "Vou estar indo para Medina , na próxima semana",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "essa cidade, Pirajá, a gente não faz atendimento, meu amor",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "keylla"
+      ]
+    },
+    {
+      "frase": "Infelizmente ela ficou devendo amiga",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Larissa"
+      ]
+    },
+    {
+      "frase": "o teu cadastro deu certo",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "felipe ricardo"
+      ]
+    },
+    {
+      "frase": "Vou regaçar na venda, vou regaçar na venda, vou regaçar na venda.",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "danni pinho"
+      ]
+    },
+    {
+      "frase": "já tá liberado o teu crédito novamente",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "JANNY"
+      ]
+    },
+    {
+      "frase": "Somente deixamos para as mulheres revender",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "rodrigo rosa"
+      ]
+    },
+    {
+      "frase": "Amiga, nesse caso você tem uma restrição, é na romance, entendeu? Aí na romance não passa de jeito nenhum.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "MARILEIA"
+      ]
+    },
+    {
+      "frase": "Infelizmente nao atendemos Laranjal",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Luiz villa joias"
+      ]
+    },
+    {
+      "frase": "Ainda não atendemos a sua cidade",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Priscila silva"
+      ]
+    },
+    {
+      "frase": "Vou estar me Medina na próxima semana. Te aviso para eu estar finalizando seu cadastro.",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "no seu caso a gente não consegue te atender, porque nós atendemos somente em Porto Seguro",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "monica / thiago "
+      ]
+    },
+    {
+      "frase": "aprovo teu cadastro, tá tudo certinho, tá?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Mari chapecó"
+      ]
+    },
+    {
+      "frase": "Na próxima semana estarei em Medina",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "O seu cadastro aprovou, tá?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "KARIN FLORIPA "
+      ]
+    },
+    {
+      "frase": "Cadastro confirmado!",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "KARIN FLORIPA "
+      ]
+    },
+    {
+      "frase": "Então não vamos fazer negócio",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Larissa"
+      ]
+    },
+    {
+      "frase": "foi autorizado pela empresa, tá?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Vivian"
+      ]
+    },
+    {
+      "frase": "Assim que nos precisamos documento brasileiro",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "josé ailton"
+      ]
+    },
+    {
+      "frase": "Vou querer não  mulher",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "Luizete"
+      ]
+    },
+    {
+      "frase": "Sim",
+      "status": "aprovado",
+      "ocorrencias": 2,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Priscila silva",
+        "Anisio"
+      ]
+    },
+    {
+      "frase": "e que eu não tenjo muitas experiências não vou ariscar mas obrigada querida",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-29",
+      "distribuidores": [
+        "DEBORA"
+      ]
+    },
+    {
+      "frase": "Infelizmente nesse caso que já existe um debito não consigo dar continuidade em outro cpf",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "THAIS SCHON"
+      ]
+    },
+    {
+      "frase": "Eu não atendo Rochedo\nATENDENTE: Somente São Gabriel",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "thiago irala"
+      ]
+    },
+    {
+      "frase": "Eu não vou ficar",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "rafa duarte"
+      ]
+    },
+    {
+      "frase": "Consta débito ya",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "ELISABETH"
+      ]
+    },
+    {
+      "frase": "Amanhã na parte da tarde eu vou até você, tá?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "jovanize"
+      ]
+    },
+    {
+      "frase": "Deu certo",
+      "status": "aprovado",
+      "ocorrencias": 4,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "rafa duarte",
+        "Juliana figueiredo",
+        "gisélia",
+        "Aline/ Geraldo"
+      ]
+    },
+    {
+      "frase": "Deixe seu endereço, atendimento será quinta ou sexta feira",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "ELISABETH"
+      ]
+    },
+    {
+      "frase": "Teu cadastro aprovou",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "camila paiva"
+      ]
+    },
+    {
+      "frase": "Já vendi e não estou interessado nao",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Vanda"
+      ]
+    },
+    {
+      "frase": "Aprovou não amiga 😔",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Milena "
+      ]
+    },
+    {
+      "frase": "você ficou com pendências com a Romanse, então eu não consigo te liberar coisas novas",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Emanoel Pozan"
+      ]
+    },
+    {
+      "frase": "Amanhã passo deixar seu kit",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "rafa duarte"
+      ]
+    },
+    {
+      "frase": "Cadastro somente para mulheres",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Vanessa Salgado"
+      ]
+    },
+    {
+      "frase": "Você já tem o crédito lá liberado para você comprar, tá bom?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "Não faço canta",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Juliana Negreiros"
+      ]
+    },
+    {
+      "frase": "Mas a gente deixa de manhã o seu, tá bom?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Elaine Castro "
+      ]
+    },
+    {
+      "frase": "Acho que no momento não vou pegar não deixa pra próxima",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Luizete"
+      ]
+    },
+    {
+      "frase": "❌*CADASTRO NEGADO* ❌",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Juliana Dona Bella "
+      ]
+    },
+    {
+      "frase": "Consta um debito em seu nome na empresa!!",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Rose floripa"
+      ]
+    },
+    {
+      "frase": "aprovou meu nome para mim pegar umas roupas aí",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Luan "
+      ]
+    },
+    {
+      "frase": "ATENDENTE: Não",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Anisio"
+      ]
+    },
+    {
+      "frase": "Seu cadastro deu certo sim",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "rafa duarte"
+      ]
+    },
+    {
+      "frase": "um dos itens, né, que a gente não consegue tá liberando no melhadoria é quando é algo relacionado à revenda",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Juliana Dona Bella "
+      ]
+    },
+    {
+      "frase": "nessa cidade sua a gente não faz atendimento",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "keylla"
+      ]
+    },
+    {
+      "frase": "tô indo aí, tá?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "MARILEIA"
+      ]
+    },
+    {
+      "frase": "Tem débito com a empresa",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Priscila silva"
+      ]
+    },
+    {
+      "frase": "Márcio, no momento nós não atendemos em Curral de Dentro, tá? Somente Medina e Pedra Azul.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "deu certo 👏👏👏",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Aline/ Geraldo"
+      ]
+    },
+    {
+      "frase": "Consta Débito",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "ELISABETH"
+      ]
+    },
+    {
+      "frase": "Que horas posso entregar seu kit de início?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Mari chapecó"
+      ]
+    },
+    {
+      "frase": "Reprovaso",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Luan "
+      ]
+    },
+    {
+      "frase": "Amiga no momento não estamos com disponibilidade de vagas pra entregar em salvador",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Milena "
+      ]
+    },
+    {
+      "frase": "estarei em canavieiras quarta feira dia 05 fazendo as entregas do kit inicial",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Milena "
+      ]
+    },
+    {
+      "frase": "Agora é só esperar a empresa passa a minha rota de atendimento e agendar sua entrega do kit",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Gilberto"
+      ]
+    },
+    {
+      "frase": "Como a empreendedora alega não reconhecer a divida, peço que ela entre em contato com a nossa central de atendimentos",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Mari chapecó"
+      ]
+    },
+    {
+      "frase": "Infelizmente não liberou Kessia",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Vanessa Salgado"
+      ]
+    },
+    {
+      "frase": "Pronto, pode ser na sexta na nossa loja às 15h?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Janini"
+      ]
+    },
+    {
+      "frase": "Pendência da Romance",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "MARILEIA"
+      ]
+    },
+    {
+      "frase": "Não, obrigado",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "beruska"
+      ]
+    },
+    {
+      "frase": "Tu ja tem cadastro comigo",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Emanoel Pozan"
+      ]
+    },
+    {
+      "frase": "Vou querer tentar novamente com algumas peças mais acessíveis",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "jocilene"
+      ]
+    },
+    {
+      "frase": "Pode sair na porta",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Janini"
+      ]
+    },
+    {
+      "frase": "Sem problema amiga deixa para uma próxima",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Luizete"
+      ]
+    },
+    {
+      "frase": "ja atualizei e liberei seu app",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "felipe ricardo"
+      ]
+    },
+    {
+      "frase": "Está separado sua sacola",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "jovanize"
+      ]
+    },
+    {
+      "frase": "pode falar que a sua data de acerto vai ficar para o dia 10/09",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "felipe ricardo"
+      ]
+    },
+    {
+      "frase": "Gostaria de cancelar o cadastro.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "cleiton"
+      ]
+    },
+    {
+      "frase": "Ele passou ja",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "adriano simeia"
+      ]
+    },
+    {
+      "frase": "O cadastro está liberado",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "ELISABETH"
+      ]
+    },
+    {
+      "frase": "Se deve a empresa nao passa.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Jessica Paiva"
+      ]
+    },
+    {
+      "frase": "De menor não",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "weslei"
+      ]
+    },
+    {
+      "frase": "Não tem como nem cadastrar",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Ilma"
+      ]
+    },
+    {
+      "frase": "Posso levar o estojo para você?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Luiz villa joias"
+      ]
+    },
+    {
+      "frase": "Obrigado não vou querer",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "thiago irala"
+      ]
+    },
+    {
+      "frase": "poderia estar enviando seu endereço para eu fazer a entrega da sua mercadoria?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "Vc consegue vir que horas hoje?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Cleidy Espindola"
+      ]
+    },
+    {
+      "frase": "CADASTRO NEGADO",
+      "status": "reprovado",
+      "ocorrencias": 3,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Juliana Dona Bella "
+      ]
+    },
+    {
+      "frase": "Isso",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "GRAZI AMABILI"
+      ]
+    },
+    {
+      "frase": "Infelizmente não atendo sua cidade",
+      "status": "reprovado",
+      "ocorrencias": 2,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Maraisa "
+      ]
+    },
+    {
+      "frase": "Eu n atendo.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Jessica Paiva"
+      ]
+    },
+    {
+      "frase": "Seu cadastro deu negado, está constando um débito aqui pra gente",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Elaine Castro "
+      ]
+    },
+    {
+      "frase": "Érica eu iniciei seu pré cadastro, na próxima semana estarei em Medina , envia seu endereço por gentileza.",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "Posso levar seu kit a partir das 13h",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-28",
+      "distribuidores": [
+        "Janini"
+      ]
+    },
+    {
+      "frase": "Não obrigada",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "monica / thiago "
+      ]
+    },
+    {
+      "frase": "Reprovou seu nome 🥲",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "elaine vila joias"
+      ]
+    },
+    {
+      "frase": "Sábado vai ter na loja café de boas vindas pra nossas novas consultora romance",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Milena "
+      ]
+    },
+    {
+      "frase": "Seu CPF ja possui débito na Empresa Romance.",
+      "status": "reprovado",
+      "ocorrencias": 2,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "DEBORA"
+      ]
+    },
+    {
+      "frase": "No momento não",
+      "status": "reprovado",
+      "ocorrencias": 2,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "elaine vila joias",
+        "cleiton"
+      ]
+    },
+    {
+      "frase": "Não atendemos essa região",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Jean"
+      ]
+    },
+    {
+      "frase": "Tô chegando",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "camila paiva"
+      ]
+    },
+    {
+      "frase": "Eu agora no momento não quero mais depois eu te mando mensagem viu muito obrigada",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Milena "
+      ]
+    },
+    {
+      "frase": "No momento não estou  tendo vagas pra cidade salvador",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Milena "
+      ]
+    },
+    {
+      "frase": "Menor de idade",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Vanessa Salgado"
+      ]
+    },
+    {
+      "frase": "Poxa não atendemos sua região",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "elaine vila joias"
+      ]
+    },
+    {
+      "frase": "Amanhã vc tem disponibilidade em nos receber?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "monica / thiago "
+      ]
+    },
+    {
+      "frase": "deu tudo certo",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Joyce farias"
+      ]
+    },
+    {
+      "frase": "Atendemos em Porto Seguro apenas",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "monica / thiago "
+      ]
+    },
+    {
+      "frase": "Oi, FRANCISCO MORAES! Seja muito bem-vinda ao Time Natura & Avon!",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Ivone"
+      ]
+    },
+    {
+      "frase": "Seja muito bem-vinda ao Time Natura & Avon!",
+      "status": "aprovado",
+      "ocorrencias": 9,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Ivone"
+      ]
+    },
+    {
+      "frase": "Oi, ELAYNE LIRA SOARES! Seja muito bem-vinda ao Time Natura & Avon!",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Ivone"
+      ]
+    },
+    {
+      "frase": "Seja muito bem-vinda ao Time Natura & Avon",
+      "status": "aprovado",
+      "ocorrencias": 2,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Ivone"
+      ]
+    },
+    {
+      "frase": "🎉 Oi, IVONETE SALES RIBEIRO! Seja muito bem-vinda ao Time Natura & Avon!",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Ivone"
+      ]
+    },
+    {
+      "frase": "Tudo certo amiga ✅",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Andrio Gestor"
+      ]
+    },
+    {
+      "frase": "Acredito que vc deve a romance",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "mara"
+      ]
+    },
+    {
+      "frase": "Seja muito bem-vinda à família Donna Bella Semijoias!",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Juliana Dona Bella "
+      ]
+    },
+    {
+      "frase": "Show estarei quinta feira na cidade preciso da localização só",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "camila paiva"
+      ]
+    },
+    {
+      "frase": "Deu tudo certo ✅",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Andrio Gestor"
+      ]
+    },
+    {
+      "frase": "Estou aqui na frente",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Deize floripa"
+      ]
+    },
+    {
+      "frase": "me falaram que não passou meu cadastro",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Deize floripa"
+      ]
+    },
+    {
+      "frase": "Posso estar te entregando ainda hoje ?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "Perfeito, te esperamos",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Jean"
+      ]
+    },
+    {
+      "frase": "Já iniciei seu pré  cadastro",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "gisélia"
+      ]
+    },
+    {
+      "frase": "Reprovou",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "thiago irala"
+      ]
+    },
+    {
+      "frase": "Não vou conseguir conciliar o tempo.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Deize floripa"
+      ]
+    },
+    {
+      "frase": "Amanhã de manhã estou passando pra te entregar o kit",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Deize floripa"
+      ]
+    },
+    {
+      "frase": "Posso já ir aí",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "camila paiva"
+      ]
+    },
+    {
+      "frase": "Vc tem débitos com a empresa",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Danieli pengo"
+      ]
+    },
+    {
+      "frase": "Infelizmente nessa localização não temos atendimento Jéssica",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "keylla"
+      ]
+    },
+    {
+      "frase": "Infelizmente não conseguimos aprovar seu cadastro",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "keylla"
+      ]
+    },
+    {
+      "frase": "Nessa região nós não atendemos",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "keylla"
+      ]
+    },
+    {
+      "frase": "Não atendo sua região",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "jocilene"
+      ]
+    },
+    {
+      "frase": "Vanderleia deu certo sim ✅",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Andrio Gestor"
+      ]
+    },
+    {
+      "frase": "Infelizmente reprovou",
+      "status": "reprovado",
+      "ocorrencias": 2,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "beruska",
+        "weslei"
+      ]
+    },
+    {
+      "frase": "irei atender Araguaína quarta feira",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Aline/ Geraldo"
+      ]
+    },
+    {
+      "frase": "Muro laranjado",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "jovanize"
+      ]
+    },
+    {
+      "frase": "certo, a gente vai dar um jeito rs",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "monica / thiago "
+      ]
+    },
+    {
+      "frase": "Daí não libera né",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Deize floripa"
+      ]
+    },
+    {
+      "frase": "Colcha so  libera apos o primeiro kit na  favorita.",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Jessica Paiva"
+      ]
+    },
+    {
+      "frase": "Tem q vim pra finalizar ,pegar mercadoria e explicar como funciona",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Ilma"
+      ]
+    },
+    {
+      "frase": "a minha filha não vai querer",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "beruska"
+      ]
+    },
+    {
+      "frase": "Código de liberação",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "jovanize"
+      ]
+    },
+    {
+      "frase": "Oh amiga então não vou querer não",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Milena "
+      ]
+    },
+    {
+      "frase": "Infelizmente.  Não consigo deixar.",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "BRUNO JOIAS"
+      ]
+    },
+    {
+      "frase": "Aí você traz o RG CPF e o talão de energia para fazer o seu cadastro",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Claudiana Cuiaba"
+      ]
+    },
+    {
+      "frase": "Tá bom tô indo ai",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "camila paiva"
+      ]
+    },
+    {
+      "frase": "Qual tel bairro para entregar seu kit",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Janini"
+      ]
+    },
+    {
+      "frase": "data de acerto 08.09",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Jean"
+      ]
+    },
+    {
+      "frase": "Atendemos apenas PORTO SEGURO!",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "monica / thiago "
+      ]
+    },
+    {
+      "frase": "17 não consigo abrir cadastro",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-27",
+      "distribuidores": [
+        "Jean"
+      ]
+    },
+    {
+      "frase": "mais não vou pegar não",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "THAIS SCHON"
+      ]
+    },
+    {
+      "frase": "Pronto, quando vim tiro a foto do documento e lanço as peças pra mandar pro app",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "Janini"
+      ]
+    },
+    {
+      "frase": "Não tenho interesse",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "Wellyson "
+      ]
+    },
+    {
+      "frase": "Não deu serto",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "ELISABETH"
+      ]
+    },
+    {
+      "frase": "Vc consegue vir aqui agora\nTraz o celular",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "thiago irala"
+      ]
+    },
+    {
+      "frase": "Gostaria de agendar sua visita o dia 3 de agosto?",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "beruska"
+      ]
+    },
+    {
+      "frase": "Não atendo essa região",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "jocilene"
+      ]
+    },
+    {
+      "frase": "Ainda não estou fazendo essa região",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "Luizete"
+      ]
+    },
+    {
+      "frase": "Depois vc me fala as peças e tamanhos que você precisa ok",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "monica / thiago "
+      ]
+    },
+    {
+      "frase": "Eu n atendo tefe .",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "Jessica Paiva"
+      ]
+    },
+    {
+      "frase": "Aprovou no nome dele",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "Janini"
+      ]
+    },
+    {
+      "frase": "Oi eu já vendi 800",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "Juliana figueiredo"
+      ]
+    },
+    {
+      "frase": "Oi já estou indo no seu endereço",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "camila paiva"
+      ]
+    },
+    {
+      "frase": "Para vc voltar a vender so vc pagaria",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "rodrigo rosa"
+      ]
+    },
+    {
+      "frase": "Mas tem alguma restrição que não passou",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "Luizete"
+      ]
+    },
+    {
+      "frase": "Aviso quando tiver indo",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "MARILEIA"
+      ]
+    },
+    {
+      "frase": "Indaial eu não atendo",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "Deize floripa"
+      ]
+    },
+    {
+      "frase": "Bom dia Daiane n só se vc n tive pega do mais com ela aí poderia",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "MARA SANTOS"
+      ]
+    },
+    {
+      "frase": "Aí em Ouro Preto eu não conheço nenhuma consultora",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "Andrio Gestor"
+      ]
+    },
+    {
+      "frase": "Sou de menor",
+      "status": "reprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "jovanize"
+      ]
+    },
+    {
+      "frase": "Logo chego",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "camila paiva"
+      ]
+    },
+    {
+      "frase": "aprovou seu cadastro",
+      "status": "aprovado",
+      "ocorrencias": 1,
+      "ultimaData": "2026-07-26",
+      "distribuidores": [
+        "Ketlin"
+      ]
+    }
+  ]
 }
