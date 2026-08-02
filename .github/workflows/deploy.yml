@@ -47,6 +47,15 @@ jobs:
         run: |
           mkdir -p data
           node build-data.mjs > data/dashboard.json
+      - name: Baixar dashboard.json publicado (referência pra validação)
+        if: github.event_name != 'push'
+        run: curl -sf https://lucasgabrielllcosta-byte.github.io/zap-leads-dashboard/data/dashboard.json -o /tmp/dashboard-anterior.json || true
+      - name: Validar dados antes de publicar
+        # Portão de segurança: se os números não baterem (ex: queda ou alta suspeita
+        # no total de leads, campo corrompido), para o workflow aqui. O site continua
+        # servindo a última versão publicada — nada errado ou duplicado vai pro ar.
+        if: github.event_name != 'push'
+        run: node validar-dados.mjs data/dashboard.json /tmp/dashboard-anterior.json
       - name: Persistir novas frases-candidatas pro regex (candidatos-regex.json)
         # Push com GITHUB_TOKEN não reaciona o trigger "push" deste workflow, então
         # não há risco de loop infinito aqui.
