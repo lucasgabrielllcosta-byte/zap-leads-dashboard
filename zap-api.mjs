@@ -96,9 +96,12 @@ export async function getMensagens(conversationId) {
 // contador ao vivo do dashboard. A classificação profunda por IA (Gemini) fica no projeto
 // zap-dashboard-sync, reservada pras análises sob demanda por distribuidor. ---
 
-const REPROVADO_RE = /\bREPROVAD[OA]S?\b/;
-const NAO_APROVADO_RE = /N[AÃ]O\s+(FOI\s+)?APROVAD[OA]S?|N[AÃ]O\s+APROVOU/;
-const APROVADO_RE = /\bAPROVAD[OA]S?\b|\bAPROVAMOS\b/;
+// Frases abaixo (fora as originais) vieram de candidatos-regex.json — evidências reais
+// que a IA usou pra resolver "sem_mencao", confirmadas e promovidas manualmente (ver
+// registrarCandidatoRegex em build-data.mjs). Cada uma tinha 3+ ocorrências reais.
+const REPROVADO_RE = /\bREPROVAD[OA]S?\b|\bNEGAD[OA]\b/;
+const NAO_APROVADO_RE = /N[AÃ]O\s+(FOI\s+)?APROVAD[OA]S?|N[AÃ]O\s+APROVOU|N[AÃ]O\s+FOI\s+LIBERAD[OA]|N[AÃ]O\s+PASSOU|N[AÃ]O\s+ATENDEMOS|N[AÃ]O\s+FOI\s+AUTORIZAD[OA]|POSSUI\s+D[EÉ]BITO/;
+const APROVADO_RE = /\bAPROVAD[OA]S?\b|\bAPROVAMOS\b|\bAPROVOU\b|\bLIBERAD[OA]\b|DEU\s+CERTO|BEM-VINDA\s+AO\s+TIME/;
 
 export function classificarMensagem(txtUpper) {
   if (REPROVADO_RE.test(txtUpper) || NAO_APROVADO_RE.test(txtUpper)) return 'reprovado';
