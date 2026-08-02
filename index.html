@@ -502,7 +502,7 @@ async function main() {
     }
     el.distTable.innerHTML = `
       <table>
-        <thead><tr><th>Distribuidor</th><th class="num">Leads (anúncio)</th><th class="num">Aprovados (anúncio)</th><th class="num">Reprovados (anúncio)</th><th class="num">Sem retorno</th><th class="num">Taxa aprov. (anúncio)</th></tr></thead>
+        <thead><tr><th>Distribuidor</th><th class="num">Leads (anúncio)</th><th class="num">Aprovados (anúncio)</th><th class="num">Reprovados (anúncio)</th><th class="num">Não conquistou os dados</th><th class="num">Taxa aprov. (anúncio)</th></tr></thead>
         <tbody>
           ${porDist.map(d => {
             const total = d.aprovados + d.reprovados;
