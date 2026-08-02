@@ -1,0 +1,63 @@
+name: Atualizar leads novos (fast-track)
+
+# Gera data/novos.json com só os leads dos últimos 2 dias, bem mais rápido que o
+# pipeline completo (data/dashboard.json, 30 dias, hora em hora — ver deploy.yml).
+# Publicado direto no repositório (commit comum), não pelo GitHub Pages — assim não
+# entra na fila de deploy do dashboard.json principal. O index.html busca esse arquivo
+# direto do GitHub (raw.githubusercontent.com) e mescla com o dashboard.json no
+# navegador: cada dia é "dono" de uma fonte só (nunca as duas), pra nunca duplicar um
+# lead com dois status ao mesmo tempo.
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: novos-leads
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Guardar novos.json anterior (referência pra validação)
+        run: cp data/novos.json /tmp/novos-anterior.json 2>/dev/null || true
+      - name: Gerar data/novos.json (janela curta — só leads recentes)
+        env:
+          ZAP_API_TOKEN: ${{ secrets.ZAP_API_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DIAS_JANELA: '2'
+          DIAS_ENTENDIMENTO_IA: '2'
+          # Descartável de propósito — quem registra candidatos-regex "de verdade" é o
+          # deploy.yml (hora em hora); aqui só evita os dois workflows escreverem no
+          # mesmo arquivo ao mesmo tempo.
+          CANDIDATOS_PATH: /tmp/candidatos-fast-descartavel.json
+        run: node build-data.mjs > data/novos.json
+      - name: Validar antes de publicar
+        # Limites mais soltos que o validar-dados.mjs padrão: janela de 2 dias oscila
+        # muito mais em proporção que a de 30 dias, isso é esperado, não é bug.
+        env:
+          VALIDAR_QUEDA_MAX: '0.2'
+          VALIDAR_AUMENTO_MAX: '20'
+        run: node validar-dados.mjs data/novos.json /tmp/novos-anterior.json
+      - name: Publicar novos.json direto no repositório
+        # GITHUB_TOKEN padrão não reaciona o trigger "push" do deploy.yml (mesmo
+        # mecanismo já usado ali pro commit de candidatos-regex.json) — sem risco de
+        # disparar o pipeline completo nem de entrar na fila de deploy do Pages.
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f data/novos.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Atualiza data/novos.json (fast-track)"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
