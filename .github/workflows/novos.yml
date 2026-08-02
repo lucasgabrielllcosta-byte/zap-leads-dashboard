@@ -40,7 +40,9 @@ jobs:
           # deploy.yml (hora em hora); aqui só evita os dois workflows escreverem no
           # mesmo arquivo ao mesmo tempo.
           CANDIDATOS_PATH: /tmp/candidatos-fast-descartavel.json
-        run: node build-data.mjs > data/novos.json
+        run: |
+          mkdir -p data
+          node build-data.mjs > data/novos.json
       - name: Validar antes de publicar
         # Limites mais soltos que o validar-dados.mjs padrão: janela de 2 dias oscila
         # muito mais em proporção que a de 30 dias, isso é esperado, não é bug.
