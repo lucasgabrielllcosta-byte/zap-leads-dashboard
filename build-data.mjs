@@ -122,8 +122,8 @@ async function main() {
   const t0 = Date.now();
 
   console.error('Buscando departamentos ativos...');
-  const departamentosAtivos = await getDepartamentosAtivos();
-  console.error(`${departamentosAtivos.size} distribuidores ativos.`);
+  const { ativos: departamentosAtivos, desconectados: distribuidoresDesconectados } = await getDepartamentosAtivos();
+  console.error(`${departamentosAtivos.size} distribuidores ativos, ${distribuidoresDesconectados.length} desconectados.`);
 
   console.error(`Buscando leads dos últimos ${DIAS_JANELA} dias (teto: ${LIMITE_LEADS})...`);
   const { leads, atingiuJanela } = await getLeadsRecentes(DIAS_JANELA, LIMITE_LEADS);
@@ -214,6 +214,7 @@ async function main() {
     diasJanela: DIAS_JANELA,
     janelaCompleta: atingiuJanela,
     distribuidoresAtivosTotal: departamentosAtivos.size,
+    distribuidoresDesconectados,
     registros,
   };
 
