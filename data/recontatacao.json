@@ -1,0 +1,32 @@
+{
+  "geradoEm": "2026-08-03T19:49:03.453Z",
+  "porDistribuidor": [
+    {
+      "distribuidor": "DEBORA",
+      "recontatados": 18,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 18,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "JANNY",
+      "recontatados": 18,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 18,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Danieli Pengo",
+      "recontatados": 9,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 9,
+      "perdidos": 0,
+      "cancelados": 9
+    }
+  ]
+}
