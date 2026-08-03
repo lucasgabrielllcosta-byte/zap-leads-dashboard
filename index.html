@@ -84,6 +84,20 @@
   h1 { font-size: 22px; margin: 0 0 4px; }
   .subtitle { color: var(--text-secondary); font-size: 14px; }
   .subtitle strong { color: var(--text-primary); font-weight: 600; }
+  .subtitle strong#numDistribuidoresValor { font-variant-numeric: tabular-nums; }
+  .eye-toggle {
+    display: inline-flex;
+    vertical-align: -3px;
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 2px;
+    margin-left: 2px;
+    border-radius: 4px;
+  }
+  .eye-toggle:hover { color: var(--text-primary); }
 
   .segmented {
     display: inline-flex;
@@ -309,7 +323,11 @@
     <div>
       <div class="brand"><span class="brand-mv">MV</span><span class="brand-company">COMPANY</span></div>
       <h1>Zap Leads Dashboard</h1>
-      <div class="subtitle" id="subtitle">Carregando...</div>
+      <div class="subtitle" id="subtitle">
+        Distribuidores ativos: <strong><span id="numDistribuidoresValor">—</span></strong>
+        <button class="eye-toggle" id="eyeToggle" type="button" aria-label="Esconder número de distribuidores" title="Esconder número de distribuidores"></button>
+        &middot; atualizado em <strong id="atualizadoEmValor">—</strong>
+      </div>
     </div>
     <div class="header-controls">
       <div class="segmented" id="periodoSwitch">
@@ -413,6 +431,9 @@
 async function main() {
   const el = {
     subtitle: document.getElementById('subtitle'),
+    numDistribuidoresValor: document.getElementById('numDistribuidoresValor'),
+    atualizadoEmValor: document.getElementById('atualizadoEmValor'),
+    eyeToggle: document.getElementById('eyeToggle'),
     staleWarning: document.getElementById('staleWarning'),
     desconectadosWarning: document.getElementById('desconectadosWarning'),
     desconectadosSummary: document.getElementById('desconectadosSummary'),
@@ -476,9 +497,26 @@ async function main() {
   const fmt = new Intl.NumberFormat('pt-BR');
   const pct = (n) => n == null ? '—' : (n * 100).toFixed(1).replace('.', ',') + '%';
 
+  // Olho pra esconder o número de distribuidores antes de tirar print (não é dado
+  // sensível tecnicamente, mas é volume de negócio que nem sempre dá pra mostrar).
+  const OLHO_ICONS = {
+    aberto: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>',
+    fechado: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a20.3 20.3 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a20.3 20.3 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>',
+  };
+  let numeroEscondido = false;
+  function atualizarOlho() {
+    el.eyeToggle.innerHTML = numeroEscondido ? OLHO_ICONS.fechado : OLHO_ICONS.aberto;
+    el.numDistribuidoresValor.textContent = numeroEscondido ? '•••' : fmt.format(data.distribuidoresAtivosTotal || 0);
+  }
+  el.eyeToggle.addEventListener('click', () => {
+    numeroEscondido = !numeroEscondido;
+    atualizarOlho();
+  });
+
   function atualizarCabecalho() {
     const geradoEm = new Date(data.geradoEm);
-    el.subtitle.innerHTML = `Distribuidores ativos: <strong>${data.distribuidoresAtivosTotal}</strong> &middot; atualizado em <strong>${geradoEm.toLocaleString('pt-BR')}</strong>`;
+    atualizarOlho();
+    el.atualizadoEmValor.textContent = geradoEm.toLocaleString('pt-BR');
 
     const horasDesdeAtualizacao = (Date.now() - geradoEm.getTime()) / 3600000;
     el.staleWarning.style.display = horasDesdeAtualizacao > 6 ? 'block' : 'none';
