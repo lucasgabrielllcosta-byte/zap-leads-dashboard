@@ -511,6 +511,7 @@ async function main() {
   el.eyeToggle.addEventListener('click', () => {
     numeroEscondido = !numeroEscondido;
     atualizarOlho();
+    render(periodoAtual); // esconde/mostra também o card "Distribuidores com lead de anúncio"
   });
 
   function atualizarCabecalho() {
@@ -648,7 +649,7 @@ async function main() {
     const aprovados = p.status?.aprovado || 0;
     const reprovados = p.status?.reprovado || 0;
     const tiles = [
-      { label: 'Distribuidores com lead de anúncio', value: fmt.format(p.distribuidoresAtivos || 0) },
+      { label: 'Distribuidores com lead de anúncio', value: numeroEscondido ? '•••' : fmt.format(p.distribuidoresAtivos || 0) },
       { label: 'Cliques de anúncio confirmados', value: fmt.format(p.origem?.clique_anuncio_confirmado || 0) },
       { label: 'Aprovados (anúncio confirmado)', value: fmt.format(aprovados), cls: 'good' },
       { label: 'Reprovados (anúncio confirmado)', value: fmt.format(reprovados), cls: 'critical' },
