@@ -1,0 +1,840 @@
+{
+  "0ecc0a2-07ee-8616-7c3-04200e44d": [
+    {
+      "cliente": "jaque",
+      "inicio": "2024-11-11T18:06:19.951Z",
+      "fim": null
+    }
+  ],
+  "ff4ebe-e64-3434-42e8-ca723f77af7f": [
+    {
+      "cliente": "DEBORA",
+      "inicio": "2024-11-12T17:21:37.331Z",
+      "fim": null
+    }
+  ],
+  "6336bc6-0570-a27-186f-17b0741626a": [
+    {
+      "cliente": "Vantierri",
+      "inicio": "2024-11-12T17:43:50.581Z",
+      "fim": null
+    }
+  ],
+  "5d5c5fc-a142-b8ed-c32e-a01decd1a7": [
+    {
+      "cliente": "MICHELY JOIA",
+      "inicio": "2024-11-18T13:17:26.118Z",
+      "fim": null
+    }
+  ],
+  "d26428b-b3b7-f8b1-1a-c1d81135103": [
+    {
+      "cliente": "Juliana Dona Bella",
+      "inicio": "2024-11-18T16:13:27.223Z",
+      "fim": null
+    }
+  ],
+  "25b140-ca73-43f8-d6-5d2a62c45ec": [
+    {
+      "cliente": "BETO GESTOR",
+      "inicio": "2024-11-18T18:55:58.691Z",
+      "fim": null
+    }
+  ],
+  "15ef67-ee6f-8eb-dfa-1580e0205bb6": [
+    {
+      "cliente": "Emanoel Pozan",
+      "inicio": "2024-11-18T18:56:10.765Z",
+      "fim": null
+    }
+  ],
+  "1534d5d-4821-37b-26c-283b7676480": [
+    {
+      "cliente": "SÔNIA",
+      "inicio": "2024-11-18T21:05:48.862Z",
+      "fim": null
+    }
+  ],
+  "4bd8f2-f252-b4-3bd1-11034685685b": [
+    {
+      "cliente": "Rose floripa",
+      "inicio": "2024-11-19T11:33:26.747Z",
+      "fim": null
+    }
+  ],
+  "3e57a5-02c-1cc4-47bc-cfe84f310432": [
+    {
+      "cliente": "MARILEIA",
+      "inicio": "2024-11-19T12:38:01.674Z",
+      "fim": null
+    }
+  ],
+  "aeb2a7e-14fc-37b-6d5c-13e155777a": [
+    {
+      "cliente": "Ivone",
+      "inicio": "2024-11-19T12:40:41.116Z",
+      "fim": null
+    }
+  ],
+  "e10812b-a0cc-afeb-0571-280bf2b14ee": [
+    {
+      "cliente": "api lucas",
+      "inicio": "2024-11-19T15:23:00.146Z",
+      "fim": null
+    }
+  ],
+  "0cd86fd-503-46e7-d528-e68ca188cc4c": [
+    {
+      "cliente": "JANNY",
+      "inicio": "2024-11-19T16:11:10.602Z",
+      "fim": null
+    }
+  ],
+  "de2b6-2c81-06a-7d4-e01dfecf8": [
+    {
+      "cliente": "Juliana Negreiros",
+      "inicio": "2024-11-19T16:22:39.429Z",
+      "fim": null
+    }
+  ],
+  "c74e8bf-3f2-670e-4efc-a88cc52b3b": [
+    {
+      "cliente": "Adriana Antunes",
+      "inicio": "2024-11-19T16:28:31.614Z",
+      "fim": null
+    }
+  ],
+  "a1d43aa-3caf-b84f-aff0-5d8cf5ab55e": [
+    {
+      "cliente": "Claudiana Cuiaba",
+      "inicio": "2024-11-19T16:49:20.578Z",
+      "fim": null
+    }
+  ],
+  "4a8114b-2da6-1e84-437-7727638b3c26": [
+    {
+      "cliente": "Gustavo Porto velho❌",
+      "inicio": "2024-11-19T18:26:45.991Z",
+      "fim": null
+    }
+  ],
+  "0b1400e-364c-c534-6b2e-cf46acd00b61": [
+    {
+      "cliente": "Maisa",
+      "inicio": "2024-11-21T15:52:41.061Z",
+      "fim": "2026-08-01T08:00:02.353Z"
+    }
+  ],
+  "0622b3-dc2-841-324a-b3b48d06e7dd": [
+    {
+      "cliente": "thiago irala",
+      "inicio": "2024-11-21T18:49:43.032Z",
+      "fim": null
+    }
+  ],
+  "612085c-d383-a877-de03-3d5652001aa3": [
+    {
+      "cliente": "Luizete",
+      "inicio": "2024-11-21T20:04:52.967Z",
+      "fim": null
+    }
+  ],
+  "543e8f3-2756-0bf2-62e7-5423bcf80a": [
+    {
+      "cliente": "Edineia Mensch",
+      "inicio": "2024-11-22T12:23:14.962Z",
+      "fim": null
+    }
+  ],
+  "008885d-45ef-d1a3-62a8-4ff40f4a6ccc": [
+    {
+      "cliente": "Juliana figueiredo",
+      "inicio": "2024-11-22T12:25:41.462Z",
+      "fim": null
+    }
+  ],
+  "06aa6fd-4168-8a58-256-4be24ce2e24": [
+    {
+      "cliente": "Fabricia soares",
+      "inicio": "2024-11-22T14:26:48.912Z",
+      "fim": null
+    }
+  ],
+  "e21edb-13f7-fab7-84-a2b8aa5056e": [
+    {
+      "cliente": "Benedita",
+      "inicio": "2024-11-22T17:03:03.654Z",
+      "fim": null
+    }
+  ],
+  "bfcb24a-17-46f-f4f5-828f303b415": [
+    {
+      "cliente": "Amanda Palmas",
+      "inicio": "2024-11-22T17:25:38.165Z",
+      "fim": null
+    }
+  ],
+  "3c8a17-5eb3-52da-eb05-fc3db4ec0e": [
+    {
+      "cliente": "janekeli",
+      "inicio": "2024-11-22T17:53:42.612Z",
+      "fim": null
+    }
+  ],
+  "c67fe4a-08d0-ac46-d06b-14f6ba481da8": [
+    {
+      "cliente": "Aline Araujo",
+      "inicio": "2024-11-22T18:02:22.803Z",
+      "fim": null
+    }
+  ],
+  "d10437c-85-fca4-053-f1ad38040d68": [
+    {
+      "cliente": "Nancy Cuiabá",
+      "inicio": "2024-11-22T18:06:53.289Z",
+      "fim": null
+    }
+  ],
+  "ee81f8b-852e-3781-ac7-1260d52ef66": [
+    {
+      "cliente": "Carol monte Boa vista",
+      "inicio": "2024-11-22T18:19:20.164Z",
+      "fim": null
+    }
+  ],
+  "a5fe402-3d50-3d62-cb84-c7b0b31b0": [
+    {
+      "cliente": "THAIS SCHON",
+      "inicio": "2024-11-23T11:59:48.781Z",
+      "fim": null
+    }
+  ],
+  "4027ee4-184c-8d7c-057-78da1b84325": [
+    {
+      "cliente": "Ezequiel",
+      "inicio": "2024-11-23T12:44:18.953Z",
+      "fim": null
+    }
+  ],
+  "3a2d364-a8ac-3582-36d8-dae4e0bf62": [
+    {
+      "cliente": "david ximenez",
+      "inicio": "2024-11-23T12:56:39.865Z",
+      "fim": null
+    }
+  ],
+  "2eb865-618c-5e0b-4266-bd82b25d02fc": [
+    {
+      "cliente": "Dimitri joias",
+      "inicio": "2024-11-25T13:49:53.401Z",
+      "fim": null
+    }
+  ],
+  "da68002-b8fc-4bc5-ac3c-be7f144a6": [
+    {
+      "cliente": "Jessica Santos",
+      "inicio": "2024-11-25T21:19:10.929Z",
+      "fim": null
+    }
+  ],
+  "aed86-80ec-e3b-ba40-03bd1bf5d": [
+    {
+      "cliente": "Danieli pengo",
+      "inicio": "2024-11-25T21:30:37.989Z",
+      "fim": "2026-08-03T16:22:35.465Z"
+    }
+  ],
+  "3b6d77-f175-f6-41be-1f273ff2d6d5": [
+    {
+      "cliente": "Jean",
+      "inicio": "2024-11-25T22:11:35.496Z",
+      "fim": null
+    }
+  ],
+  "5a534a-c3b-041f-5c78-f7202823337d": [
+    {
+      "cliente": "weslei",
+      "inicio": "2024-11-26T16:32:47.646Z",
+      "fim": null
+    }
+  ],
+  "b3d0684-7131-fa5-22cd-0472341d6a2": [
+    {
+      "cliente": "Luiz villa joias",
+      "inicio": "2024-11-26T18:16:36.809Z",
+      "fim": null
+    }
+  ],
+  "488e08d-63cd-de05-163d-f6c27e02a5c6": [
+    {
+      "cliente": "camila paiva",
+      "inicio": "2024-11-27T11:08:28.841Z",
+      "fim": null
+    }
+  ],
+  "d050328-1ce4-a1d-cf2f-ab3ca6bcad60": [
+    {
+      "cliente": "GRAZI AMABILI",
+      "inicio": "2024-11-27T17:32:09.313Z",
+      "fim": null
+    }
+  ],
+  "4851f43-edb6-22ef-6538-2a13cb70080": [
+    {
+      "cliente": "ELIANE BITENCOURT",
+      "inicio": "2024-11-28T12:53:42.178Z",
+      "fim": null
+    }
+  ],
+  "ce0fd-8138-0637-d1a2-c5580730630": [
+    {
+      "cliente": "Wellyson",
+      "inicio": "2024-11-28T12:54:45.324Z",
+      "fim": null
+    }
+  ],
+  "4aa43c-34c3-f8a-f807-5b57d7bf720e": [
+    {
+      "cliente": "BRUNO JOIAS",
+      "inicio": "2024-11-28T13:19:29.408Z",
+      "fim": null
+    }
+  ],
+  "6e6f86a-8df8-71c1-f722-e47af402ce7": [
+    {
+      "cliente": "Luan",
+      "inicio": "2024-11-28T17:12:04.014Z",
+      "fim": null
+    }
+  ],
+  "c11350-c4-e10b-a86-13232c104388": [
+    {
+      "cliente": "rodrigo rosa",
+      "inicio": "2024-11-28T17:43:22.034Z",
+      "fim": null
+    }
+  ],
+  "5d8df7c-d07e-17f-dde-03022a8566f": [
+    {
+      "cliente": "Maynara floripa",
+      "inicio": "2024-11-28T18:23:49.669Z",
+      "fim": null
+    }
+  ],
+  "d7ec35f-f7a-3d21-ae70-58bb1af2a1": [
+    {
+      "cliente": "jose eder",
+      "inicio": "2024-11-28T18:23:59.794Z",
+      "fim": null
+    }
+  ],
+  "18137e-0dc3-345-f7c6-d5af5e8560eb": [
+    {
+      "cliente": "Joana Palmas",
+      "inicio": "2024-11-29T12:47:02.983Z",
+      "fim": null
+    }
+  ],
+  "ee406e2-41a-b73a-76c-16e0c7046c5": [
+    {
+      "cliente": "Cleidy Espindola",
+      "inicio": "2024-11-29T12:59:07.653Z",
+      "fim": null
+    }
+  ],
+  "c3aea6-7d5-13c1-ac4e-eceb8da77f": [
+    {
+      "cliente": "Elaine Castro",
+      "inicio": "2024-11-29T18:16:47.702Z",
+      "fim": null
+    }
+  ],
+  "5ebfd2c-ae82-cd30-8cde-a50c463f5ff": [
+    {
+      "cliente": "ELISABETH",
+      "inicio": "2024-12-03T17:04:51.088Z",
+      "fim": null
+    }
+  ],
+  "07e46e-4ad5-da0-2612-044da141e54": [
+    {
+      "cliente": "Mari chapecó",
+      "inicio": "2024-12-05T19:39:29.639Z",
+      "fim": null
+    }
+  ],
+  "7081e3-b535-df5d-b883-c731ac83cc11": [
+    {
+      "cliente": "LIDIANE",
+      "inicio": "2024-12-07T14:27:55.352Z",
+      "fim": null
+    }
+  ],
+  "436d118-80f4-2a1f-12b0-67646dca22a": [
+    {
+      "cliente": "Ketlin",
+      "inicio": "2024-12-09T13:38:32.797Z",
+      "fim": null
+    }
+  ],
+  "17273-86f8-852f-3fab-d2d35ab11463": [
+    {
+      "cliente": "Livia",
+      "inicio": "2024-12-09T14:36:27.268Z",
+      "fim": null
+    }
+  ],
+  "72a7b4d-f58-0a8-b6f-51f0a162bddf": [
+    {
+      "cliente": "Priscila silva",
+      "inicio": "2024-12-09T16:09:25.497Z",
+      "fim": null
+    }
+  ],
+  "e6f6dbf-764a-1d35-747-1eaba706663": [
+    {
+      "cliente": "Laila",
+      "inicio": "2024-12-09T17:50:22.389Z",
+      "fim": null
+    }
+  ],
+  "88e0d86-5f0a-4880-642-66c0a42bdce": [
+    {
+      "cliente": "rafa duarte",
+      "inicio": "2024-12-09T18:03:41.979Z",
+      "fim": null
+    }
+  ],
+  "7d77e75-b13d-1334-320-4e17c22db7": [
+    {
+      "cliente": "Jessica Paiva",
+      "inicio": "2024-12-11T15:51:30.774Z",
+      "fim": null
+    }
+  ],
+  "d0e8c1-80fb-4e6-1da3-2bcafca45ed": [
+    {
+      "cliente": "Lucimária",
+      "inicio": "2024-12-12T16:54:57.881Z",
+      "fim": "2026-08-01T08:00:02.353Z"
+    },
+    {
+      "cliente": "Lucimária",
+      "inicio": "2026-08-01T08:00:02.353Z",
+      "fim": null
+    }
+  ],
+  "adebb-5feb-a820-7883-f2fb4b3e6283": [
+    {
+      "cliente": "Ilma",
+      "inicio": "2025-01-14T17:21:24.970Z",
+      "fim": null
+    }
+  ],
+  "5bfd3bf-653f-3862-12d5-a7f4e870867f": [
+    {
+      "cliente": "Anisio",
+      "inicio": "2025-01-14T18:47:10.751Z",
+      "fim": null
+    }
+  ],
+  "17a0bdb-e21a-ba6f-0534-58cb062c2bad": [
+    {
+      "cliente": "KARIN FLORIPA",
+      "inicio": "2025-01-15T16:42:39.797Z",
+      "fim": null
+    }
+  ],
+  "4147e48-2ad-33be-12-d6e1b382d1fc": [
+    {
+      "cliente": "Carlos eduardo",
+      "inicio": "2025-01-17T13:38:23.208Z",
+      "fim": null
+    }
+  ],
+  "175bd3-8227-1cba-0d56-8a4233882f": [
+    {
+      "cliente": "edmara",
+      "inicio": "2025-01-17T14:22:56.074Z",
+      "fim": null
+    }
+  ],
+  "5762a25-1ecb-881f-77ef-c1bbc4be0b5d": [
+    {
+      "cliente": "Cleusa Sá",
+      "inicio": "2025-01-20T19:59:48.016Z",
+      "fim": null
+    }
+  ],
+  "d2dd63c-b6fd-61eb-52ac-4e03cee78bd6": [
+    {
+      "cliente": "ana paula silva",
+      "inicio": "2025-01-20T20:44:12.271Z",
+      "fim": null
+    }
+  ],
+  "4a3726f-3f53-5deb-cd8-e7e041f0f0": [
+    {
+      "cliente": "danyela cristina",
+      "inicio": "2025-01-21T16:39:25.080Z",
+      "fim": "2026-08-01T08:00:02.353Z"
+    }
+  ],
+  "61a3a1f-6518-80d-40c-a1f88f575c1": [
+    {
+      "cliente": "Joyce farias",
+      "inicio": "2025-01-21T17:36:52.934Z",
+      "fim": null
+    }
+  ],
+  "2e0fded-4eb-21e1-033c-a3ad082ab776": [
+    {
+      "cliente": "Diana belem",
+      "inicio": "2025-01-21T17:53:25.077Z",
+      "fim": null
+    }
+  ],
+  "7aed4fe-a208-4f82-fdd7-8db31aa10bb": [
+    {
+      "cliente": "Jailson",
+      "inicio": "2025-01-24T18:13:12.642Z",
+      "fim": null
+    }
+  ],
+  "c3be36f-1f04-8f4d-1e84-a3d1c7efd3": [
+    {
+      "cliente": "ronaldo",
+      "inicio": "2025-01-24T18:33:16.482Z",
+      "fim": null
+    }
+  ],
+  "f2d1603-aeeb-df7a-6f5-68bc788f4f0c": [
+    {
+      "cliente": "keylla",
+      "inicio": "2025-01-24T18:40:41.055Z",
+      "fim": null
+    }
+  ],
+  "0764bb8-0cda-e2-5b1-1f7d0f1f32a2": [
+    {
+      "cliente": "Luciamara",
+      "inicio": "2025-01-24T19:59:09.435Z",
+      "fim": null
+    }
+  ],
+  "1387b2-13e-3424-af2f-8a423353268f": [
+    {
+      "cliente": "guilherme",
+      "inicio": "2025-01-27T19:33:17.756Z",
+      "fim": null
+    }
+  ],
+  "f74131f-662-d212-ccb-b72aaba1c11b": [
+    {
+      "cliente": "josy",
+      "inicio": "2025-01-27T19:46:40.570Z",
+      "fim": "2026-08-01T08:00:02.353Z"
+    }
+  ],
+  "00c8cf2-bf6d-6e8f-11b-d0243adfe4": [
+    {
+      "cliente": "GORETE EM USO  ❌",
+      "inicio": "2025-01-27T20:30:52.585Z",
+      "fim": null
+    }
+  ],
+  "7ad2c4b-0fb0-780-6415-3a33b456a75a": [
+    {
+      "cliente": "suzane acre",
+      "inicio": "2025-01-27T20:31:07.853Z",
+      "fim": null
+    }
+  ],
+  "b457488-ce0c-ca8d-041d-b0f78e6bbdd2": [
+    {
+      "cliente": "Renan villa joias",
+      "inicio": "2025-01-29T12:47:47.636Z",
+      "fim": null
+    }
+  ],
+  "28ca8fa-4ace-fcc2-8017-5868ccecc6f6": [
+    {
+      "cliente": "Valdirene",
+      "inicio": "2025-01-29T16:06:06.541Z",
+      "fim": "2026-08-01T08:00:02.353Z"
+    }
+  ],
+  "6d3da88-44a6-b3eb-5f4-c3db45b5c5b2": [
+    {
+      "cliente": "vanessa Kalinoski",
+      "inicio": "2025-01-29T16:16:48.531Z",
+      "fim": null
+    }
+  ],
+  "1854ec7-4420-0f6b-1b0b-363f3b8f236": [
+    {
+      "cliente": "Aline/ Geraldo",
+      "inicio": "2025-01-29T16:32:54.119Z",
+      "fim": null
+    }
+  ],
+  "2c6ed4-26b7-7a4c-25df-17e2fc1c6c": [
+    {
+      "cliente": "Maraisa",
+      "inicio": "2025-01-31T12:08:48.744Z",
+      "fim": null
+    }
+  ],
+  "ba558aa-dbe-8ef0-e8ba-eba755ae78b5": [
+    {
+      "cliente": "felipe ricardo",
+      "inicio": "2025-01-31T17:20:15.206Z",
+      "fim": null
+    }
+  ],
+  "306afae-6135-88ec-306-8754b522608": [
+    {
+      "cliente": "Felipe rio grande Villa joias",
+      "inicio": "2025-02-03T12:29:48.161Z",
+      "fim": null
+    }
+  ],
+  "418e3be-c1-38d8-256-758bfc7b5": [
+    {
+      "cliente": "Vanessa Salgado",
+      "inicio": "2025-02-03T16:41:56.047Z",
+      "fim": null
+    }
+  ],
+  "a8a53-d66e-8864-313d-041bb6017824": [
+    {
+      "cliente": "Gilberto",
+      "inicio": "2025-02-03T19:12:21.722Z",
+      "fim": null
+    }
+  ],
+  "3ccada-7784-fcb4-b008-6dffc2fcec25": [
+    {
+      "cliente": "josé ailton",
+      "inicio": "2025-02-04T16:42:05.276Z",
+      "fim": null
+    }
+  ],
+  "06cef4d-e18f-832-b53-de7824154c": [
+    {
+      "cliente": "Alexandre borba",
+      "inicio": "2025-02-04T20:39:07.475Z",
+      "fim": null
+    }
+  ],
+  "b31440a-541b-ff1-81a6-4480ee0e5246": [
+    {
+      "cliente": "Vanda",
+      "inicio": "2025-02-04T21:07:13.522Z",
+      "fim": null
+    }
+  ],
+  "e43b65b-e7a1-06aa-e0a3-fa3e8fd66bf": [
+    {
+      "cliente": "gisélia",
+      "inicio": "2025-02-05T18:50:00.577Z",
+      "fim": null
+    }
+  ],
+  "c7853-f436-3d7b-b872-38f0201714be": [
+    {
+      "cliente": "Milena",
+      "inicio": "2025-02-05T19:32:41.866Z",
+      "fim": null
+    }
+  ],
+  "657ddfe-f583-bd80-d51-8338455200d": [
+    {
+      "cliente": "Maria Célia Manaus",
+      "inicio": "2025-02-06T20:18:14.173Z",
+      "fim": null
+    }
+  ],
+  "2c3432a-752-0c0c-e410-d115885abb": [
+    {
+      "cliente": "monica / thiago",
+      "inicio": "2025-02-07T13:21:01.010Z",
+      "fim": null
+    }
+  ],
+  "c6e0507-6523-24c0-ac4-4054e348f5": [
+    {
+      "cliente": "eliane tenorio",
+      "inicio": "2025-02-07T13:42:08.147Z",
+      "fim": null
+    }
+  ],
+  "800b2f6-847a-8f72-8f0-f2e024f4f7a": [
+    {
+      "cliente": "geisa",
+      "inicio": "2025-02-11T18:28:38.062Z",
+      "fim": null
+    }
+  ],
+  "e72a0f1-8-e137-1f2c-6208b5ea8104": [
+    {
+      "cliente": "Deize floripa",
+      "inicio": "2025-02-12T17:01:50.587Z",
+      "fim": null
+    }
+  ],
+  "2076ff0-357b-2e3e-3bfe-c3d855c06a7c": [
+    {
+      "cliente": "Janini",
+      "inicio": "2025-02-12T17:47:55.853Z",
+      "fim": null
+    }
+  ],
+  "30b707a-3a3-71db-ba6-6edc6e4bc38e": [
+    {
+      "cliente": "Ubirajara",
+      "inicio": "2025-02-13T19:27:15.248Z",
+      "fim": null
+    }
+  ],
+  "66b424-8437-5287-8eb4-703cd052c5a5": [
+    {
+      "cliente": "Larissa",
+      "inicio": "2025-02-14T18:46:28.790Z",
+      "fim": null
+    }
+  ],
+  "2fa8e8-f73e-5360-4e1c-a711bed44ca": [
+    {
+      "cliente": "mara",
+      "inicio": "2025-02-18T11:23:30.705Z",
+      "fim": null
+    }
+  ],
+  "77aeaf-7701-7411-13d-a33cd18f0071": [
+    {
+      "cliente": "adriano simeia",
+      "inicio": "2025-02-18T17:07:08.323Z",
+      "fim": null
+    }
+  ],
+  "7303600-d5b7-ad15-f5a-dd73bc35f3e1": [
+    {
+      "cliente": "Ivani e edson",
+      "inicio": "2025-02-18T19:41:50.374Z",
+      "fim": null
+    }
+  ],
+  "551640-8264-5845-2683-dbe034f26c": [
+    {
+      "cliente": "beruska",
+      "inicio": "2025-02-20T12:06:34.915Z",
+      "fim": null
+    }
+  ],
+  "fabb65-e4b-ac5-6fb-bee840c662f4": [
+    {
+      "cliente": "elaine vila joias",
+      "inicio": "2025-02-20T19:15:29.827Z",
+      "fim": null
+    }
+  ],
+  "4502aa-fe68-a4cf-bf31-a828e3a1be": [
+    {
+      "cliente": "adriane maciel",
+      "inicio": "2025-06-12T18:08:50.386Z",
+      "fim": null
+    }
+  ],
+  "4cfc6a5-46b1-8c7-624-863abd15f311": [
+    {
+      "cliente": "jocilene",
+      "inicio": "2025-06-12T18:24:29.459Z",
+      "fim": null
+    }
+  ],
+  "0ed70ca-1a67-3da3-25d-1b44df207aa": [
+    {
+      "cliente": "Vivian",
+      "inicio": "2025-06-13T19:48:44.088Z",
+      "fim": null
+    }
+  ],
+  "87547a2-15b4-bf32-4b2d-66363014f23e": [
+    {
+      "cliente": "salvanyr",
+      "inicio": "2025-06-14T18:31:27.593Z",
+      "fim": null
+    }
+  ],
+  "72eea3-8f62-aefd-573-b8c7348346": [
+    {
+      "cliente": "jovanize",
+      "inicio": "2025-07-02T13:12:24.667Z",
+      "fim": null
+    }
+  ],
+  "77c567-faf1-e6b2-e376-dd464beb6756": [
+    {
+      "cliente": "cleiton",
+      "inicio": "2025-07-02T19:00:26.165Z",
+      "fim": null
+    }
+  ],
+  "a1cda52-2d07-dcad-e4fb-f0cfea8a25": [
+    {
+      "cliente": "danni pinho",
+      "inicio": "2025-07-02T19:00:26.796Z",
+      "fim": null
+    }
+  ],
+  "0ea8d6d-bf67-2f56-488a-4f350ae1b5d3": [
+    {
+      "cliente": "sebastiao",
+      "inicio": "2025-07-03T14:29:51.077Z",
+      "fim": null
+    }
+  ],
+  "736b-6fb7-3823-8105-82d513222a2d": [
+    {
+      "cliente": "MARA SANTOS",
+      "inicio": "2025-07-03T15:36:13.478Z",
+      "fim": null
+    }
+  ],
+  "8f4c6b-2387-d0c6-151d-f813344eb37": [
+    {
+      "cliente": "guilherme❌",
+      "inicio": "2025-07-04T11:00:33.634Z",
+      "fim": null
+    }
+  ],
+  "86ba267-4cb8-1c5a-b7df-efaea7331f": [
+    {
+      "cliente": "Andrio Gestor",
+      "inicio": "2025-07-15T18:42:03.235Z",
+      "fim": null
+    }
+  ],
+  "d547b1fb-f07e-4005-a535-c38b9eaf016d": [
+    {
+      "cliente": "Nay Belem",
+      "inicio": "2025-07-22T18:43:58.158Z",
+      "fim": null
+    }
+  ],
+  "6e0b72e6-924a-431a-a8bd-e996337c5399": [
+    {
+      "cliente": "Fernando Belem",
+      "inicio": "2025-07-23T17:22:28.826Z",
+      "fim": null
+    }
+  ],
+  "89270e92-dc47-440d-b6ac-f6204cc34371": [
+    {
+      "cliente": "Tatiane gambogi",
+      "inicio": "2025-09-02T13:37:03.855Z",
+      "fim": null
+    }
+  ]
+}

@@ -36,10 +36,14 @@ import {
 import { extrairDddEUf } from './ddd-estado.mjs';
 import { classificarOrigemIA } from './origem-ia.mjs';
 import { resolverStatusPorEntendimento } from './audio-transcricao.mjs';
-// Reaproveita o rastreamento de titularidade do zap-dashboard-sync (mesma conta Zap
-// Responder) — sem isso, quando um cliente sai e outro assume o mesmo departamento
-// depois, os leads antigos do cliente anterior ficam contados como se fossem do novo.
-import { carregarTitularidade, titularNaData } from '../zap-dashboard-sync/titularidade.mjs';
+// Cópia local (vendorizada) do titularidade.mjs do zap-dashboard-sync — sem isso, quando
+// um cliente sai e outro assume o mesmo departamento depois, os leads antigos do cliente
+// anterior ficam contados como se fossem do novo. Precisa ser uma cópia local (não um
+// import cross-repo) porque o GitHub Actions só baixa a pasta deste repositório — um
+// import de '../zap-dashboard-sync/...' funciona local mas quebra no CI (Cannot find
+// module). Se o zap-dashboard-sync detectar novas trocas de departamento, é preciso
+// copiar titularidade-departamentos.json atualizado pra cá manualmente (por enquanto).
+import { carregarTitularidade, titularNaData } from './titularidade.mjs';
 
 const TOKEN = process.env.ZAP_API_TOKEN;
 const DIAS_JANELA = Number(process.env.DIAS_JANELA || 30);
