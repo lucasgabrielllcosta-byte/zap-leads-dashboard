@@ -147,6 +147,29 @@
     font-size: 13px;
     border: 1px solid var(--border);
   }
+  details.warning-collapse summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+  }
+  details.warning-collapse summary::-webkit-details-marker { display: none; }
+  details.warning-collapse summary::before {
+    content: '▸';
+    font-size: 10px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+  details.warning-collapse[open] summary::before { transform: rotate(90deg); }
+  details.warning-collapse .lista-desconectados {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+    font-weight: 400;
+    line-height: 1.7;
+  }
 
   .tiles {
     display: grid;
@@ -307,7 +330,10 @@
     </div>
   </header>
   <div class="stale-warning" id="staleWarning">Dados desatualizados — a última atualização automática pode ter falhado.</div>
-  <div class="stale-warning" id="desconectadosWarning"></div>
+  <details class="stale-warning warning-collapse" id="desconectadosWarning">
+    <summary id="desconectadosSummary"></summary>
+    <div class="lista-desconectados" id="desconectadosLista"></div>
+  </details>
 
   <div class="tiles" id="tiles"></div>
 
@@ -389,6 +415,8 @@ async function main() {
     subtitle: document.getElementById('subtitle'),
     staleWarning: document.getElementById('staleWarning'),
     desconectadosWarning: document.getElementById('desconectadosWarning'),
+    desconectadosSummary: document.getElementById('desconectadosSummary'),
+    desconectadosLista: document.getElementById('desconectadosLista'),
     tiles: document.getElementById('tiles'),
     dayChart: document.getElementById('dayChartContainer'),
     dayChartSub: document.getElementById('dayChartSub'),
@@ -458,7 +486,8 @@ async function main() {
     const desconectados = data.distribuidoresDesconectados || [];
     if (desconectados.length) {
       el.desconectadosWarning.style.display = 'block';
-      el.desconectadosWarning.textContent = `WhatsApp desconectado — ${desconectados.length === 1 ? '1 distribuidor' : desconectados.length + ' distribuidores'}: ${desconectados.join(', ')}`;
+      el.desconectadosSummary.textContent = `WhatsApp desconectado — ${desconectados.length === 1 ? '1 distribuidor' : desconectados.length + ' distribuidores'} (clique pra ver)`;
+      el.desconectadosLista.textContent = desconectados.join(', ');
     } else {
       el.desconectadosWarning.style.display = 'none';
     }
