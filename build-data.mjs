@@ -36,6 +36,10 @@ import {
 import { extrairDddEUf } from './ddd-estado.mjs';
 import { classificarOrigemIA } from './origem-ia.mjs';
 import { resolverStatusPorEntendimento } from './audio-transcricao.mjs';
+// Reaproveita o rastreamento de titularidade do zap-dashboard-sync (mesma conta Zap
+// Responder) — sem isso, quando um cliente sai e outro assume o mesmo departamento
+// depois, os leads antigos do cliente anterior ficam contados como se fossem do novo.
+import { carregarTitularidade, titularNaData } from '../zap-dashboard-sync/titularidade.mjs';
 
 const TOKEN = process.env.ZAP_API_TOKEN;
 const DIAS_JANELA = Number(process.env.DIAS_JANELA || 30);
@@ -124,6 +128,7 @@ async function main() {
   console.error('Buscando departamentos ativos...');
   const { ativos: departamentosAtivos, desconectados: distribuidoresDesconectados } = await getDepartamentosAtivos();
   console.error(`${departamentosAtivos.size} distribuidores ativos, ${distribuidoresDesconectados.length} desconectados.`);
+  const titularidade = carregarTitularidade();
 
   console.error(`Buscando leads dos últimos ${DIAS_JANELA} dias (teto: ${LIMITE_LEADS})...`);
   const { leads, atingiuJanela } = await getLeadsRecentes(DIAS_JANELA, LIMITE_LEADS);
@@ -135,8 +140,11 @@ async function main() {
       const conversa = await getConversaPorChatId(lead.chatId);
       if (!conversa) return null;
       const depId = conversa.departamento_responsavel_atendimento;
-      const distribuidor = departamentosAtivos.get(depId) || null;
-      if (!distribuidor) return null;
+      const nomeAtualDepartamento = departamentosAtivos.get(depId) || null;
+      if (!nomeAtualDepartamento) return null;
+      // Mesmo cuidado do zap-dashboard-sync: usa o dono na data do lead, não o nome
+      // atual do departamento (que pode já ter sido reatribuído a outro cliente).
+      const distribuidor = titularNaData(titularidade, depId, diaISO(lead.createdAt)) || nomeAtualDepartamento;
 
       const mensagensOrdenadas = (await getMensagens(conversa._id)).sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
       let status = 'sem_mencao';

@@ -350,12 +350,15 @@
   <details class="stale-warning warning-collapse" id="staleWarning">
     <summary>
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      Dados desatualizados (clique pra ver)
+      Clique pra ver
     </summary>
     <div class="lista-desconectados" id="staleDetalhe"></div>
   </details>
   <details class="stale-warning warning-collapse" id="desconectadosWarning">
-    <summary id="desconectadosSummary"></summary>
+    <summary>
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Clique pra ver
+    </summary>
     <div class="lista-desconectados" id="desconectadosLista"></div>
   </details>
 
@@ -397,6 +400,12 @@
       </div>
     </div>
     <div id="distTableContainer"></div>
+  </div>
+
+  <div class="card" id="recontatacaoCard" style="display:none">
+    <h2>Reativação de leads parados</h2>
+    <div class="card-sub" id="recontatacaoSub">Leads que travaram no bot sem mandar CPF/data de nascimento e receberam mensagem de retomada</div>
+    <div id="recontatacaoContainer"></div>
   </div>
 
   <footer id="footer"></footer>
@@ -443,7 +452,6 @@ async function main() {
     staleWarning: document.getElementById('staleWarning'),
     staleDetalhe: document.getElementById('staleDetalhe'),
     desconectadosWarning: document.getElementById('desconectadosWarning'),
-    desconectadosSummary: document.getElementById('desconectadosSummary'),
     desconectadosLista: document.getElementById('desconectadosLista'),
     tiles: document.getElementById('tiles'),
     dayChart: document.getElementById('dayChartContainer'),
@@ -455,6 +463,8 @@ async function main() {
     distTable: document.getElementById('distTableContainer'),
     distTableSub: document.getElementById('distTableSub'),
     distSearch: document.getElementById('distSearch'),
+    recontatacaoCard: document.getElementById('recontatacaoCard'),
+    recontatacaoContainer: document.getElementById('recontatacaoContainer'),
     footer: document.getElementById('footer'),
     tooltip: document.getElementById('tooltip'),
     periodoSwitch: document.getElementById('periodoSwitch'),
@@ -492,10 +502,42 @@ async function main() {
     return { ...dashboardData, registros: [...registrosAntigos, ...novosData.registros] };
   }
 
+  // recontatacao.json (projeto de reativação de leads parados) é opcional e separado
+  // do resto — se não existir ainda ou falhar, o card correspondente só fica escondido,
+  // nunca quebra o resto do dashboard.
+  async function carregarRecontatacao() {
+    try {
+      const res = await fetch('data/recontatacao.json', { cache: 'no-store' });
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
+    }
+  }
+
+  function renderRecontatacao(recontatacaoData) {
+    const porDist = recontatacaoData?.porDistribuidor || [];
+    if (!porDist.length) {
+      el.recontatacaoCard.style.display = 'none';
+      return;
+    }
+    el.recontatacaoCard.style.display = '';
+    el.recontatacaoContainer.innerHTML = `
+      <table>
+        <thead><tr><th>Distribuidor</th><th class="num">Recontatados</th><th class="num">Aprovados depois</th><th class="num">Reprovados</th><th class="num">Ainda sem retorno</th><th class="num">Cancelados</th></tr></thead>
+        <tbody>
+          ${porDist.map(d => `<tr><td>${d.distribuidor}</td><td class="num">${fmt.format(d.recontatados)}</td><td class="num">${fmt.format(d.aprovados)}</td><td class="num">${fmt.format(d.reprovados)}</td><td class="num">${fmt.format(d.semRetorno)}</td><td class="num">${fmt.format(d.cancelados)}</td></tr>`).join('')}
+        </tbody>
+      </table>
+    `;
+  }
+
   let data;
+  let recontatacaoData;
   try {
-    const [dashboardData, novosData] = await Promise.all([carregarDados(), carregarNovos()]);
+    const [dashboardData, novosData, recontatacao] = await Promise.all([carregarDados(), carregarNovos(), carregarRecontatacao()]);
     data = mesclarComNovos(dashboardData, novosData);
+    recontatacaoData = recontatacao;
   } catch (err) {
     el.subtitle.textContent = 'Erro ao carregar data/dashboard.json';
     return;
@@ -503,6 +545,7 @@ async function main() {
 
   const fmt = new Intl.NumberFormat('pt-BR');
   const pct = (n) => n == null ? '—' : (n * 100).toFixed(1).replace('.', ',') + '%';
+  renderRecontatacao(recontatacaoData);
 
   // Olho pra esconder o número de distribuidores antes de tirar print (não é dado
   // sensível tecnicamente, mas é volume de negócio que nem sempre dá pra mostrar).
@@ -533,8 +576,8 @@ async function main() {
     const desconectados = data.distribuidoresDesconectados || [];
     if (desconectados.length) {
       el.desconectadosWarning.style.display = 'block';
-      el.desconectadosSummary.textContent = `WhatsApp desconectado — ${desconectados.length === 1 ? '1 distribuidor' : desconectados.length + ' distribuidores'} (clique pra ver)`;
-      el.desconectadosLista.textContent = desconectados.join(', ');
+      const rotulo = desconectados.length === 1 ? '1 distribuidor' : `${desconectados.length} distribuidores`;
+      el.desconectadosLista.textContent = `WhatsApp desconectado — ${rotulo}: ${desconectados.join(', ')}`;
     } else {
       el.desconectadosWarning.style.display = 'none';
     }
@@ -808,13 +851,15 @@ async function main() {
   setInterval(async () => {
     if (document.hidden) return;
     try {
-      const [dashboardData, novosData] = await Promise.all([carregarDados(), carregarNovos()]);
+      const [dashboardData, novosData, recontatacao] = await Promise.all([carregarDados(), carregarNovos(), carregarRecontatacao()]);
       data = mesclarComNovos(dashboardData, novosData);
+      recontatacaoData = recontatacao;
     } catch {
       return;
     }
     atualizarCabecalho();
     render(periodoAtual);
+    renderRecontatacao(recontatacaoData);
   }, 5 * 60 * 1000);
 }
 
