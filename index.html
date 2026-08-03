@@ -347,7 +347,13 @@
       <button class="theme-btn" id="themeBtn" type="button"></button>
     </div>
   </header>
-  <div class="stale-warning" id="staleWarning">Dados desatualizados — a última atualização automática pode ter falhado.</div>
+  <details class="stale-warning warning-collapse" id="staleWarning">
+    <summary>
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Dados desatualizados (clique pra ver)
+    </summary>
+    <div class="lista-desconectados" id="staleDetalhe"></div>
+  </details>
   <details class="stale-warning warning-collapse" id="desconectadosWarning">
     <summary id="desconectadosSummary"></summary>
     <div class="lista-desconectados" id="desconectadosLista"></div>
@@ -435,6 +441,7 @@ async function main() {
     atualizadoEmValor: document.getElementById('atualizadoEmValor'),
     eyeToggle: document.getElementById('eyeToggle'),
     staleWarning: document.getElementById('staleWarning'),
+    staleDetalhe: document.getElementById('staleDetalhe'),
     desconectadosWarning: document.getElementById('desconectadosWarning'),
     desconectadosSummary: document.getElementById('desconectadosSummary'),
     desconectadosLista: document.getElementById('desconectadosLista'),
@@ -521,6 +528,7 @@ async function main() {
 
     const horasDesdeAtualizacao = (Date.now() - geradoEm.getTime()) / 3600000;
     el.staleWarning.style.display = horasDesdeAtualizacao > 6 ? 'block' : 'none';
+    el.staleDetalhe.textContent = `Última atualização completa (30 dias): ${geradoEm.toLocaleString('pt-BR')} — ${horasDesdeAtualizacao.toFixed(1)}h atrás. O normal é rodar de hora em hora; se passou de 6h, a rodada automática pode ter falhado. Confira em github.com/lucasgabrielllcosta-byte/zap-leads-dashboard/actions.`;
 
     const desconectados = data.distribuidoresDesconectados || [];
     if (desconectados.length) {
