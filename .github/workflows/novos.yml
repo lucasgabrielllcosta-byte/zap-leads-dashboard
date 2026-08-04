@@ -9,7 +9,10 @@ name: Atualizar leads novos (fast-track)
 # lead com dois status ao mesmo tempo.
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    # Minutos 4/19/34/49 (não 0/15/30/45) de propósito — mesma razão do deploy.yml:
+    # fugir dos horários redondos, que são os mais concorridos e mais sujeitos a
+    # execução agendada pulada pelo GitHub Actions.
+    - cron: '4,19,34,49 * * * *'
   workflow_dispatch: {}
 
 permissions:
