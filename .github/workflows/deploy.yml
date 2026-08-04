@@ -2,7 +2,11 @@ name: Atualizar dashboard
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    # Minuto 7 (não 0) de propósito — o GitHub Actions costuma sobrecarregar/atrasar
+    # execuções agendadas pros minutos redondos (0, 15, 30, 45), porque é quando todo
+    # mundo agenda. Fugir do horário redondo reduz a chance de a execução ser pulada
+    # (aconteceu de verdade em 2026-08-04: ficou ~5h sem rodar por causa disso).
+    - cron: '7 * * * *'
   workflow_dispatch: {}
   push:
     branches: [main]
