@@ -41,9 +41,11 @@ import { resolverStatusPorEntendimento } from './audio-transcricao.mjs';
 // anterior ficam contados como se fossem do novo. Precisa ser uma cópia local (não um
 // import cross-repo) porque o GitHub Actions só baixa a pasta deste repositório — um
 // import de '../zap-dashboard-sync/...' funciona local mas quebra no CI (Cannot find
-// module). Se o zap-dashboard-sync detectar novas trocas de departamento, é preciso
-// copiar titularidade-departamentos.json atualizado pra cá manualmente (por enquanto).
-import { carregarTitularidade, titularNaData } from './titularidade.mjs';
+// module). titularidade-sync.mjs detecta as trocas SOZINHO a cada execução (comparando
+// com o snapshot da execução anterior, salvo aqui mesmo) — não depende de sincronizar
+// nada manualmente com o zap-dashboard-sync.
+import { carregarTitularidade, salvarTitularidade, titularNaData } from './titularidade.mjs';
+import { sincronizarTitularidade } from './titularidade-sync.mjs';
 
 const TOKEN = process.env.ZAP_API_TOKEN;
 const DIAS_JANELA = Number(process.env.DIAS_JANELA || 30);
@@ -130,9 +132,19 @@ async function main() {
   const t0 = Date.now();
 
   console.error('Buscando departamentos ativos...');
-  const { ativos: departamentosAtivos, desconectados: distribuidoresDesconectados } = await getDepartamentosAtivos();
+  const { ativos: departamentosAtivos, desconectados: distribuidoresDesconectados, todos: todosDepartamentos } = await getDepartamentosAtivos();
   console.error(`${departamentosAtivos.size} distribuidores ativos, ${distribuidoresDesconectados.length} desconectados.`);
-  const titularidade = carregarTitularidade();
+
+  // Detecta troca de titular de departamento sozinho (cliente saiu / outro assumiu o
+  // mesmo número) comparando com o snapshot da execução anterior — nunca fica
+  // desatualizado, roda em toda execução completa.
+  let titularidade = carregarTitularidade();
+  const { titularidade: titularidadeAtualizada, avisos: avisosTitularidade } = sincronizarTitularidade(titularidade, todosDepartamentos);
+  titularidade = titularidadeAtualizada;
+  if (avisosTitularidade.length) {
+    for (const aviso of avisosTitularidade) console.error(`  [titularidade] ${aviso}`);
+    salvarTitularidade(titularidade);
+  }
 
   console.error(`Buscando leads dos últimos ${DIAS_JANELA} dias (teto: ${LIMITE_LEADS})...`);
   const { leads, atingiuJanela } = await getLeadsRecentes(DIAS_JANELA, LIMITE_LEADS);

@@ -56,16 +56,18 @@ jobs:
         # servindo a última versão publicada — nada errado ou duplicado vai pro ar.
         if: github.event_name != 'push'
         run: node validar-dados.mjs data/dashboard.json /tmp/dashboard-anterior.json
-      - name: Persistir novas frases-candidatas pro regex (candidatos-regex.json)
+      - name: Persistir candidatos-regex.json e titularidade (trocas de departamento)
         # Push com GITHUB_TOKEN não reaciona o trigger "push" deste workflow, então
-        # não há risco de loop infinito aqui.
+        # não há risco de loop infinito aqui. departamentos-snapshot.json é o que
+        # titularidade-sync.mjs usa pra detectar troca de titular na próxima execução —
+        # sem commitar ele, toda execução acharia "sem snapshot anterior" de novo.
         if: github.event_name != 'push'
         run: |
-          if ! git diff --quiet -- candidatos-regex.json; then
+          if ! git diff --quiet -- candidatos-regex.json titularidade-departamentos.json departamentos-snapshot.json; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add candidatos-regex.json
-            git commit -m "Atualiza candidatos-regex.json com frases novas da IA"
+            git add candidatos-regex.json titularidade-departamentos.json departamentos-snapshot.json
+            git commit -m "Atualiza candidatos-regex.json e titularidade de departamentos"
             git pull --rebase origin main
             git push origin HEAD:main
           fi

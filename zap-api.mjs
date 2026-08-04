@@ -50,7 +50,11 @@ export async function getDepartamentosAtivos() {
   });
   const ativos = statusList.filter((d) => d.isConected);
   const desconectados = statusList.filter((d) => !d.isConected).map((d) => d.nome);
-  return { ativos: new Map(ativos.map((d) => [d._id, d.nome])), desconectados };
+  // "todos" inclui ativos E desconectados, com id — usado pra detectar troca de titular
+  // de departamento (ver titularidade-sync.mjs), que precisa comparar TODOS os nomes,
+  // não só dos conectados.
+  const todos = new Map(statusList.map((d) => [d._id, d.nome]));
+  return { ativos: new Map(ativos.map((d) => [d._id, d.nome])), desconectados, todos };
 }
 
 // Endpoint interno (não documentado publicamente) que lista leads por ordem de chegada.

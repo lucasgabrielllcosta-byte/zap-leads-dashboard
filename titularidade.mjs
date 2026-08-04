@@ -10,9 +10,11 @@ import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
-// Resolvido relativo a este arquivo (não ao cwd de quem chama) — importante porque
-// zap-leads-dashboard importa este módulo de fora da pasta zap-dashboard-sync.
-const PATH = join(dirname(fileURLToPath(import.meta.url)), 'titularidade-departamentos.json');
+// Resolvido relativo a este arquivo (não ao cwd de quem chama) por padrão, mas pode ser
+// sobrescrito por TITULARIDADE_PATH — usado pelo fast-track (novos.yml) pra apontar pra
+// um arquivo descartável em /tmp, evitando que duas execuções escrevam no mesmo arquivo
+// real ao mesmo tempo (mesmo cuidado já usado com CANDIDATOS_PATH em build-data.mjs).
+const PATH = process.env.TITULARIDADE_PATH || join(dirname(fileURLToPath(import.meta.url)), 'titularidade-departamentos.json');
 
 export function carregarTitularidade() {
   if (!existsSync(PATH)) return {};

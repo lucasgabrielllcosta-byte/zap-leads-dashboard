@@ -36,10 +36,14 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DIAS_JANELA: '2'
           DIAS_ENTENDIMENTO_IA: '2'
-          # Descartável de propósito — quem registra candidatos-regex "de verdade" é o
-          # deploy.yml (hora em hora); aqui só evita os dois workflows escreverem no
-          # mesmo arquivo ao mesmo tempo.
+          # Descartáveis de propósito — quem registra candidatos-regex e titularidade "de
+          # verdade" é o deploy.yml (hora em hora); aqui só evita os dois workflows
+          # brigando pelo mesmo arquivo. SNAPSHOT_PATH descartável faz esta execução
+          # sempre cair no caso "sem snapshot anterior" (nunca detecta troca sozinha,
+          # nunca comita nada) — só o deploy.yml, com o snapshot real, de fato detecta
+          # e publica trocas de titular de departamento.
           CANDIDATOS_PATH: /tmp/candidatos-fast-descartavel.json
+          SNAPSHOT_PATH: /tmp/snapshot-fast-descartavel.json
         run: |
           mkdir -p data
           node build-data.mjs > data/novos.json
