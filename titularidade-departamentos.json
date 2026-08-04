@@ -101,6 +101,11 @@
     {
       "cliente": "Adriana Antunes",
       "inicio": "2024-11-19T16:28:31.614Z",
+      "fim": "2026-08-04T16:21:31.039Z"
+    },
+    {
+      "cliente": "Cleomara",
+      "inicio": "2026-08-04T16:21:31.039Z",
       "fim": null
     }
   ],
@@ -123,6 +128,11 @@
       "cliente": "Maisa",
       "inicio": "2024-11-21T15:52:41.061Z",
       "fim": "2026-08-01T08:00:02.353Z"
+    },
+    {
+      "cliente": "Mv Company",
+      "inicio": "2026-08-04T16:21:31.039Z",
+      "fim": null
     }
   ],
   "0622b3-dc2-841-324a-b3b48d06e7dd": [
@@ -242,6 +252,11 @@
       "cliente": "Danieli pengo",
       "inicio": "2024-11-25T21:30:37.989Z",
       "fim": "2026-08-03T16:22:35.465Z"
+    },
+    {
+      "cliente": "Adria suellem",
+      "inicio": "2026-08-04T16:21:31.039Z",
+      "fim": null
     }
   ],
   "3b6d77-f175-f6-41be-1f273ff2d6d5": [
