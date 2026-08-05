@@ -1,18 +1,513 @@
 {
-  "geradoEm": "2026-08-05T11:48:48.352Z",
+  "geradoEm": "2026-08-05T21:28:50.971Z",
   "porDistribuidor": [
     {
+      "distribuidor": "Janini",
+      "recontatados": 60,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 59,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Lucimária",
+      "recontatados": 58,
+      "aprovados": 1,
+      "reprovados": 1,
+      "semRetorno": 52,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "GRAZI AMABILI",
+      "recontatados": 56,
+      "aprovados": 1,
+      "reprovados": 0,
+      "semRetorno": 55,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Jean",
+      "recontatados": 56,
+      "aprovados": 0,
+      "reprovados": 1,
+      "semRetorno": 55,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "jose eder",
+      "recontatados": 55,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 55,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Luizete",
+      "recontatados": 55,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 55,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Elaine Castro",
+      "recontatados": 52,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 52,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Diana belem",
+      "recontatados": 51,
+      "aprovados": 0,
+      "reprovados": 1,
+      "semRetorno": 49,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
       "distribuidor": "DEBORA",
-      "recontatados": 37,
+      "recontatados": 50,
       "aprovados": 2,
       "reprovados": 1,
-      "semRetorno": 34,
+      "semRetorno": 47,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "ELISABETH",
+      "recontatados": 50,
+      "aprovados": 0,
+      "reprovados": 1,
+      "semRetorno": 49,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "gisélia",
+      "recontatados": 50,
+      "aprovados": 0,
+      "reprovados": 1,
+      "semRetorno": 49,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Ilma",
+      "recontatados": 50,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 50,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Larissa",
+      "recontatados": 50,
+      "aprovados": 0,
+      "reprovados": 1,
+      "semRetorno": 49,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "KARIN FLORIPA",
+      "recontatados": 49,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 49,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Claudiana Cuiaba",
+      "recontatados": 48,
+      "aprovados": 2,
+      "reprovados": 0,
+      "semRetorno": 46,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Edineia Mensch",
+      "recontatados": 48,
+      "aprovados": 1,
+      "reprovados": 0,
+      "semRetorno": 46,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "eliane tenorio",
+      "recontatados": 47,
+      "aprovados": 1,
+      "reprovados": 4,
+      "semRetorno": 42,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "felipe ricardo",
+      "recontatados": 47,
+      "aprovados": 0,
+      "reprovados": 1,
+      "semRetorno": 45,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "jaque",
+      "recontatados": 47,
+      "aprovados": 0,
+      "reprovados": 3,
+      "semRetorno": 44,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Anisio",
+      "recontatados": 46,
+      "aprovados": 1,
+      "reprovados": 1,
+      "semRetorno": 43,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "cleiton",
+      "recontatados": 46,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 43,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Ezequiel",
+      "recontatados": 46,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 45,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Gilberto",
+      "recontatados": 46,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 46,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "MARA SANTOS",
+      "recontatados": 46,
+      "aprovados": 1,
+      "reprovados": 0,
+      "semRetorno": 40,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "adriano simeia",
+      "recontatados": 45,
+      "aprovados": 2,
+      "reprovados": 0,
+      "semRetorno": 43,
       "perdidos": 0,
       "cancelados": 0
     },
     {
       "distribuidor": "JANNY",
-      "recontatados": 32,
+      "recontatados": 44,
+      "aprovados": 0,
+      "reprovados": 1,
+      "semRetorno": 42,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "camila paiva",
+      "recontatados": 44,
+      "aprovados": 0,
+      "reprovados": 1,
+      "semRetorno": 43,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "adriane maciel",
+      "recontatados": 44,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 44,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Emanoel Pozan",
+      "recontatados": 44,
+      "aprovados": 2,
+      "reprovados": 1,
+      "semRetorno": 41,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "keylla",
+      "recontatados": 44,
+      "aprovados": 4,
+      "reprovados": 2,
+      "semRetorno": 37,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "mara",
+      "recontatados": 44,
+      "aprovados": 0,
+      "reprovados": 2,
+      "semRetorno": 42,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Andrio Gestor",
+      "recontatados": 43,
+      "aprovados": 3,
+      "reprovados": 1,
+      "semRetorno": 39,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "BRUNO JOIAS",
+      "recontatados": 43,
+      "aprovados": 1,
+      "reprovados": 0,
+      "semRetorno": 42,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Cleidy Espindola",
+      "recontatados": 43,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 42,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Jessica Paiva",
+      "recontatados": 43,
+      "aprovados": 0,
+      "reprovados": 1,
+      "semRetorno": 42,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Juliana figueiredo",
+      "recontatados": 43,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 43,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Luan",
+      "recontatados": 43,
+      "aprovados": 0,
+      "reprovados": 5,
+      "semRetorno": 38,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "danni pinho",
+      "recontatados": 42,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 42,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "janekeli",
+      "recontatados": 42,
+      "aprovados": 1,
+      "reprovados": 1,
+      "semRetorno": 33,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Maraisa",
+      "recontatados": 42,
+      "aprovados": 2,
+      "reprovados": 0,
+      "semRetorno": 40,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "elaine vila joias",
+      "recontatados": 40,
+      "aprovados": 1,
+      "reprovados": 0,
+      "semRetorno": 38,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Ivani e edson",
+      "recontatados": 40,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 40,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "jovanize",
+      "recontatados": 40,
+      "aprovados": 0,
+      "reprovados": 1,
+      "semRetorno": 38,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Ivone",
+      "recontatados": 39,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 39,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Jessica Santos",
+      "recontatados": 39,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 39,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "josé ailton",
+      "recontatados": 39,
+      "aprovados": 2,
+      "reprovados": 2,
+      "semRetorno": 35,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Ketlin",
+      "recontatados": 39,
+      "aprovados": 1,
+      "reprovados": 1,
+      "semRetorno": 37,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Luiz villa joias",
+      "recontatados": 39,
+      "aprovados": 1,
+      "reprovados": 5,
+      "semRetorno": 33,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Benedita",
+      "recontatados": 38,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 38,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Cleusa Sá",
+      "recontatados": 38,
+      "aprovados": 1,
+      "reprovados": 0,
+      "semRetorno": 37,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Juliana Dona Bella",
+      "recontatados": 38,
+      "aprovados": 0,
+      "reprovados": 1,
+      "semRetorno": 36,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Aline/ Geraldo",
+      "recontatados": 37,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 37,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "david ximenez",
+      "recontatados": 37,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 36,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "jocilene",
+      "recontatados": 37,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 37,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "monica / thiago",
+      "recontatados": 37,
+      "aprovados": 2,
+      "reprovados": 0,
+      "semRetorno": 34,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "beruska",
+      "recontatados": 33,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 33,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Joyce farias",
+      "recontatados": 33,
       "aprovados": 0,
       "reprovados": 0,
       "semRetorno": 31,
@@ -20,218 +515,20 @@
       "cancelados": 0
     },
     {
-      "distribuidor": "camila paiva",
-      "recontatados": 30,
+      "distribuidor": "Rose floripa",
+      "recontatados": 32,
       "aprovados": 0,
       "reprovados": 0,
-      "semRetorno": 30,
+      "semRetorno": 32,
       "perdidos": 0,
       "cancelados": 0
     },
     {
-      "distribuidor": "Andrio Gestor",
-      "recontatados": 30,
-      "aprovados": 1,
-      "reprovados": 1,
-      "semRetorno": 28,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Benedita",
-      "recontatados": 30,
+      "distribuidor": "geisa",
+      "recontatados": 31,
       "aprovados": 0,
       "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "adriane maciel",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "adriano simeia",
-      "recontatados": 30,
-      "aprovados": 1,
-      "reprovados": 0,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "beruska",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Anisio",
-      "recontatados": 30,
-      "aprovados": 1,
-      "reprovados": 0,
-      "semRetorno": 28,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Aline/ Geraldo",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "BRUNO JOIAS",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Claudiana Cuiaba",
-      "recontatados": 30,
-      "aprovados": 1,
-      "reprovados": 0,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Cleidy Espindola",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "cleiton",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Cleusa Sá",
-      "recontatados": 30,
-      "aprovados": 1,
-      "reprovados": 0,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "danni pinho",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "david ximenez",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Diana belem",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 1,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Edineia Mensch",
-      "recontatados": 30,
-      "aprovados": 1,
-      "reprovados": 0,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Elaine Castro",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "eliane tenorio",
-      "recontatados": 30,
-      "aprovados": 1,
-      "reprovados": 3,
-      "semRetorno": 25,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "elaine vila joias",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "ELISABETH",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Emanoel Pozan",
-      "recontatados": 30,
-      "aprovados": 2,
-      "reprovados": 1,
-      "semRetorno": 27,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Ezequiel",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "felipe ricardo",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
+      "semRetorno": 31,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -242,133 +539,7 @@
       "reprovados": 0,
       "semRetorno": 30,
       "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "geisa",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Gilberto",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "gisélia",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 1,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "GRAZI AMABILI",
-      "recontatados": 30,
-      "aprovados": 1,
-      "reprovados": 0,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Ilma",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Ivani e edson",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Ivone",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "janekeli",
-      "recontatados": 30,
-      "aprovados": 1,
-      "reprovados": 0,
-      "semRetorno": 23,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Janini",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "jaque",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 1,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Jean",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Jessica Paiva",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "josé ailton",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Joyce farias",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 28,
-      "perdidos": 0,
-      "cancelados": 0
+      "cancelados": 30
     },
     {
       "distribuidor": "Juliana Negreiros",
@@ -377,74 +548,11 @@
       "reprovados": 0,
       "semRetorno": 29,
       "perdidos": 0,
-      "cancelados": 0
+      "cancelados": 30
     },
     {
-      "distribuidor": "Ketlin",
+      "distribuidor": "MARILEIA",
       "recontatados": 30,
-      "aprovados": 1,
-      "reprovados": 0,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "KARIN FLORIPA",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "keylla",
-      "recontatados": 30,
-      "aprovados": 2,
-      "reprovados": 0,
-      "semRetorno": 27,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Larissa",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 1,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Luizete",
-      "recontatados": 30,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 30,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Jessica Santos",
-      "recontatados": 29,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "jocilene",
-      "recontatados": 29,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 29,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "jose eder",
-      "recontatados": 29,
       "aprovados": 0,
       "reprovados": 0,
       "semRetorno": 29,
@@ -461,88 +569,88 @@
       "cancelados": 0
     },
     {
-      "distribuidor": "Juliana Dona Bella",
-      "recontatados": 28,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 27,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Lucimária",
-      "recontatados": 28,
-      "aprovados": 1,
-      "reprovados": 0,
-      "semRetorno": 26,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "jovanize",
-      "recontatados": 27,
-      "aprovados": 0,
-      "reprovados": 1,
-      "semRetorno": 26,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Juliana figueiredo",
-      "recontatados": 27,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 27,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Luan",
-      "recontatados": 27,
-      "aprovados": 0,
-      "reprovados": 1,
-      "semRetorno": 26,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
       "distribuidor": "Carol monte Boa vista",
-      "recontatados": 25,
+      "recontatados": 28,
       "aprovados": 1,
       "reprovados": 0,
+      "semRetorno": 27,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Milena",
+      "recontatados": 27,
+      "aprovados": 1,
+      "reprovados": 1,
+      "semRetorno": 25,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Vanda",
+      "recontatados": 27,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 27,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Vanessa Salgado",
+      "recontatados": 27,
+      "aprovados": 0,
+      "reprovados": 1,
+      "semRetorno": 26,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "suzane acre",
+      "recontatados": 26,
+      "aprovados": 1,
+      "reprovados": 1,
       "semRetorno": 24,
       "perdidos": 0,
       "cancelados": 0
     },
     {
-      "distribuidor": "Luiz villa joias",
+      "distribuidor": "Vantierri",
       "recontatados": 25,
       "aprovados": 0,
-      "reprovados": 2,
+      "reprovados": 0,
+      "semRetorno": 25,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "rodrigo rosa",
+      "recontatados": 23,
+      "aprovados": 0,
+      "reprovados": 0,
       "semRetorno": 23,
       "perdidos": 0,
       "cancelados": 0
     },
     {
-      "distribuidor": "mara",
-      "recontatados": 25,
+      "distribuidor": "Deize floripa",
+      "recontatados": 22,
       "aprovados": 0,
       "reprovados": 1,
-      "semRetorno": 24,
+      "semRetorno": 21,
       "perdidos": 0,
       "cancelados": 0
     },
     {
-      "distribuidor": "MARA SANTOS",
-      "recontatados": 23,
+      "distribuidor": "Wellyson",
+      "recontatados": 22,
       "aprovados": 0,
       "reprovados": 0,
-      "semRetorno": 22,
+      "semRetorno": 21,
       "perdidos": 0,
       "cancelados": 0
     },
     {
-      "distribuidor": "Deize floripa",
+      "distribuidor": "Mari chapecó",
       "recontatados": 21,
       "aprovados": 0,
       "reprovados": 0,
@@ -551,16 +659,34 @@
       "cancelados": 0
     },
     {
-      "distribuidor": "Maraisa",
+      "distribuidor": "ronaldo",
       "recontatados": 21,
-      "aprovados": 1,
+      "aprovados": 0,
       "reprovados": 0,
-      "semRetorno": 20,
+      "semRetorno": 21,
       "perdidos": 0,
       "cancelados": 0
     },
     {
-      "distribuidor": "MARILEIA",
+      "distribuidor": "THAIS SCHON",
+      "recontatados": 21,
+      "aprovados": 2,
+      "reprovados": 0,
+      "semRetorno": 19,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "weslei",
+      "recontatados": 19,
+      "aprovados": 0,
+      "reprovados": 1,
+      "semRetorno": 17,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "rafa duarte",
       "recontatados": 17,
       "aprovados": 0,
       "reprovados": 0,
@@ -569,34 +695,43 @@
       "cancelados": 0
     },
     {
-      "distribuidor": "Mari chapecó",
-      "recontatados": 16,
+      "distribuidor": "thiago irala",
+      "recontatados": 15,
       "aprovados": 0,
       "reprovados": 0,
-      "semRetorno": 16,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Milena",
-      "recontatados": 13,
-      "aprovados": 0,
-      "reprovados": 1,
-      "semRetorno": 12,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "monica / thiago",
-      "recontatados": 12,
-      "aprovados": 2,
-      "reprovados": 0,
-      "semRetorno": 9,
+      "semRetorno": 13,
       "perdidos": 0,
       "cancelados": 0
     },
     {
       "distribuidor": "Priscila silva",
+      "recontatados": 14,
+      "aprovados": 1,
+      "reprovados": 0,
+      "semRetorno": 13,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "vanessa Kalinoski",
+      "recontatados": 13,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 13,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Vivian",
+      "recontatados": 13,
+      "aprovados": 0,
+      "reprovados": 0,
+      "semRetorno": 13,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Adria suellem",
       "recontatados": 11,
       "aprovados": 0,
       "reprovados": 0,
@@ -614,119 +749,11 @@
       "cancelados": 9
     },
     {
-      "distribuidor": "rafa duarte",
-      "recontatados": 9,
+      "distribuidor": "Alexandre borba",
+      "recontatados": 2,
       "aprovados": 0,
       "reprovados": 0,
-      "semRetorno": 9,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "rodrigo rosa",
-      "recontatados": 9,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 9,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "ronaldo",
-      "recontatados": 7,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 7,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Rose floripa",
-      "recontatados": 6,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 6,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "suzane acre",
-      "recontatados": 6,
-      "aprovados": 0,
-      "reprovados": 1,
-      "semRetorno": 5,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "THAIS SCHON",
-      "recontatados": 5,
-      "aprovados": 1,
-      "reprovados": 0,
-      "semRetorno": 4,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "thiago irala",
-      "recontatados": 5,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 4,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Vanda",
-      "recontatados": 4,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 4,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "vanessa Kalinoski",
-      "recontatados": 4,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 4,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Vanessa Salgado",
-      "recontatados": 4,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 4,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Vantierri",
-      "recontatados": 3,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 3,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Vivian",
-      "recontatados": 1,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 1,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Wellyson",
-      "recontatados": 1,
-      "aprovados": 0,
-      "reprovados": 0,
-      "semRetorno": 1,
+      "semRetorno": 2,
       "perdidos": 0,
       "cancelados": 0
     }
