@@ -3,8 +3,9 @@
 // depois disso. Só reabre a conversa de quem já foi recontatado (dezenas, não a conta
 // inteira) — rápido, não precisa do rebuild completo de 30 dias.
 //
-// Uso: node --env-file=.env build-recontatacao.mjs > data/recontatacao.json
-import { readFileSync } from 'fs';
+// Uso: node --env-file=.env build-recontatacao.mjs
+// (escreve direto em data/recontatacao.json — não precisa mais de "> data/..." no shell)
+import { readFileSync, writeFileSync, renameSync } from 'fs';
 import { getConversaPorChatId, getMensagens, classificarMensagem } from './zap-api.mjs';
 
 const HISTORICO_PATH = '../zap-reativacao-leads/historico_reativacao.json';
@@ -63,7 +64,22 @@ for (const r of resultados) {
   porDistribuidorMap.set(r.distribuidor, d);
 }
 
-console.log(JSON.stringify({
+// Escreve num arquivo temporário e só então renomeia por cima do definitivo — nunca
+// deixa data/recontatacao.json num estado truncado/incompleto no meio do caminho. Antes
+// disso, o script só imprimia no stdout e quem chamava fazia `> data/recontatacao.json`
+// (redirecionamento do shell) — se duas execuções (a tarefa de hora em hora e o
+// fechamento do turno da tarde) batessem quase ao mesmo tempo, cada uma abria/truncava o
+// arquivo por conta própria e podia deixar ele vazio/cortado no meio (bug real,
+// descoberto em 2026-08-05: o arquivo ficou com 0 bytes, só não foi publicado porque
+// ninguém tinha comitado ainda). writeFileSync + renameSync é atômico no mesmo disco —
+// mesmo que duas execuções rodem juntas, cada uma só troca o arquivo por uma versão
+// completa de uma vez, nunca por um pedaço.
+const saida = JSON.stringify({
   geradoEm: new Date().toISOString(),
   porDistribuidor: [...porDistribuidorMap.values()].sort((a, b) => b.recontatados - a.recontatados),
-}, null, 2));
+}, null, 2);
+const caminhoFinal = './data/recontatacao.json';
+const caminhoTemp = `${caminhoFinal}.tmp-${process.pid}`;
+writeFileSync(caminhoTemp, saida);
+renameSync(caminhoTemp, caminhoFinal);
+console.error(`Escrito em ${caminhoFinal}.`);
