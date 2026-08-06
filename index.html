@@ -404,8 +404,16 @@
   </div>
 
   <div class="card" id="recontatacaoCard" style="display:none">
-    <h2>Reativação de leads parados</h2>
-    <div class="card-sub" id="recontatacaoSub">Leads que travaram no bot sem mandar CPF/data de nascimento e receberam mensagem de retomada</div>
+    <div class="card-head">
+      <div>
+        <h2>Reativação de leads parados</h2>
+        <div class="card-sub" id="recontatacaoSub">Leads que travaram no bot sem mandar CPF/data de nascimento e receberam mensagem de retomada</div>
+      </div>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="recontatacaoSearch" placeholder="Buscar distribuidor..." autocomplete="off" />
+      </div>
+    </div>
     <div id="recontatacaoContainer"></div>
   </div>
 
@@ -466,6 +474,7 @@ async function main() {
     distSearch: document.getElementById('distSearch'),
     recontatacaoCard: document.getElementById('recontatacaoCard'),
     recontatacaoContainer: document.getElementById('recontatacaoContainer'),
+    recontatacaoSearch: document.getElementById('recontatacaoSearch'),
     footer: document.getElementById('footer'),
     tooltip: document.getElementById('tooltip'),
     periodoSwitch: document.getElementById('periodoSwitch'),
@@ -516,14 +525,16 @@ async function main() {
     }
   }
 
-  function renderRecontatacao(recontatacaoData) {
-    const porDist = recontatacaoData?.porDistribuidor || [];
+  let porRecontatacaoAtual = [];
+
+  function renderRecontatacaoTable(porDist) {
     if (!porDist.length) {
-      el.recontatacaoCard.style.display = 'none';
+      el.recontatacaoContainer.innerHTML = `<div class="empty">${el.recontatacaoSearch.value ? 'Nenhum distribuidor encontrado.' : 'Sem dados de reativação.'}</div>`;
       return;
     }
-    el.recontatacaoCard.style.display = '';
-    const soma = porDist.reduce((s, d) => ({
+    // Total sempre soma TODOS os distribuidores, não só os filtrados pela busca —
+    // não faria sentido o total mudar conforme a pessoa digita.
+    const soma = porRecontatacaoAtual.reduce((s, d) => ({
       recontatados: s.recontatados + d.recontatados,
       aprovados: s.aprovados + d.aprovados,
       reprovados: s.reprovados + d.reprovados,
@@ -542,6 +553,24 @@ async function main() {
       </table>
     `;
   }
+
+  function renderRecontatacao(recontatacaoData) {
+    const porDist = [...(recontatacaoData?.porDistribuidor || [])].sort((a, b) => b.aprovados - a.aprovados);
+    if (!porDist.length) {
+      el.recontatacaoCard.style.display = 'none';
+      return;
+    }
+    el.recontatacaoCard.style.display = '';
+    porRecontatacaoAtual = porDist;
+    el.recontatacaoSearch.value = '';
+    renderRecontatacaoTable(porRecontatacaoAtual);
+  }
+
+  el.recontatacaoSearch.addEventListener('input', () => {
+    const termo = normalizarBusca(el.recontatacaoSearch.value);
+    const filtrado = termo ? porRecontatacaoAtual.filter(d => normalizarBusca(d.distribuidor).includes(termo)) : porRecontatacaoAtual;
+    renderRecontatacaoTable(filtrado);
+  });
 
   let data;
   let recontatacaoData;
@@ -659,7 +688,7 @@ async function main() {
       origem: origemCount,
       origemIA: origemIACount,
       porUF: [...porUFMap.entries()].map(([uf, total]) => ({ uf, total })).sort((a, b) => b.total - a.total),
-      porDistribuidor: [...porDistribuidorMap.values()].sort((a, b) => b.total - a.total),
+      porDistribuidor: [...porDistribuidorMap.values()].sort((a, b) => b.aprovados - a.aprovados),
     };
   }
 
