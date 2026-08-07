@@ -1,5 +1,5 @@
 {
-  "geradoEm": "2026-08-06T21:38:47.742Z",
+  "geradoEm": "2026-08-07T11:15:09.636Z",
   "porDistribuidor": [
     {
       "distribuidor": "Janini",
@@ -58,9 +58,9 @@
     {
       "distribuidor": "Elaine Castro",
       "recontatados": 52,
-      "aprovados": 2,
+      "aprovados": 3,
       "reprovados": 1,
-      "semRetorno": 49,
+      "semRetorno": 48,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -68,8 +68,8 @@
       "distribuidor": "Diana belem",
       "recontatados": 51,
       "aprovados": 0,
-      "reprovados": 1,
-      "semRetorno": 49,
+      "reprovados": 2,
+      "semRetorno": 48,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -121,9 +121,9 @@
     {
       "distribuidor": "Larissa",
       "recontatados": 50,
-      "aprovados": 3,
+      "aprovados": 4,
       "reprovados": 2,
-      "semRetorno": 45,
+      "semRetorno": 44,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -383,8 +383,8 @@
       "distribuidor": "elaine vila joias",
       "recontatados": 40,
       "aprovados": 2,
-      "reprovados": 0,
-      "semRetorno": 37,
+      "reprovados": 1,
+      "semRetorno": 36,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -490,9 +490,9 @@
     {
       "distribuidor": "monica / thiago",
       "recontatados": 37,
-      "aprovados": 2,
+      "aprovados": 3,
       "reprovados": 0,
-      "semRetorno": 34,
+      "semRetorno": 33,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -544,9 +544,9 @@
     {
       "distribuidor": "thiago irala",
       "recontatados": 32,
-      "aprovados": 0,
+      "aprovados": 1,
       "reprovados": 0,
-      "semRetorno": 30,
+      "semRetorno": 29,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -643,8 +643,8 @@
     {
       "distribuidor": "ronaldo",
       "recontatados": 30,
-      "aprovados": 1,
-      "reprovados": 0,
+      "aprovados": 0,
+      "reprovados": 1,
       "semRetorno": 29,
       "perdidos": 0,
       "cancelados": 0
