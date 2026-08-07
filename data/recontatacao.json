@@ -1,5 +1,5 @@
 {
-  "geradoEm": "2026-08-06T18:18:31.410Z",
+  "geradoEm": "2026-08-06T21:38:47.742Z",
   "porDistribuidor": [
     {
       "distribuidor": "Janini",
@@ -14,8 +14,8 @@
       "distribuidor": "Lucimária",
       "recontatados": 58,
       "aprovados": 1,
-      "reprovados": 2,
-      "semRetorno": 51,
+      "reprovados": 3,
+      "semRetorno": 50,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -40,9 +40,9 @@
     {
       "distribuidor": "jose eder",
       "recontatados": 55,
-      "aprovados": 0,
+      "aprovados": 1,
       "reprovados": 0,
-      "semRetorno": 55,
+      "semRetorno": 54,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -157,9 +157,9 @@
     {
       "distribuidor": "Edineia Mensch",
       "recontatados": 48,
-      "aprovados": 1,
+      "aprovados": 3,
       "reprovados": 0,
-      "semRetorno": 46,
+      "semRetorno": 44,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -310,9 +310,9 @@
     {
       "distribuidor": "BRUNO JOIAS",
       "recontatados": 43,
-      "aprovados": 2,
+      "aprovados": 3,
       "reprovados": 0,
-      "semRetorno": 41,
+      "semRetorno": 40,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -481,9 +481,9 @@
     {
       "distribuidor": "jocilene",
       "recontatados": 37,
-      "aprovados": 2,
+      "aprovados": 3,
       "reprovados": 0,
-      "semRetorno": 35,
+      "semRetorno": 34,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -625,9 +625,9 @@
     {
       "distribuidor": "Priscila silva",
       "recontatados": 30,
-      "aprovados": 2,
+      "aprovados": 3,
       "reprovados": 0,
-      "semRetorno": 28,
+      "semRetorno": 27,
       "perdidos": 0,
       "cancelados": 0
     },
