@@ -414,6 +414,7 @@
         <input type="text" id="recontatacaoSearch" placeholder="Buscar distribuidor..." autocomplete="off" />
       </div>
     </div>
+    <div class="tiles" id="recontatacaoTiles"></div>
     <div id="recontatacaoContainer"></div>
   </div>
 
@@ -475,6 +476,7 @@ async function main() {
     recontatacaoCard: document.getElementById('recontatacaoCard'),
     recontatacaoContainer: document.getElementById('recontatacaoContainer'),
     recontatacaoSearch: document.getElementById('recontatacaoSearch'),
+    recontatacaoTiles: document.getElementById('recontatacaoTiles'),
     footer: document.getElementById('footer'),
     tooltip: document.getElementById('tooltip'),
     periodoSwitch: document.getElementById('periodoSwitch'),
@@ -563,6 +565,32 @@ async function main() {
     el.recontatacaoCard.style.display = '';
     porRecontatacaoAtual = porDist;
     el.recontatacaoSearch.value = '';
+
+    // Tiles de resumo (mesmo estilo dos cards do topo) — sempre com o total geral, nunca
+    // muda com a busca, igual a linha Total da tabela logo abaixo.
+    const soma = porDist.reduce((s, d) => ({
+      recontatados: s.recontatados + d.recontatados,
+      aprovados: s.aprovados + d.aprovados,
+      reprovados: s.reprovados + d.reprovados,
+      semRetorno: s.semRetorno + d.semRetorno,
+      cancelados: s.cancelados + d.cancelados,
+    }), { recontatados: 0, aprovados: 0, reprovados: 0, semRetorno: 0, cancelados: 0 });
+    const totalDecididos = soma.aprovados + soma.reprovados;
+    const taxaAprovacaoRecontato = totalDecididos > 0 ? soma.aprovados / totalDecididos : null;
+    const tilesRecontatacao = [
+      { label: 'Recontatados', value: fmt.format(soma.recontatados) },
+      { label: 'Aprovados depois', value: fmt.format(soma.aprovados), cls: 'good' },
+      { label: 'Reprovados', value: fmt.format(soma.reprovados), cls: 'critical' },
+      { label: 'Ainda sem retorno', value: fmt.format(soma.semRetorno) },
+      { label: 'Taxa de aprovação (recontato)', value: pct(taxaAprovacaoRecontato) },
+    ];
+    el.recontatacaoTiles.innerHTML = tilesRecontatacao.map(t => `
+      <div class="tile">
+        <div class="label">${t.label}</div>
+        <div class="value${t.cls ? ' ' + t.cls : ''}">${t.value}</div>
+      </div>
+    `).join('');
+
     renderRecontatacaoTable(porRecontatacaoAtual);
   }
 
