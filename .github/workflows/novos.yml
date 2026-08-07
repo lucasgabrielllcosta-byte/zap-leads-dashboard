@@ -31,6 +31,22 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      - name: Restaurar cache de origem-IA
+        # Faltava essa etapa aqui (só existia no deploy.yml) — sem ela, todo run desse
+        # workflow (a cada 15 min, 96x/dia) começava com o diretório cache/ vazio e
+        # reclassificava pelo Gemini os MESMOS leads indeterminados/sem_menção do zero,
+        # toda vez, em vez de reaproveitar o que já tinha sido classificado. Descoberto
+        # em 2026-08-07 comparando logs: essa etapa faltando causava ~600-700 chamadas
+        # NOVAS ao Gemini por execução (0 do cache), contra ~20-50 novas (milhares do
+        # cache) no deploy.yml, que já tinha essa etapa. Mesma chave/prefixo do
+        # deploy.yml de propósito — os dois workflows escrevem no mesmo formato de cache
+        # (chave = hash da conversa), então compartilhar entre eles só ajuda.
+        uses: actions/cache@v4
+        with:
+          path: cache
+          key: origem-ia-cache-${{ github.run_id }}
+          restore-keys: |
+            origem-ia-cache-
       - name: Guardar novos.json anterior (referência pra validação)
         run: cp data/novos.json /tmp/novos-anterior.json 2>/dev/null || true
       - name: Gerar data/novos.json (janela curta — só leads recentes)
