@@ -1,5 +1,5 @@
 {
-  "geradoEm": "2026-08-10T10:32:51.737Z",
+  "geradoEm": "2026-08-10T11:36:39.433Z",
   "porDistribuidor": [
     {
       "distribuidor": "josé ailton",
@@ -184,9 +184,9 @@
     {
       "distribuidor": "Juliana Dona Bella",
       "recontatados": 59,
-      "aprovados": 2,
+      "aprovados": 3,
       "reprovados": 2,
-      "semRetorno": 54,
+      "semRetorno": 53,
       "perdidos": 0,
       "cancelados": 0
     },
