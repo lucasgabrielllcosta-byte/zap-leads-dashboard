@@ -1,5 +1,5 @@
 {
-  "geradoEm": "2026-08-10T21:36:05.260Z",
+  "geradoEm": "2026-08-11T10:27:42.004Z",
   "porDistribuidor": [
     {
       "distribuidor": "josé ailton",
@@ -22,9 +22,9 @@
     {
       "distribuidor": "Larissa",
       "recontatados": 63,
-      "aprovados": 5,
+      "aprovados": 6,
       "reprovados": 2,
-      "semRetorno": 56,
+      "semRetorno": 55,
       "perdidos": 0,
       "cancelados": 0
     },
