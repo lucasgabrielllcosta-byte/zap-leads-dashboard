@@ -1,12 +1,14 @@
 name: Atualizar dashboard
 
 on:
-  schedule:
-    # Minuto 7 (não 0) de propósito — o GitHub Actions costuma sobrecarregar/atrasar
-    # execuções agendadas pros minutos redondos (0, 15, 30, 45), porque é quando todo
-    # mundo agenda. Fugir do horário redondo reduz a chance de a execução ser pulada
-    # (aconteceu de verdade em 2026-08-04: ficou ~5h sem rodar por causa disso).
-    - cron: '7 * * * *'
+  # Cron removido em 2026-08-17 — rodava de hora em hora só pra manter data/dashboard.json
+  # (Gemini) fresco, mas essa aba não é usada. workflow_dispatch continua disponível pra
+  # forçar uma reclassificação manual se precisar. O push (abaixo) já é suficiente pra
+  # manter a seção de reativação (data/recontatacao.json) publicada: sempre que o build
+  # local de fim de dia commita esse arquivo e dá push, este workflow dispara, pula o
+  # Gemini (event_name == 'push', ver steps abaixo) e só republica o site com o que
+  # acabou de ser commitado. Detecção de troca de titular de departamento passou a
+  # rodar separada, 2x/dia, local, via sync-titularidade.mjs (não usa Gemini).
   workflow_dispatch: {}
   push:
     branches: [main]

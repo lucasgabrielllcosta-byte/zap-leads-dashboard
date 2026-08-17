@@ -8,11 +8,9 @@ name: Atualizar leads novos (fast-track)
 # navegador: cada dia é "dono" de uma fonte só (nunca as duas), pra nunca duplicar um
 # lead com dois status ao mesmo tempo.
 on:
-  schedule:
-    # Minutos 4/19/34/49 (não 0/15/30/45) de propósito — mesma razão do deploy.yml:
-    # fugir dos horários redondos, que são os mais concorridos e mais sujeitos a
-    # execução agendada pulada pelo GitHub Actions.
-    - cron: '4,19,34,49 * * * *'
+  # Agendamento desativado em 2026-08-17 — gastava Gemini 96x/dia pra alimentar só a
+  # aba "aprovados" do dashboard público, que não é usada. workflow_dispatch continua
+  # disponível pra rodar manualmente se precisar (botão "Run workflow" no GitHub).
   workflow_dispatch: {}
 
 permissions:
