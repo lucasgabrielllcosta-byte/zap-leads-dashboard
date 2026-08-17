@@ -320,6 +320,11 @@
       "cliente": "Luan",
       "inicio": "2024-11-28T17:12:04.014Z",
       "fim": "2026-08-17T17:25:49.865Z"
+    },
+    {
+      "cliente": "X_Luan",
+      "inicio": "2026-08-17T23:21:38.567Z",
+      "fim": null
     }
   ],
   "c11350-c4-e10b-a86-13232c104388": [
@@ -889,6 +894,11 @@
     {
       "cliente": "Tatiane gambogi",
       "inicio": "2025-09-02T13:37:03.855Z",
+      "fim": "2026-08-17T23:21:38.567Z"
+    },
+    {
+      "cliente": "Silvio figueira da Silva neto",
+      "inicio": "2026-08-17T23:21:38.567Z",
       "fim": null
     }
   ]
