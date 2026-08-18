@@ -77,12 +77,25 @@ export async function getLeadsRecentes(diasJanela, limiteLeads = 30000) {
   return { leads, atingiuJanela: false };
 }
 
+const dormir = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Retry curto (3 tentativas, backoff 500ms/1500ms) antes de desistir — sem isso, qualquer
+// falha transitória (rede, rate limit) fazia o lead cair silenciosamente em "conversa não
+// encontrada" e sumir da contagem de aprovados/reprovados sem nenhum aviso (achado em
+// 2026-08-18: ~38 leads de 6150 perdidos assim numa única execução, por instabilidade
+// pontual da API, não por falta real de conversa).
 export async function getConversaPorChatId(chatId) {
-  try {
-    const data = await apiGet(`/api/v2/conversations/chatId/${encodeURIComponent(chatId)}?includeClosed=true`);
-    return data.conversation || null;
-  } catch {
-    return null;
+  for (let tentativa = 0; tentativa < 3; tentativa++) {
+    try {
+      const data = await apiGet(`/api/v2/conversations/chatId/${encodeURIComponent(chatId)}?includeClosed=true`);
+      return data.conversation || null;
+    } catch (err) {
+      if (tentativa === 2) {
+        console.error(`  [aviso] conversa ${chatId} falhou após 3 tentativas: ${err.message}`);
+        return null;
+      }
+      await dormir(500 * (tentativa + 1));
+    }
   }
 }
 
@@ -92,7 +105,16 @@ export async function getMensagens(conversationId) {
   let paginas = 0;
   do {
     const qs = cursor ? `?cursor=${encodeURIComponent(cursor)}` : '';
-    const data = await apiGet(`/api/v2/conversations/${conversationId}/messages${qs}`);
+    let data;
+    for (let tentativa = 0; tentativa < 3; tentativa++) {
+      try {
+        data = await apiGet(`/api/v2/conversations/${conversationId}/messages${qs}`);
+        break;
+      } catch (err) {
+        if (tentativa === 2) throw err;
+        await dormir(500 * (tentativa + 1));
+      }
+    }
     todas.push(...(data.messages || []));
     cursor = data.nextCursor || null;
     paginas += 1;
