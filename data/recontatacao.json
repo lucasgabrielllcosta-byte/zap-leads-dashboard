@@ -1,21 +1,21 @@
 {
-  "geradoEm": "2026-08-17T17:25:29.183Z",
+  "geradoEm": "2026-08-18T17:05:24.790Z",
   "porDistribuidor": [
     {
-      "distribuidor": "Ilma",
-      "recontatados": 170,
+      "distribuidor": "MARA SANTOS",
+      "recontatados": 173,
       "aprovados": 3,
-      "reprovados": 2,
-      "semRetorno": 164,
+      "reprovados": 0,
+      "semRetorno": 152,
       "perdidos": 0,
       "cancelados": 0
     },
     {
-      "distribuidor": "MARA SANTOS",
-      "recontatados": 168,
-      "aprovados": 2,
-      "reprovados": 0,
-      "semRetorno": 153,
+      "distribuidor": "Ilma",
+      "recontatados": 170,
+      "aprovados": 3,
+      "reprovados": 3,
+      "semRetorno": 163,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -62,7 +62,7 @@
       "reprovados": 8,
       "semRetorno": 146,
       "perdidos": 0,
-      "cancelados": 0
+      "cancelados": 152
     },
     {
       "distribuidor": "Cleidy Espindola",
@@ -94,18 +94,18 @@
     {
       "distribuidor": "DEBORA",
       "recontatados": 130,
-      "aprovados": 6,
-      "reprovados": 2,
-      "semRetorno": 118,
+      "aprovados": 7,
+      "reprovados": 3,
+      "semRetorno": 116,
       "perdidos": 0,
       "cancelados": 0
     },
     {
       "distribuidor": "rodrigo rosa",
       "recontatados": 128,
-      "aprovados": 1,
+      "aprovados": 3,
       "reprovados": 2,
-      "semRetorno": 125,
+      "semRetorno": 123,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -236,6 +236,15 @@
       "cancelados": 0
     },
     {
+      "distribuidor": "Deize floripa",
+      "recontatados": 70,
+      "aprovados": 1,
+      "reprovados": 1,
+      "semRetorno": 68,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
       "distribuidor": "Edineia Mensch",
       "recontatados": 69,
       "aprovados": 4,
@@ -259,6 +268,15 @@
       "aprovados": 6,
       "reprovados": 2,
       "semRetorno": 60,
+      "perdidos": 0,
+      "cancelados": 0
+    },
+    {
+      "distribuidor": "Milena",
+      "recontatados": 68,
+      "aprovados": 2,
+      "reprovados": 2,
+      "semRetorno": 62,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -398,15 +416,6 @@
       "cancelados": 0
     },
     {
-      "distribuidor": "Deize floripa",
-      "recontatados": 56,
-      "aprovados": 1,
-      "reprovados": 1,
-      "semRetorno": 54,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
       "distribuidor": "GRAZI AMABILI",
       "recontatados": 56,
       "aprovados": 1,
@@ -464,8 +473,8 @@
       "distribuidor": "Elaine Castro",
       "recontatados": 52,
       "aprovados": 3,
-      "reprovados": 1,
-      "semRetorno": 48,
+      "reprovados": 2,
+      "semRetorno": 47,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -529,15 +538,6 @@
       "aprovados": 6,
       "reprovados": 7,
       "semRetorno": 34,
-      "perdidos": 0,
-      "cancelados": 0
-    },
-    {
-      "distribuidor": "Milena",
-      "recontatados": 47,
-      "aprovados": 2,
-      "reprovados": 2,
-      "semRetorno": 43,
       "perdidos": 0,
       "cancelados": 0
     },
@@ -669,10 +669,10 @@
     },
     {
       "distribuidor": "monica / thiago",
-      "recontatados": 37,
+      "recontatados": 38,
       "aprovados": 5,
       "reprovados": 1,
-      "semRetorno": 31,
+      "semRetorno": 32,
       "perdidos": 0,
       "cancelados": 0
     },
