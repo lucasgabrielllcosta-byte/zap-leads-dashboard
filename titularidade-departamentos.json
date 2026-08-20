@@ -24,7 +24,7 @@
     {
       "cliente": "MICHELY JOIA",
       "inicio": "2024-11-18T13:17:26.118Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "d26428b-b3b7-f8b1-1a-c1d81135103": [
@@ -38,7 +38,7 @@
     {
       "cliente": "BETO GESTOR",
       "inicio": "2024-11-18T18:55:58.691Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "15ef67-ee6f-8eb-dfa-1580e0205bb6": [
@@ -52,7 +52,7 @@
     {
       "cliente": "SÔNIA",
       "inicio": "2024-11-18T21:05:48.862Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "4bd8f2-f252-b4-3bd1-11034685685b": [
@@ -146,6 +146,11 @@
     {
       "cliente": "Luizete",
       "inicio": "2024-11-21T20:04:52.967Z",
+      "fim": "2026-08-20T10:15:07.830Z"
+    },
+    {
+      "cliente": "Tatiana da Silva Paulo",
+      "inicio": "2026-08-20T10:15:07.830Z",
       "fim": null
     }
   ],
@@ -167,7 +172,7 @@
     {
       "cliente": "Fabricia soares",
       "inicio": "2024-11-22T14:26:48.912Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "e21edb-13f7-fab7-84-a2b8aa5056e": [
@@ -181,7 +186,7 @@
     {
       "cliente": "Amanda Palmas",
       "inicio": "2024-11-22T17:25:38.165Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "3c8a17-5eb3-52da-eb05-fc3db4ec0e": [
@@ -223,6 +228,11 @@
     {
       "cliente": "Ezequiel",
       "inicio": "2024-11-23T12:44:18.953Z",
+      "fim": "2026-08-20T10:15:07.830Z"
+    },
+    {
+      "cliente": "Erika da Silva Simão",
+      "inicio": "2026-08-20T10:15:07.830Z",
       "fim": null
     }
   ],
@@ -237,7 +247,7 @@
     {
       "cliente": "Dimitri joias",
       "inicio": "2024-11-25T13:49:53.401Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "da68002-b8fc-4bc5-ac3c-be7f144a6": [
@@ -263,13 +273,18 @@
     {
       "cliente": "Jean",
       "inicio": "2024-11-25T22:11:35.496Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "5a534a-c3b-041f-5c78-f7202823337d": [
     {
       "cliente": "weslei",
       "inicio": "2024-11-26T16:32:47.646Z",
+      "fim": "2026-08-20T10:15:07.830Z"
+    },
+    {
+      "cliente": "Aline Cavalheiro",
+      "inicio": "2026-08-20T10:15:07.830Z",
       "fim": null
     }
   ],
@@ -277,7 +292,7 @@
     {
       "cliente": "Luiz villa joias",
       "inicio": "2024-11-26T18:16:36.809Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "488e08d-63cd-de05-163d-f6c27e02a5c6": [
@@ -285,6 +300,11 @@
       "cliente": "camila paiva",
       "inicio": "2024-11-27T11:08:28.841Z",
       "fim": "2026-08-17T23:27:04.746Z"
+    },
+    {
+      "cliente": "LUIS FERNANDO DOS SANTOS",
+      "inicio": "2026-08-20T00:11:45.065Z",
+      "fim": null
     }
   ],
   "d050328-1ce4-a1d-cf2f-ab3ca6bcad60": [
@@ -298,7 +318,7 @@
     {
       "cliente": "ELIANE BITENCOURT",
       "inicio": "2024-11-28T12:53:42.178Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "ce0fd-8138-0637-d1a2-c5580730630": [
@@ -324,7 +344,7 @@
     {
       "cliente": "X_Luan",
       "inicio": "2026-08-17T21:02:02.258Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "c11350-c4-e10b-a86-13232c104388": [
@@ -338,7 +358,7 @@
     {
       "cliente": "Maynara floripa",
       "inicio": "2024-11-28T18:23:49.669Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "d7ec35f-f7a-3d21-ae70-58bb1af2a1": [
@@ -352,7 +372,7 @@
     {
       "cliente": "Joana Palmas",
       "inicio": "2024-11-29T12:47:02.983Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "ee406e2-41a-b73a-76c-16e0c7046c5": [
@@ -406,7 +426,7 @@
     {
       "cliente": "Livia",
       "inicio": "2024-12-09T14:36:27.268Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "72a7b4d-f58-0a8-b6f-51f0a162bddf": [
@@ -683,7 +703,7 @@
     {
       "cliente": "gisélia",
       "inicio": "2025-02-05T18:50:00.577Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "c7853-f436-3d7b-b872-38f0201714be": [
@@ -725,7 +745,7 @@
     {
       "cliente": "Deize floripa",
       "inicio": "2025-02-12T17:01:50.587Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "2076ff0-357b-2e3e-3bfe-c3d855c06a7c": [
@@ -767,7 +787,7 @@
     {
       "cliente": "Ivani e edson",
       "inicio": "2025-02-18T19:41:50.374Z",
-      "fim": null
+      "fim": "2026-08-20T00:11:45.065Z"
     }
   ],
   "551640-8264-5845-2683-dbe034f26c": [
