@@ -6,7 +6,7 @@
 // Uso: node --env-file=.env build-recontatacao.mjs
 // (escreve direto em data/recontatacao.json — não precisa mais de "> data/..." no shell)
 import { readFileSync, writeFileSync, renameSync } from 'fs';
-import { getConversaPorChatId, getMensagens, classificarMensagem } from './zap-api.mjs';
+import { getConversaPorChatId, getMensagens, classificarMensagem, mapWithConcurrency } from './zap-api.mjs';
 
 const HISTORICO_PATH = '../zap-reativacao-leads/historico_reativacao.json';
 
@@ -43,13 +43,23 @@ async function checarLead(lead) {
   return { ...lead, resultado: aprovouDepois ? 'reprovado_apos_reativacao' : 'reprovado_antes_da_reativacao' };
 }
 
-const resultados = [];
-for (const lead of entradas) {
-  resultados.push(await checarLead(lead));
-}
+// Concorrência 15 — era sequencial (1 lead por vez, 2 chamadas de API cada), o que pra
+// ~6200 leads passou de 1h40 rodando sozinho (descoberto em 2026-08-20, mesmo problema
+// já corrigido no verificar-recusas.mjs). mapWithConcurrency já isola erro por item
+// (não derruba o lote inteiro se uma chamada falhar).
+let processados = 0;
+const resultados = await mapWithConcurrency(entradas, 15, async (lead) => {
+  const r = await checarLead(lead);
+  processados++;
+  if (processados % 500 === 0) console.error(`  progresso: ${processados}/${entradas.length}`);
+  return r;
+});
 
 const porDistribuidorMap = new Map();
 for (const r of resultados) {
+  // mapWithConcurrency captura erro por item (em vez de derrubar o lote inteiro) e
+  // devolve { error } sem o formato esperado — pula em vez de quebrar a agregação.
+  if (!r || r.error) { if (r?.error) console.error(`  [aviso] lead pulado por erro: ${r.error}`); continue; }
   const d = porDistribuidorMap.get(r.distribuidor) || {
     distribuidor: r.distribuidor, recontatados: 0, aprovados: 0, reprovados: 0, semRetorno: 0, perdidos: 0, cancelados: 0,
   };
